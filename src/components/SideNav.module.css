@@ -1,0 +1,12 @@
+.menuItem button {
+  width: 100%;
+  padding: 5px 10px;
+  background: white;
+  color: var(--font-color);
+  text-align: left;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.menuItem button:hover {
+  background: var(--gray-50);
+}

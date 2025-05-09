@@ -1,0 +1,18 @@
+<svg width="current" height="current" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_535_114)">
+<path d="M64.1353 17.6354C90.0926 17.6354 111.135 38.678 111.135 64.6354C111.135 90.5928 90.0926 111.635 64.1353 111.635C38.1779 111.635 17.1353 90.5928 17.1353 64.6354C17.1353 38.678 38.1779 17.6354 64.1353 17.6354ZM64.1353 37.6354C49.2236 37.6354 37.1353 49.7237 37.1353 64.6354C37.1353 79.5471 49.2236 91.6354 64.1353 91.6354C79.0469 91.6354 91.1353 79.5471 91.1353 64.6354C91.1353 49.7237 79.0469 37.6354 64.1353 37.6354Z" fill="current"/>
+<rect x="54.1353" y="8.63531" width="20" height="10" fill="current"/>
+<rect x="54.1353" y="109.635" width="20" height="10" fill="current"/>
+<rect x="119.135" y="54.6353" width="20" height="10" transform="rotate(90 119.135 54.6353)" fill="current"/>
+<rect x="19.1353" y="54.6353" width="20" height="10" transform="rotate(90 19.1353 54.6353)" fill="current"/>
+<rect x="17.8198" y="31.9619" width="20" height="10" transform="rotate(-45 17.8198 31.9619)" fill="current"/>
+<rect x="89.2378" y="103.38" width="20" height="10" transform="rotate(-45 89.2378 103.38)" fill="current"/>
+<rect x="96.3086" y="18.5269" width="20" height="10" transform="rotate(45 96.3086 18.5269)" fill="current"/>
+<rect x="25.5981" y="89.2376" width="20" height="10" transform="rotate(45 25.5981 89.2376)" fill="current"/>
+</g>
+<defs>
+<clipPath id="clip0_535_114">
+<rect width="128" height="128" fill="white"/>
+</clipPath>
+</defs>
+</svg>

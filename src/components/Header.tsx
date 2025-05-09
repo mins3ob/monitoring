@@ -8,20 +8,14 @@ import { useSelector } from "react-redux";
 
 import { RootState } from "@redux/store";
 
-import SignIn from "@components/auth/SignIn";
-
-export default function Home() {
+export default function Header() {
   const router = useRouter();
 
   const { isAuth } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    if (isAuth) router.push("/wrapper");
+    if (!isAuth) router.push("/");
   }, [isAuth, router]);
 
-  return (
-    <main className="flex items-center justify-center min-h-screen bg-[var(--gray-100)]">
-      <SignIn />
-    </main>
-  );
+  return <div></div>;
 }
