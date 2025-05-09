@@ -8,6 +8,12 @@ export interface IProject {
   success: number;
   failed: number;
   processIds: string[];
+  carType?: string;
+  parts?: string;
+  specification?: string;
+  event?: string;
+  schedule?: string;
+  quantity?: number;
 }
 
 export interface IProcess {

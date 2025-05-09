@@ -20,7 +20,15 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
   const dispatch = useDispatch<AppDispatch>();
 
   const [project, setProject] = useState<IProject>({
+    id: '',
     name: '',
+    status: '대기중',
+    imgUrl: null,
+    description: '',
+    lot: 0,
+    success: 0,
+    failed: 0,
+    processIds: [],
     carType: '',
     parts: '',
     specification: '',
@@ -33,7 +41,7 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
     (field: keyof IProject) =>
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       const value = field === 'quantity' ? Number(e.target.value) : e.target.value;
-      setProject((prev: IProject) => ({
+      setProject(prev => ({
         ...prev,
         [field]: value,
       }));
@@ -101,7 +109,7 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
       <LabelInput
         label="수량"
         type="number"
-        value={project.quantity.toString()}
+        value={project.quantity?.toString() ?? '0'}
         onChange={handleChange('quantity')}
         placeholder="수량을 입력하세요"
       />

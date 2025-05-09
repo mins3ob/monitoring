@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
 interface ILabelInput {
   label: string;
-  type?: "text" | "password" | "number";
-  value: string;
+  type?: 'text' | 'password' | 'number';
+  value: string | number | undefined;
   placeholder?: string;
 
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,9 +14,9 @@ interface ILabelInput {
 
 export default function LabelInput({
   label,
-  type = "text",
+  type = 'text',
   value,
-  placeholder = "Placeholder",
+  placeholder = 'Placeholder',
   onChange,
   onKeyDown,
 }: ILabelInput) {
@@ -24,7 +24,13 @@ export default function LabelInput({
     <div>
       <p>{label}</p>
 
-      <input type={type} value={value} placeholder={placeholder} onChange={onChange} onKeyDown={onKeyDown} />
+      <input
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+      />
     </div>
   );
 }
