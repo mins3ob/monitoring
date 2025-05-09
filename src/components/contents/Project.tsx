@@ -21,12 +21,6 @@ export default function Project() {
     setShowDetail(true);
   };
 
-  const handleBackClick = (): void => {
-    router.back(); // 브라우저의 뒤로가기
-    setShowDetail(false);
-    setSelectedProjectId('');
-  };
-
   // URL 파라미터나 쿼리스트링에 따라 상세 페이지 표시 여부 결정
   useEffect(() => {
     const view = searchParams.get('view');
