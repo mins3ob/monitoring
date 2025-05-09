@@ -1,18 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 import Image from "next/image";
 
-import { useSelector } from "react-redux";
-import { RootState } from "@redux/store";
+// import { useSelector } from "react-redux";
+// import { RootState } from "@redux/store";
 
 import IconSetting from "@public/svgs/common/icon_gear.svg";
 
 import ImgDefaultProfile from "@public/imgs/img_default_profile.png";
 
 export default function ContentHeader() {
-  const auth = useSelector((state: RootState) => state.auth);
+  // const auth = useSelector((state: RootState) => state.auth);
+
+  // const {isProfileOpen, setIsProfileOpen} = useState>
 
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", columnGap: 10, padding: 10 }}>
