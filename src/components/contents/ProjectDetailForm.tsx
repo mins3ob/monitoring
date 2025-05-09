@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 import CSS from './Contents.module.css';
 
@@ -16,14 +17,12 @@ import lotData from '@constants/testLot.json';
 import ImgNoImg from '@public/imgs/img_no_img.png';
 
 interface ProjectDetailFormProps {
-  onBack: () => void;
-
   projectId: string;
 }
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-export default function ProjectDetailForm({ onBack, projectId }: ProjectDetailFormProps) {
+export default function ProjectDetailForm({ projectId }: ProjectDetailFormProps) {
   const [project, setProject] = useState<IProject | null>(null);
 
   useEffect(() => {
@@ -74,13 +73,14 @@ export default function ProjectDetailForm({ onBack, projectId }: ProjectDetailFo
           <div>
             <h3>{project.name}</h3>
 
-            <div style={{ width: '100%', height: '300px', marginBottom: '20px' }}>
-              <img
+            <div
+              style={{ width: '100%', height: '300px', marginBottom: '20px', position: 'relative' }}
+            >
+              <Image
                 src={project.imgUrl || ImgNoImg.src}
                 alt={project.name}
+                fill
                 style={{
-                  width: '100%',
-                  height: '100%',
                   objectFit: 'cover',
                   borderRadius: '4px',
                 }}

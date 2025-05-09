@@ -36,7 +36,7 @@ export default function Project() {
   }, [searchParams]);
 
   return showDetail ? (
-    <ProjectDetailForm onBack={handleBackClick} projectId={selectedProjectId} />
+    <ProjectDetailForm projectId={selectedProjectId} />
   ) : (
     <ProjectBoardForm onDetailClick={handleDetailClick} />
   );

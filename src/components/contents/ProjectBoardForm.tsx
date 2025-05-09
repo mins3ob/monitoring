@@ -20,6 +20,7 @@ import Modal from '@components/Modal';
 import ProjectAddForm from '@components/forms/ProjectAddForm';
 
 import ImgNoImg from '@public/imgs/img_no_img.png';
+import Image from 'next/image';
 
 interface IProjectBoardForm {
   onDetailClick: (projectId: string) => void;
@@ -122,7 +123,7 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
           width: '100%',
         }}
       >
-        {filteredProjects.map((project, index) => (
+        {filteredProjects.map(project => (
           <div
             key={project.id}
             style={{
@@ -159,13 +160,19 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
               onClick={() => onDetailClick(project.id)}
               style={{ background: 'none', color: 'var(--font-color)', textAlign: 'left' }}
             >
-              <div style={{ width: '100%', height: '200px', marginBottom: '12px' }}>
-                <img
+              <div
+                style={{
+                  width: '100%',
+                  height: '200px',
+                  marginBottom: '12px',
+                  position: 'relative',
+                }}
+              >
+                <Image
                   src={project.imgUrl || ImgNoImg.src}
                   alt={project.name}
+                  fill
                   style={{
-                    width: '100%',
-                    height: '100%',
                     objectFit: 'cover',
                     borderRadius: '4px',
                   }}
