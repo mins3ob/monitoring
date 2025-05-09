@@ -54,7 +54,8 @@ export default function SignIn() {
         </p>
 
         <div style={{ display: "flex", alignItems: "center", columnGap: 10, marginBottom: 20 }}>
-          <CheckBoxBtn size={10} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />{" "}
+          <CheckBoxBtn size={10} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
+
           <span>Remember me</span>
         </div>
 

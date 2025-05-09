@@ -1,11 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import authReducer from "@redux/slices/authSlice";
-import sideNavReducer from "@redux/slices/sideNavSlice";
+import authReducer from '@redux/slices/authSlice';
+import sideNavReducer from '@redux/slices/sideNavSlice';
+import backdropReducer from '@redux/slices/backdropSlice';
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     sideNav: sideNavReducer,
+    backdrop: backdropReducer,
   },
 });
 

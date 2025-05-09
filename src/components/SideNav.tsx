@@ -1,17 +1,18 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
-import { AppDispatch, RootState } from "@redux/store";
+import { AppDispatch, RootState } from '@redux/store';
 
-import CSS from "./SideNav.module.css";
+import CSS from './SideNav.module.css';
 
-import { selectMenu } from "@redux/slices/sideNavSlice";
+import { selectMenu } from '@redux/slices/sideNavSlice';
 
-import { IMenu } from "src/interface/menu";
-import { menus } from "src/constants/menu";
+import { menus } from '@constants/index';
+
+import { IMenu } from '@interfaces/menu';
 
 const MenuItem = ({ menu }: { menu: IMenu }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -23,14 +24,14 @@ const MenuItem = ({ menu }: { menu: IMenu }) => {
       <button type="button" onClick={() => dispatch(selectMenu(menu.value!))}>
         {menu.icon && menu.icon}
 
-        <span>{menu.main}</span>
+        <p style={{ fontSize: 16 }}>{menu.main}</p>
       </button>
 
       {menu.subs && menu.subs.length > 0 && (
         <div
           style={{
-            overflow: "hidden",
-            height: selectedMenu === menu.value ? "auto" : 0,
+            overflow: 'hidden',
+            height: selectedMenu === menu.value ? 'auto' : 0,
           }}
         >
           {menu.subs && menu.subs.length > 0 && (
@@ -48,8 +49,8 @@ const MenuItem = ({ menu }: { menu: IMenu }) => {
 
 export default function SideNav() {
   return (
-    <div style={{ height: "100vh" }}>
-      <p style={{ padding: 10, marginBottom: 20 }}>로고</p>
+    <div style={{ height: '100vh' }}>
+      <p style={{ padding: '10px 20px', marginBottom: 20 }}>로고</p>
 
       {menus.map((menu, idx) => (
         <MenuItem key={idx} menu={menu} />

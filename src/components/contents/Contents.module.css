@@ -1,0 +1,52 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.box {
+  flex: 1;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+}
+
+.box > h6 {
+  color: var(--gray-600);
+}
+
+.box > h5,
+.box > h6 {
+  font-family: "sf_pro_bold";
+}
+
+.legendContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.legendColor {
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+}
+
+.legendLabel {
+  font-size: 1rem;
+  color: #757575;
+}

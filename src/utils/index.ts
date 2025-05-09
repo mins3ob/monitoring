@@ -18,15 +18,17 @@ export const validateEmail = (email: string): boolean => {
 export const validatePassword = (password: string): boolean => {
   /** 특수 문자 포함 여부 */
   const isSpecialCharIncluded = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  /** 소문자 포함 여부 */
-  const isLowercaseIncluded = /[a-z]/.test(password);
-  /** 대문자 포함 여부 */
-  const isUppercaseIncluded = /[A-Z]/.test(password);
+  /** 문자 포함 여부 */
+  const isLetterIncluded = /[a-zA-Z]/.test(password);
+  /** 숫자 포함 여부 */
+  const isNumberIncluded = /[0-9]/.test(password);
   /** 최소 길이 충족 여부 */
   const isMinLengthValid = password.length >= 8;
 
-  // 최소 8자 + (대문자, 소문자, 특수문자 중 2가지 이상 포함)
-  return (
-    isMinLengthValid && [isSpecialCharIncluded, isLowercaseIncluded, isUppercaseIncluded].filter(Boolean).length >= 2
-  );
+  // 최소 8자 + (문자, 숫자, 특수문자 모두 포함)
+  return isMinLengthValid && isSpecialCharIncluded && isLetterIncluded && isNumberIncluded;
+};
+
+export const getCssVarValue = (varName: string) => {
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 };

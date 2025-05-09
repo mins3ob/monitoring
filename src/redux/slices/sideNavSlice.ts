@@ -1,17 +1,17 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TMenu } from "src/interface/menu";
+import { TMenu } from '@interfaces/menu';
 
 interface ISideNavState {
   selectedMenu: TMenu;
 }
 
 const initialState: ISideNavState = {
-  selectedMenu: "dashboard",
+  selectedMenu: 'dashboard',
 };
 
 const sideNav = createSlice({
-  name: "sideNav",
+  name: 'sideNav',
   initialState,
   reducers: {
     selectMenu: (state, action: PayloadAction<TMenu>) => {

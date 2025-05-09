@@ -1,4 +1,4 @@
-import { IMenu } from "src/interface/menu";
+import { IMenu } from "@interfaces/menu";
 
 export const menus: IMenu[] = [
   {
@@ -38,3 +38,5 @@ export const menus: IMenu[] = [
     value: "inventory",
   },
 ];
+
+export const monthlyLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

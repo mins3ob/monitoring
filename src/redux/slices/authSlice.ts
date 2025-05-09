@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ISignIn } from "src/interface/auth";
+import { ISignIn } from '@interfaces/auth';
 
 interface IAuthState {
   isAuth: boolean;
@@ -10,16 +10,19 @@ interface IAuthState {
 }
 
 const initialState: IAuthState = {
-  isAuth: false,
+  isAuth: true,
   email: null,
   pw: null,
   profileImgUrl: null,
 };
 
 const auth = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
+    resetAuth: state => {
+      Object.assign(state, initialState);
+    },
     signIn: (state, action: PayloadAction<ISignIn>) => {
       state.isAuth = true;
       state.email = action.payload.email;
@@ -28,5 +31,5 @@ const auth = createSlice({
   },
 });
 
-export const { signIn } = auth.actions;
+export const { resetAuth, signIn } = auth.actions;
 export default auth.reducer;

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --gray-50: #f9f9f9;
@@ -31,14 +31,14 @@
 } */
 
 * {
-  font-family: "pretendard";
+  font-family: 'pretendard';
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
 body {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 400;
   color: var(--font-color);
   background: white;
@@ -65,119 +65,119 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "pretendard_bold";
+  font-family: 'pretendard_bold';
 }
 
 h1 {
-  font-size: 66px;
+  font-size: 4.125rem;
   font-weight: 800;
   line-height: 130%;
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 3.125rem;
   font-weight: 800;
   line-height: 130%;
 }
 
 h3 {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 130%;
 }
 
 h4 {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 130%;
 }
 
 h5 {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 130%;
 }
 
 h6 {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   line-height: 140%;
 }
 
 caption {
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 400;
   line-height: 140%;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="number"] {
+input[type='text'],
+input[type='password'],
+input[type='number'] {
   width: 100%;
   background: var(--gray-100);
   padding: 10px;
   border-bottom: 1px solid var(--gray-300);
 }
 
-input[type="text"]::placeholder,
-input[type="password"]::placeholder input[type="number"]::placeholder {
+input[type='text']::placeholder,
+input[type='password']::placeholder input[type='number']::placeholder {
   color: var(--gray-600);
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus {
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='number']:focus {
   outline: 1px solid var(--gray-300);
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-input[type="color"]::-webkit-color-swatch-wrapper {
+input[type='color']::-webkit-color-swatch-wrapper {
   padding: 0;
 }
 
-input[type="color"]::-webkit-color-swatch {
+input[type='color']::-webkit-color-swatch {
   border: none;
   box-shadow: none;
 }
 
 button {
   cursor: pointer;
-  padding: 10px;
+  padding: 10px 20px;
   color: white;
   background: var(--primary-color);
 }
 
 @font-face {
-  font-family: "pretendard";
-  src: url("/fonts/Pretendard-Regular.woff2") format("woff2");
+  font-family: 'pretendard';
+  src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "pretendard_bold";
-  src: url("/fonts/Pretendard-Bold.woff2") format("woff2");
+  font-family: 'pretendard_bold';
+  src: url('/fonts/Pretendard-Bold.woff2') format('woff2');
   font-weight: 700;
 }
 
 @font-face {
-  font-family: "sf_pro";
-  src: url("/fonts/SF-Pro-Text-Regular.otf") format("opentype");
+  font-family: 'sf_pro';
+  src: url('/fonts/SF-Pro-Text-Regular.otf') format('opentype');
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "sf_pro_bold";
-  src: url("/fonts/SF-Pro-Display-Bold.otf") format("opentype");
+  font-family: 'sf_pro_bold';
+  src: url('/fonts/SF-Pro-Display-Bold.otf') format('opentype');
   font-weight: 700;
 }
