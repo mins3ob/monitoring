@@ -2,6 +2,8 @@
 
 import React, { useState, useMemo } from 'react';
 
+import Image from 'next/image';
+
 import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '@redux/store';
@@ -20,7 +22,6 @@ import Modal from '@components/Modal';
 import ProjectAddForm from '@components/forms/ProjectAddForm';
 
 import ImgNoImg from '@public/imgs/img_no_img.png';
-import Image from 'next/image';
 
 interface IProjectBoardForm {
   onDetailClick: (projectId: string) => void;
