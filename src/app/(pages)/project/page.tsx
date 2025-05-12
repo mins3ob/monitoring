@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import ProjectBoardForm from './ProjectBoardForm';
-import ProjectDetailForm from './ProjectDetailForm';
+import ProjectBoardForm from '@components/contents/ProjectBoardForm';
+import ProjectDetailForm from '@components/contents/ProjectDetailForm';
 
 export default function Project() {
   const router = useRouter();

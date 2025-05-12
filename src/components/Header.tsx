@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import { RootState } from "@redux/store";
+import { RootState } from '@redux/store';
 
 export default function Header() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function Header() {
   const { isAuth } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    if (!isAuth) router.push("/");
+    if (!isAuth) router.push('/');
   }, [isAuth, router]);
 
   return <div></div>;

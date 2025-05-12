@@ -2,12 +2,6 @@
 
 import React, { useState } from 'react';
 
-import { useDispatch } from 'react-redux';
-
-import { AppDispatch } from '@redux/store';
-
-import { hideBackdrop } from '@redux/slices/backdropSlice';
-
 import LabelInput from '@components/inputs/LabelInput';
 
 import { IProject } from '@interfaces/index';
@@ -17,8 +11,6 @@ interface IProjectAddForm {
 }
 
 export default function ProjectAddForm({ back }: IProjectAddForm) {
-  const dispatch = useDispatch<AppDispatch>();
-
   const [project, setProject] = useState<IProject>({
     id: '',
     name: '',
@@ -48,14 +40,11 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
     };
 
   const clickBack = (): void => {
-    dispatch(hideBackdrop());
     back();
   };
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    // TODO: 프로젝트 추가 로직 구현
-    console.log('프로젝트 추가:', project);
   };
 
   return (
@@ -64,6 +53,8 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
       className="space-y-4 p-4"
       style={{ width: 500, display: 'flex', flexDirection: 'column', gap: 20 }}
     >
+      <h4>프로젝트 추가/수정/삭제</h4>
+
       <LabelInput
         label="프로젝트명"
         value={project.name}

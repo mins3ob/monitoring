@@ -1,20 +1,29 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import CSS from './Contents.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { AppDispatch, RootState } from '@redux/store';
+
+import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
+
+import Styles from './Contents.module.css';
 
 import projectData from '@constants/testProject.json';
 
 import { IProcess, IProject, ILot } from '@interfaces/index';
 
 import processData from '@constants/testProcess.json';
-
 import lotData from '@constants/testLot.json';
 
+import Modal from '@components/Modal';
+
 import ImgNoImg from '@public/imgs/img_no_img.png';
+import LotAddForm from '@components/forms/LotAddForm';
 
 interface ProjectDetailFormProps {
   projectId: string;
@@ -23,16 +32,35 @@ interface ProjectDetailFormProps {
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default function ProjectDetailForm({ projectId }: ProjectDetailFormProps) {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { isVisible } = useSelector((state: RootState) => state.backdrop);
+
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
   const [project, setProject] = useState<IProject | null>(null);
+
+  const clickAddLot = (): void => {
+    dispatch(showBackdrop());
+    setIsModalVisible(true);
+  };
 
   useEffect(() => {
     const foundProject = projectData.find(p => p.id === projectId);
     if (foundProject) setProject(foundProject);
   }, [projectId]);
 
+  useEffect(() => {
+    if (!isVisible) setIsModalVisible(false);
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isModalVisible) dispatch(hideBackdrop());
+  }, [isModalVisible]);
+
   if (!project) {
     return (
-      <div className={CSS.column}>
+      <div className={Styles.column}>
         <div
           style={{
             display: 'flex',
@@ -44,17 +72,15 @@ export default function ProjectDetailForm({ projectId }: ProjectDetailFormProps)
           <h2>프로젝트 상세</h2>
         </div>
 
-        <div className={CSS.box} style={{ padding: '20px' }}>
+        <div className={Styles.box} style={{ padding: '20px' }}>
           <p>프로젝트를 찾을 수 없습니다.</p>
         </div>
       </div>
     );
   }
 
-  console.log(project);
-
   return (
-    <div className={CSS.column}>
+    <div className={Styles.column}>
       <div
         style={{
           display: 'flex',
@@ -66,12 +92,25 @@ export default function ProjectDetailForm({ projectId }: ProjectDetailFormProps)
         <h2>프로젝트 상세</h2>
       </div>
 
-      <div className={CSS.box} style={{ padding: '20px' }}>
+      <div className={Styles.box} style={{ padding: '20px' }}>
         <div
           style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px' }}
         >
           <div>
-            <h3>{project.name}</h3>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: 20,
+              }}
+            >
+              <h3>{project.name}</h3>
+
+              <button type="button" onClick={clickAddLot}>
+                LOT 추가
+              </button>
+            </div>
 
             <div
               style={{ width: '100%', height: '300px', marginBottom: '20px', position: 'relative' }}
@@ -135,7 +174,7 @@ export default function ProjectDetailForm({ projectId }: ProjectDetailFormProps)
                 .map(lot => (
                   <tr key={lot.id}>
                     <td style={{ border: '1px solid var(--gray-200)', padding: '8px' }}>
-                      {lot.lotNo}
+                      <a href={`/project?lotId=${lot.id}`}>{lot.lotNo}</a>
                     </td>
                     <td style={{ border: '1px solid var(--gray-200)', padding: '8px' }}>
                       {lot.specification}
@@ -334,6 +373,12 @@ export default function ProjectDetailForm({ projectId }: ProjectDetailFormProps)
           </div>
         </div>
       </div>
+
+      {isModalVisible && (
+        <Modal>
+          <LotAddForm back={() => setIsModalVisible(false)} />
+        </Modal>
+      )}
     </div>
   );
 }

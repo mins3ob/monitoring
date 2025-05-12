@@ -2,38 +2,28 @@
 
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { AppDispatch, RootState } from '@redux/store';
-
-import CSS from './SideNav.module.css';
-
-import { selectMenu } from '@redux/slices/sideNavSlice';
+import Styles from './SideNav.module.css';
 
 import { menus } from '@constants/index';
 
 import { IMenu } from '@interfaces/menu';
 
 const MenuItem = ({ menu }: { menu: IMenu }) => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const { selectedMenu } = useSelector((state: RootState) => state.sideNav);
-
   return (
-    <div className={CSS.menuItem}>
-      <button type="button" onClick={() => dispatch(selectMenu(menu.value!))}>
+    <div className={Styles.menuItem}>
+      <button
+        type="button"
+        onClick={() => {
+          window.location.href = `${menu.path}`;
+        }}
+      >
         {menu.icon && menu.icon}
 
         <p style={{ fontSize: 16 }}>{menu.main}</p>
       </button>
 
       {menu.subs && menu.subs.length > 0 && (
-        <div
-          style={{
-            overflow: 'hidden',
-            height: selectedMenu === menu.value ? 'auto' : 0,
-          }}
-        >
+        <div style={{ overflow: 'hidden' }}>
           {menu.subs && menu.subs.length > 0 && (
             <div>
               {menu.subs.map((subMenu, idx) => (

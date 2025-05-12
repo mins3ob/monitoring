@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 
 import Image from 'next/image';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { AppDispatch } from '@redux/store';
+import { AppDispatch, RootState } from '@redux/store';
 
-import { showBackdrop } from '@redux/slices/backdropSlice';
+import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 
 import projectData from '@constants/testProject.json';
 import processData from '@constants/testProcess.json';
@@ -16,7 +16,7 @@ import { IProcess } from '@interfaces/index';
 
 import { PlusIcon, CalendarIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 
-import CSS from './Contents.module.css';
+import Styles from './Contents.module.css';
 
 import Modal from '@components/Modal';
 import ProjectAddForm from '@components/forms/ProjectAddForm';
@@ -29,6 +29,8 @@ interface IProjectBoardForm {
 
 export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
   const dispatch = useDispatch<AppDispatch>();
+
+  const { isVisible } = useSelector((state: RootState) => state.backdrop);
 
   const [searchText, setSearchText] = useState<string>('');
   const [searchStatus, setSearchStatus] = useState<string>('');
@@ -50,13 +52,21 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
     setIsModalVisible(true);
   };
 
+  useEffect(() => {
+    if (!isVisible) setIsModalVisible(false);
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isModalVisible) dispatch(hideBackdrop());
+  }, [isModalVisible]);
+
   return (
-    <div className={CSS.column}>
+    <div className={Styles.column}>
       <h2>프로젝트</h2>
 
-      <div className={CSS.row}>
-        <div className={CSS.box}>
-          <div className={CSS.row} style={{ padding: '10px 20px' }}>
+      <div className={Styles.row}>
+        <div className={Styles.box}>
+          <div className={Styles.row} style={{ padding: '10px 20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <p style={{ flex: 1 }}>프로젝트</p>
 
@@ -150,7 +160,13 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
               }}
             >
               <h3 style={{ margin: 0 }}>
-                <a href="#" onClick={() => onDetailClick(project.id)}>
+                <a
+                  href="#"
+                  onClick={e => {
+                    e.preventDefault();
+                    onDetailClick(project.id);
+                  }}
+                >
                   {project.name} {project.status}
                 </a>
               </h3>
@@ -295,7 +311,9 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
       </div>
 
       {isModalVisible && (
-        <Modal content={<ProjectAddForm back={() => setIsModalVisible(false)} />} />
+        <Modal>
+          <ProjectAddForm back={() => setIsModalVisible(false)} />
+        </Modal>
       )}
     </div>
   );

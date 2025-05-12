@@ -1,42 +1,51 @@
-import { IMenu } from "@interfaces/menu";
+import { IMenu } from '@interfaces/menu';
 
 export const menus: IMenu[] = [
   {
-    main: "대시보드",
-    value: "dashboard",
+    main: '대시보드',
+    path: '/',
   },
   {
-    main: "프로젝트",
-    value: "project",
+    main: '프로젝트',
+    path: '/project',
     // subs: [
     //   {
     //     main: "공정",
-    //     value: "process",
+    //     path: "process",
     //   },
     //   {
     //     main: "LOT",
-    //     value: "lot",
+    //     path: "lot",
     //   },
-    //   { main: "통계", value: "statistics" },
+    //   { main: "통계", path: "statistics" },
     // ],
   },
   {
-    main: "공정",
-    value: "process",
+    main: '공정',
+    path: '/process',
+  },
+  { main: '통계', path: '/statistics' },
+  {
+    main: '사용자',
+    path: '/users',
   },
   {
-    main: "LOT",
-    value: "lot",
-  },
-  { main: "통계", value: "statistics" },
-  {
-    main: "사용자",
-    value: "users",
-  },
-  {
-    main: "재고",
-    value: "inventory",
+    main: '재고',
+    path: '/inventory',
   },
 ];
 
-export const monthlyLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+export const monthlyLabels = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];

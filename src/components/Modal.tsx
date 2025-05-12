@@ -3,10 +3,10 @@
 import React from 'react';
 
 interface IModal {
-  content?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
-export default function Modal({ content }: IModal) {
+export default function Modal({ children }: IModal) {
   return (
     <div
       style={{
@@ -21,7 +21,7 @@ export default function Modal({ content }: IModal) {
         padding: 20,
       }}
     >
-      {content}
+      {children}
     </div>
   );
 }
