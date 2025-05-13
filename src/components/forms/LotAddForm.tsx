@@ -40,7 +40,7 @@ export default function LotAddForm({ back }: ILotAddForm) {
       <AutoCompleteDropdownInput
         label="프로젝트"
         options={sampleOptions}
-        onSelect={option => console.log('Selected:', option)}
+        onSelect={option => setSelectedProject(option.value)}
       />
 
       <LabelInput label="LOT 번호" value={lotNumber} onChange={e => setLotNumber(e.target.value)} />

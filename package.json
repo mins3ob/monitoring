@@ -11,8 +11,11 @@
     "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.0.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@heroicons/react": "^2.2.0",
+    "@neondatabase/serverless": "^1.0.0",
     "@reduxjs/toolkit": "^2.8.1",
     "apexcharts": "^4.7.0",
     "dotenv": "^16.5.0",

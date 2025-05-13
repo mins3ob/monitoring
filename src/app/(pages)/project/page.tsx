@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import BoardForm from '@components/projects/BoardForm';
@@ -8,9 +8,9 @@ import DetailForm from '@components/projects/DetailForm';
 import LotDetailForm from '@components/projects/LotDetailForm';
 import CalendarForm from '@components/projects/CalendarForm';
 
-type ViewMode = 'detail' | 'calendar' | 'board' | 'lot';
+type ViewMode = 'detail' | 'calendar' | 'board' | 'lot' | 'edit-process';
 
-export default function Project() {
+function ProjectContent() {
   const searchParams = useSearchParams();
   const [viewMode, setViewMode] = useState<ViewMode>('board');
   const [selectedProjectId, setSelectedProjectId] = useState<string>('');
@@ -39,4 +39,12 @@ export default function Project() {
   };
 
   return renderContent();
+}
+
+export default function Project() {
+  return (
+    <Suspense fallback={<div>로딩 중...</div>}>
+      <ProjectContent />
+    </Suspense>
+  );
 }

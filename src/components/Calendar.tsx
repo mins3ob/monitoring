@@ -67,7 +67,14 @@ export default function Calendar({ onDateSelect, dateContents = [] }: ICalendar)
       days.push(
         <button
           key={day}
-          className={`${styles.day}  ${isToday ? styles.today : ''}`}
+          className={`${styles.day}  ${isToday ? styles.today : ''} ${
+            selectedDate &&
+            selectedDate.getDate() === day &&
+            selectedDate.getMonth() === currentDate.getMonth() &&
+            selectedDate.getFullYear() === currentDate.getFullYear()
+              ? styles.selected
+              : ''
+          }`}
           onClick={() => handleDateClick(day)}
         >
           <p>{day}</p>

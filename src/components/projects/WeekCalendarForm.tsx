@@ -23,6 +23,7 @@ interface DateContent {
 interface IWeekCalendarForm {
   selectedDate: Date;
   dateContents?: DateContent[];
+  back: () => void;
 }
 
 // Utils
@@ -114,95 +115,105 @@ const TimeCell: React.FC<{ events: Event[] }> = ({ events }) => (
   </ul>
 );
 
-export default function WeekCalendarForm({ selectedDate, dateContents = [] }: IWeekCalendarForm) {
+export default function WeekCalendarForm({
+  selectedDate,
+  dateContents = [],
+  back,
+}: IWeekCalendarForm) {
   const weekDates = getWeekDates(selectedDate);
   const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
 
   return (
-    <table className={styles.table}>
-      <colgroup>
-        <col style={{ width: '15%' }} />
-        <col style={{ width: '15%' }} />
-        <col style={{ width: '10%' }} />
-        <col style={{ width: '20%' }} />
-        <col style={{ width: '15%' }} />
-        <col style={{ width: '25%' }} />
-      </colgroup>
+    <div className="box">
+      <button type="button" onClick={back} style={{ marginBottom: 20 }}>
+        뒤로가기
+      </button>
 
-      <thead>
-        <tr>
-          <th rowSpan={2}>날짜</th>
-          <th colSpan={2}>계획</th>
-          <th colSpan={2}>실적</th>
-          <th rowSpan={2}>비고</th>
-        </tr>
+      <table className={styles.table}>
+        <colgroup>
+          <col style={{ width: '15%' }} />
+          <col style={{ width: '15%' }} />
+          <col style={{ width: '10%' }} />
+          <col style={{ width: '20%' }} />
+          <col style={{ width: '15%' }} />
+          <col style={{ width: '25%' }} />
+        </colgroup>
 
-        <tr>
-          <th>사양</th>
-          <th>수량</th>
-          <th>LOT</th>
-          <th>출하 시간</th>
-        </tr>
-      </thead>
+        <thead>
+          <tr>
+            <th rowSpan={2}>날짜</th>
+            <th colSpan={2}>계획</th>
+            <th colSpan={2}>실적</th>
+            <th rowSpan={2}>비고</th>
+          </tr>
 
-      <tbody>
-        {weekDates.map((date, index) => {
-          const dateStr = formatDate(date);
-          const dateContent = dateContents.find(content => content.date === dateStr);
-          const events = dateContent?.value || [];
+          <tr>
+            <th>사양</th>
+            <th>수량</th>
+            <th>LOT</th>
+            <th>출하 시간</th>
+          </tr>
+        </thead>
 
-          return (
-            <tr key={index}>
-              <td>{formatDisplayDate(date, weekdays[date.getDay()])}</td>
-              <td>
-                <EventCell events={events} />
-              </td>
-              <td>
-                <QuantityCell events={events} />
-              </td>
-              <td>
-                <LotCell events={events} />
-              </td>
-              <td>
-                <TimeCell events={events} />
-              </td>
-              <td></td>
-            </tr>
-          );
-        })}
+        <tbody>
+          {weekDates.map((date, index) => {
+            const dateStr = formatDate(date);
+            const dateContent = dateContents.find(content => content.date === dateStr);
+            const events = dateContent?.value || [];
 
-        <tr style={{ background: 'var(--gray-100)' }}>
-          <td style={{ fontWeight: 'bold' }}>합계</td>
-          <td style={{ fontWeight: 'bold' }}>
-            <ul>
-              {Array.from(
-                new Set(dateContents.flatMap(content => content.value.map(event => event.event)))
-              ).map(eventName => (
-                <li key={eventName}>{eventName}</li>
-              ))}
-            </ul>
-          </td>
-          <td style={{ fontWeight: 'bold' }}>
-            <ul>
-              {Array.from(
-                new Set(dateContents.flatMap(content => content.value.map(event => event.event)))
-              ).map(eventName => (
-                <li key={eventName}>
-                  {dateContents
-                    .filter(content => weekDates.some(date => formatDate(date) === content.date))
-                    .reduce((total, content) => {
-                      const event = content.value.find(e => e.event === eventName);
-                      return total + (event?.lots.length || 0);
-                    }, 0)}
-                </li>
-              ))}
-            </ul>
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+            return (
+              <tr key={index}>
+                <td>{formatDisplayDate(date, weekdays[date.getDay()])}</td>
+                <td>
+                  <EventCell events={events} />
+                </td>
+                <td>
+                  <QuantityCell events={events} />
+                </td>
+                <td>
+                  <LotCell events={events} />
+                </td>
+                <td>
+                  <TimeCell events={events} />
+                </td>
+                <td></td>
+              </tr>
+            );
+          })}
+
+          <tr style={{ background: 'var(--gray-100)' }}>
+            <td style={{ fontWeight: 'bold' }}>합계</td>
+            <td style={{ fontWeight: 'bold' }}>
+              <ul>
+                {Array.from(
+                  new Set(dateContents.flatMap(content => content.value.map(event => event.event)))
+                ).map(eventName => (
+                  <li key={eventName}>{eventName}</li>
+                ))}
+              </ul>
+            </td>
+            <td style={{ fontWeight: 'bold' }}>
+              <ul>
+                {Array.from(
+                  new Set(dateContents.flatMap(content => content.value.map(event => event.event)))
+                ).map(eventName => (
+                  <li key={eventName}>
+                    {dateContents
+                      .filter(content => weekDates.some(date => formatDate(date) === content.date))
+                      .reduce((total, content) => {
+                        const event = content.value.find(e => e.event === eventName);
+                        return total + (event?.lots.length || 0);
+                      }, 0)}
+                  </li>
+                ))}
+              </ul>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }

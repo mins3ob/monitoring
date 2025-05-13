@@ -1,18 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-
-import Image from "next/image";
-
-import { useDispatch, useSelector } from "react-redux";
-
-import { AppDispatch, RootState } from "@redux/store";
-
-import { resetAuth } from "@redux/slices/authSlice";
-
-import IconSetting from "@public/svgs/common/icon_gear.svg";
-
-import ImgDefaultProfile from "@public/imgs/img_default_profile.png";
+import React, { useState } from 'react';
+import { UserCircleIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@redux/store';
+import { resetAuth } from '@redux/slices/authSlice';
 
 export default function ContentHeader() {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,10 +16,10 @@ export default function ContentHeader() {
   return (
     <div
       style={{
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
         columnGap: 10,
         padding: 10,
       }}
@@ -35,30 +27,26 @@ export default function ContentHeader() {
       <div style={{ height: 40 }}>
         <button
           type="button"
-          onClick={() => setIsProfileOpen((prev) => !prev)}
-          style={{ background: "none", padding: 0 }}
+          onClick={() => setIsProfileOpen(prev => !prev)}
+          style={{ background: 'none', padding: 0 }}
         >
-          <Image
-            src={ImgDefaultProfile}
-            alt="기본 프로필 이미지"
-            width={40}
-            height={40}
-            style={{ borderRadius: "50%" }}
-          />
+          <UserCircleIcon className="w-10 h-10 text-gray-600" />
         </button>
 
         {isProfileOpen && (
           <div
             style={{
-              position: "absolute",
+              position: 'absolute',
               right: 0,
-              display: "flex",
-              flexDirection: "column",
-              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+              display: 'flex',
+              flexDirection: 'column',
+              boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
               padding: 20,
             }}
           >
-            <h6 style={{ marginBottom: 20 }}>{auth.email ? auth.email.split("@")[0] : "정보없음"} 님</h6>
+            <h6 style={{ marginBottom: 20 }}>
+              {auth.email ? auth.email.split('@')[0] : '정보없음'} 님
+            </h6>
 
             <button type="button" onClick={() => dispatch(resetAuth())}>
               로그아웃
@@ -67,8 +55,8 @@ export default function ContentHeader() {
         )}
       </div>
 
-      <button type="button" style={{ background: "none", padding: 0 }}>
-        <IconSetting width={40} height={40} fill="black" />
+      <button type="button" style={{ background: 'none', padding: 0 }}>
+        <Cog6ToothIcon className="w-10 h-10 text-gray-600" />
       </button>
     </div>
   );
