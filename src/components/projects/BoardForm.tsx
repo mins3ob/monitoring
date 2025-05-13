@@ -4,30 +4,28 @@ import React, { useState, useMemo, useEffect } from 'react';
 
 import Image from 'next/image';
 
+import { useRouter } from 'next/navigation';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '@redux/store';
 
 import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 
-import projectData from '@constants/testProject.json';
-import processData from '@constants/testProcess.json';
-import { IProcess } from '@interfaces/index';
+import dummyData from '@constants/erd_dummy_data.json';
 
 import { PlusIcon, CalendarIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 
-import Styles from './Contents.module.css';
+import { IProject, IProcess, ILot, IProjectWithStats } from '@interfaces/index';
 
 import Modal from '@components/Modal';
 import ProjectAddForm from '@components/forms/ProjectAddForm';
 
 import ImgNoImg from '@public/imgs/img_no_img.png';
 
-interface IProjectBoardForm {
-  onDetailClick: (projectId: string) => void;
-}
+export default function BoardForm() {
+  const router = useRouter();
 
-export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
   const dispatch = useDispatch<AppDispatch>();
 
   const { isVisible } = useSelector((state: RootState) => state.backdrop);
@@ -36,8 +34,27 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
   const [searchStatus, setSearchStatus] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
+  const projectsWithStats = useMemo(() => {
+    return (dummyData.projects as IProject[]).map(project => {
+      const projectLots = (dummyData.lots as ILot[]).filter(lot => lot.project === project.id);
+      const successCount = projectLots.filter(lot => lot.result === 'pass').length;
+      const failCount = projectLots.filter(lot => lot.result === 'fail').length;
+      const projectProcesses = (dummyData.processes as IProcess[]).filter(
+        process => process.project === project.id
+      );
+
+      return {
+        ...project,
+        lotCount: projectLots.length,
+        successCount,
+        failCount,
+        processes: projectProcesses,
+      };
+    }) as IProjectWithStats[];
+  }, []);
+
   const filteredProjects = useMemo(() => {
-    return projectData.filter(project => {
+    return projectsWithStats.filter(project => {
       const nameMatch =
         searchText === '' || project.name.toLowerCase().includes(searchText.toLowerCase());
       const statusMatch =
@@ -45,7 +62,7 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
 
       return nameMatch && statusMatch;
     });
-  }, [searchText, searchStatus]);
+  }, [projectsWithStats, searchText, searchStatus]);
 
   const clickAddBtn = (): void => {
     dispatch(showBackdrop());
@@ -58,15 +75,15 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
 
   useEffect(() => {
     if (!isModalVisible) dispatch(hideBackdrop());
-  }, [isModalVisible]);
+  }, [isModalVisible, dispatch]);
 
   return (
-    <div className={Styles.column}>
+    <div className="column">
       <h2>프로젝트</h2>
 
-      <div className={Styles.row}>
-        <div className={Styles.box}>
-          <div className={Styles.row} style={{ padding: '10px 20px' }}>
+      <div className="row">
+        <div className="box">
+          <div className="row" style={{ padding: '10px 20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <p style={{ flex: 1 }}>프로젝트</p>
 
@@ -164,7 +181,7 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
                   href="#"
                   onClick={e => {
                     e.preventDefault();
-                    onDetailClick(project.id);
+                    router.push(`?view=detail&id=${project.id}`);
                   }}
                 >
                   {project.name} {project.status}
@@ -174,7 +191,7 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
 
             <button
               type="button"
-              onClick={() => onDetailClick(project.id)}
+              onClick={() => router.push(`?view=detail&id=${project.id}`)}
               style={{ background: 'none', color: 'var(--font-color)', textAlign: 'left' }}
             >
               <div
@@ -186,7 +203,7 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
                 }}
               >
                 <Image
-                  src={project.imgUrl || ImgNoImg.src}
+                  src={project.imageUrl || ImgNoImg.src}
                   alt={project.name}
                   fill
                   style={{
@@ -199,9 +216,9 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
               <p>설명: {project.description}</p>
 
               <div style={{ display: 'flex', gap: '16px' }}>
-                <p>LOT: {project.lot}</p>
-                <p>성공: {project.success}</p>
-                <p>실패: {project.failed}</p>
+                <p>LOT: {project.lotCount}</p>
+                <p>성공: {project.successCount}</p>
+                <p>실패: {project.failCount}</p>
               </div>
 
               <div>
@@ -218,8 +235,8 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
                     rowGap: '12px',
                   }}
                 >
-                  {project.processIds.map((processId, idx) => (
-                    <React.Fragment key={idx}>
+                  {project.processes.map((process, idx) => (
+                    <React.Fragment key={process.id}>
                       <li
                         style={{
                           background: 'var(--gray-50)',
@@ -228,13 +245,9 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
                           fontSize: '14px',
                         }}
                       >
-                        {
-                          (processData as Record<string, IProcess[]>)[project.id].find(
-                            p => p.id === processId
-                          )?.name
-                        }
+                        {process.name}
                       </li>
-                      {idx < project.processIds.length - 1 && (
+                      {idx < project.processes.length - 1 && (
                         <span style={{ color: 'var(--gray-400)' }}>→</span>
                       )}
                     </React.Fragment>
@@ -273,6 +286,7 @@ export default function ProjectBoardForm({ onDetailClick }: IProjectBoardForm) {
 
                 <button
                   type="button"
+                  onClick={() => router.push(`?view=calendar&id=${project.id}`)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',

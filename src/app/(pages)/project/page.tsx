@@ -1,37 +1,42 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import BoardForm from '@components/projects/BoardForm';
+import DetailForm from '@components/projects/DetailForm';
+import LotDetailForm from '@components/projects/LotDetailForm';
+import CalendarForm from '@components/projects/CalendarForm';
 
-import ProjectBoardForm from '@components/contents/ProjectBoardForm';
-import ProjectDetailForm from '@components/contents/ProjectDetailForm';
+type ViewMode = 'detail' | 'calendar' | 'board' | 'lot';
 
 export default function Project() {
-  const router = useRouter();
-
   const searchParams = useSearchParams();
-
-  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [viewMode, setViewMode] = useState<ViewMode>('board');
   const [selectedProjectId, setSelectedProjectId] = useState<string>('');
 
-  const handleDetailClick = (projectId: string): void => {
-    router.push(`?view=detail&id=${projectId}`);
-    setSelectedProjectId(projectId);
-    setShowDetail(true);
-  };
-
-  // URL 파라미터나 쿼리스트링에 따라 상세 페이지 표시 여부 결정
   useEffect(() => {
-    const view = searchParams.get('view');
+    const view = searchParams.get('view') as ViewMode;
     const id = searchParams.get('id');
-    setShowDetail(view === 'detail');
+
+    if (view) setViewMode(view);
+    else setViewMode('board');
+
     if (id) setSelectedProjectId(id);
   }, [searchParams]);
 
-  return showDetail ? (
-    <ProjectDetailForm projectId={selectedProjectId} />
-  ) : (
-    <ProjectBoardForm onDetailClick={handleDetailClick} />
-  );
+  const renderContent = () => {
+    switch (viewMode) {
+      case 'lot':
+        return <LotDetailForm />;
+      case 'detail':
+        return <DetailForm projectId={selectedProjectId} />;
+      case 'calendar':
+        return <CalendarForm />; // TODO: 캘린더 뷰 구현 필요
+      default:
+        return <BoardForm />;
+    }
+  };
+
+  return renderContent();
 }

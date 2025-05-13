@@ -15,18 +15,17 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
     id: '',
     name: '',
     status: '대기중',
-    imgUrl: null,
+    imageUrl: null,
     description: '',
-    lot: 0,
-    success: 0,
-    failed: 0,
-    processIds: [],
-    carType: '',
-    parts: '',
-    specification: '',
+    startDate: '',
+    endDate: '',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
     event: '',
-    schedule: '',
-    quantity: 0,
+    carType: '',
+    part: '',
+    feature: '',
+    quantity: '',
   });
 
   const handleChange =
@@ -51,7 +50,7 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
     <form
       onSubmit={handleSubmit}
       className="space-y-4 p-4"
-      style={{ width: 500, display: 'flex', flexDirection: 'column', gap: 20 }}
+      style={{ width: 500, display: 'flex', flexDirection: 'column', gap: 10 }}
     >
       <h4>프로젝트 추가/수정/삭제</h4>
 
@@ -71,15 +70,15 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
 
       <LabelInput
         label="부품"
-        value={project.parts}
-        onChange={handleChange('parts')}
+        value={project.part}
+        onChange={handleChange('part')}
         placeholder="부품을 입력하세요"
       />
 
       <LabelInput
         label="사양"
-        value={project.specification}
-        onChange={handleChange('specification')}
+        value={project.feature}
+        onChange={handleChange('feature')}
         placeholder="사양을 입력하세요"
       />
 
@@ -91,10 +90,19 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
       />
 
       <LabelInput
-        label="일정"
-        value={project.schedule}
-        onChange={handleChange('schedule')}
-        placeholder="일정을 입력하세요"
+        label="시작일"
+        type="date"
+        value={project.startDate}
+        onChange={handleChange('startDate')}
+        placeholder="시작일을 입력하세요"
+      />
+
+      <LabelInput
+        label="종료일"
+        type="date"
+        value={project.endDate}
+        onChange={handleChange('endDate')}
+        placeholder="종료일을 입력하세요"
       />
 
       <LabelInput
@@ -106,21 +114,13 @@ export default function ProjectAddForm({ back }: IProjectAddForm) {
       />
 
       <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
-        <button
-          type="button"
-          onClick={clickBack}
-          style={{
-            background: 'white',
-            border: '1px solid var(--primary-color)',
-            color: 'var(--primary-color)',
-          }}
-        >
+        <button type="button" onClick={clickBack} className="cancelBtn">
           취소
         </button>
 
         <button type="button">등록 / 수정</button>
 
-        <button type="button" style={{ background: 'red' }}>
+        <button type="button" className="deleteBtn">
           삭제
         </button>
       </div>

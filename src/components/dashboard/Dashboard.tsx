@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import Styles from './Contents.module.css';
+import styles from './Dashboard.module.css';
 
 import PercentageChangeLabel from '@components/labels/PercentageChangeLabel';
 import { monthlyLabels } from '@constants/index';
@@ -15,11 +15,11 @@ export default function Dashboard() {
   const pastYearData = [300, 400, 500, 480, 500, 650, 700, 750, 730, 650, 600, 850];
 
   return (
-    <div className={Styles.column}>
+    <div className="column">
       <h2>대시보드</h2>
 
-      <div className={Styles.row}>
-        <div className={Styles.box}>
+      <div className="row">
+        <div className="box">
           <h6>Total Projects</h6>
 
           <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
@@ -29,7 +29,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className={Styles.box}>
+        <div className="box">
           <h6>Active Projects</h6>
 
           <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
@@ -39,7 +39,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className={Styles.box}>
+        <div className="box">
           <h6>Inactive Projects</h6>
 
           <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
@@ -49,7 +49,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className={Styles.box}>
+        <div className="box">
           <h6>Completed Projects</h6>
 
           <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
@@ -60,20 +60,20 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className={Styles.row}>
-        <div className={Styles.box}>
+      <div className="row">
+        <div className="box">
           <h5>Process</h5>
 
-          <div className={Styles.legendContainer}>
-            <div className={Styles.legendItem}>
-              <div className={Styles.legendColor} style={{ background: '#757575' }}></div>
+          <div className={styles.legendContainer}>
+            <div className={styles.legendItem}>
+              <div className={styles.legendColor} style={{ background: '#757575' }}></div>
 
-              <span className={Styles.legendLabel}>Achieved</span>
+              <span className={styles.legendLabel}>Achieved</span>
             </div>
-            <div className={Styles.legendItem}>
-              <div className={Styles.legendColor} style={{ background: '#e0e0e0' }}></div>
+            <div className={styles.legendItem}>
+              <div className={styles.legendColor} style={{ background: '#e0e0e0' }}></div>
 
-              <span className={Styles.legendLabel}>Remaining</span>
+              <span className={styles.legendLabel}>Remaining</span>
             </div>
           </div>
 
@@ -82,19 +82,19 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className={Styles.box}>
+        <div className="box">
           <h5>Process</h5>
 
-          <div className={Styles.legendContainer}>
-            <div className={Styles.legendItem}>
-              <div className={Styles.legendColor} style={{ background: '#757575' }}></div>
+          <div className={styles.legendContainer}>
+            <div className={styles.legendItem}>
+              <div className={styles.legendColor} style={{ background: '#757575' }}></div>
 
-              <span className={Styles.legendLabel}>Achieved</span>
+              <span className={styles.legendLabel}>Achieved</span>
             </div>
-            <div className={Styles.legendItem}>
-              <div className={Styles.legendColor} style={{ background: '#e0e0e0' }}></div>
+            <div className={styles.legendItem}>
+              <div className={styles.legendColor} style={{ background: '#e0e0e0' }}></div>
 
-              <span className={Styles.legendLabel}>Remaining</span>
+              <span className={styles.legendLabel}>Remaining</span>
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -103,8 +103,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className={Styles.row}>
-        <div className={Styles.box}>
+      <div className="row">
+        <div className="box">
           <MonthlyLineChart
             labels={monthlyLabels}
             currentYearData={currentYearData}

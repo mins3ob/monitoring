@@ -158,6 +158,44 @@ button {
   background: var(--primary-color);
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.box {
+  flex: 1;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+}
+
+.box > h6 {
+  color: var(--gray-600);
+}
+
+.box > h5,
+.box > h6 {
+  font-family: 'sf_pro_bold';
+}
+
+.cancelBtn {
+  background: white;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.deleteBtn {
+  background: red;
+}
+
 @font-face {
   font-family: 'pretendard';
   src: url('/fonts/Pretendard-Regular.woff2') format('woff2');

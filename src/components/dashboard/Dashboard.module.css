@@ -1,0 +1,24 @@
+.legendContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.legendColor {
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+}
+
+.legendLabel {
+  font-size: 1rem;
+  color: #757575;
+}

@@ -33,7 +33,7 @@ export default function LotAddForm({ back }: ILotAddForm) {
     <form
       onSubmit={handleSubmit}
       className="space-y-4 p-4"
-      style={{ width: 500, display: 'flex', flexDirection: 'column', gap: 20 }}
+      style={{ width: 500, display: 'flex', flexDirection: 'column', gap: 10 }}
     >
       <h4>LOT 추가</h4>
 
@@ -46,21 +46,13 @@ export default function LotAddForm({ back }: ILotAddForm) {
       <LabelInput label="LOT 번호" value={lotNumber} onChange={e => setLotNumber(e.target.value)} />
 
       <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
-        <button
-          type="button"
-          onClick={clickBack}
-          style={{
-            background: 'white',
-            border: '1px solid var(--primary-color)',
-            color: 'var(--primary-color)',
-          }}
-        >
+        <button type="button" onClick={clickBack} className="cancelBtn">
           취소
         </button>
 
         <button type="button">등록 / 수정</button>
 
-        <button type="button" style={{ background: 'red' }}>
+        <button type="button" className="deleteBtn">
           삭제
         </button>
       </div>

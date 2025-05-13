@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import Styles from './inputs.module.css';
+import styles from './inputs.module.css';
 
 type Option = {
   value: string;
@@ -103,7 +103,7 @@ export default function AutoCompleteDropdownInput({
         />
         {showDropdown && filteredOptions.length > 0 && (
           <ul
-            className={Styles.autoCompleteDropdownInput}
+            className={styles.autoCompleteDropdownInput}
             style={{
               position: 'absolute',
               zIndex: 10,
