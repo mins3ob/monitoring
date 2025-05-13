@@ -8,7 +8,7 @@ import DetailForm from '@components/projects/DetailForm';
 import LotDetailForm from '@components/projects/LotDetailForm';
 import CalendarForm from '@components/projects/CalendarForm';
 
-type ViewMode = 'detail' | 'calendar' | 'board' | 'lot';
+type ViewMode = 'detail' | 'calendar' | 'board' | 'lot' | 'edit-process';
 
 function ProjectContent() {
   const searchParams = useSearchParams();
