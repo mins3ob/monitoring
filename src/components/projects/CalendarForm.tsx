@@ -129,6 +129,10 @@ export default function CalendarForm() {
     setShowWeekCalendar(!showWeekCalendar);
   };
 
+  const clickBack = (): void => {
+    setShowWeekCalendar(false);
+  };
+
   return (
     <div className="column">
       <div
@@ -147,7 +151,11 @@ export default function CalendarForm() {
           {!showWeekCalendar ? (
             <Calendar dateContents={monthCalendarData} onDateSelect={handleDateSelect} />
           ) : (
-            <WeekCalendarForm selectedDate={selectedDate} dateContents={weekCalendarData} />
+            <WeekCalendarForm
+              selectedDate={selectedDate}
+              dateContents={weekCalendarData}
+              back={clickBack}
+            />
           )}
         </div>
       </div>
