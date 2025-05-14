@@ -58,3 +58,23 @@ export interface IProjectWithStats extends IProject {
   failCount: number;
   processes: IProcess[];
 }
+
+export interface IPartInventory {
+  id: string;
+  name: string;
+  quantity: number;
+}
+
+export interface IInventory {
+  id: string;
+  name: string;
+  code: string;
+  supplier: string;
+  quantity: number;
+  date: string;
+  type: 'return' | 'incoming';
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  partInventoryList: IPartInventory[];
+}

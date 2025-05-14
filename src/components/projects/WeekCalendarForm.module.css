@@ -5,30 +5,30 @@
 }
 
 .table th {
-  padding: 0.5rem 0.3125rem;
+  padding: 8px 5px;
   background-color: var(--gray-100);
   font-weight: 600;
 }
 
 .table th,
 .table td {
-  border: 0.0625rem solid var(--gray-700);
+  border: 1px solid var(--gray-700);
   text-align: center;
   vertical-align: middle;
 }
 
 .table td {
   padding: 0;
-  height: 1.875rem;
+  height: 30px;
 }
 
 .table > tbody li {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 1.875rem;
+  height: 30px;
   margin: 0;
-  border-bottom: 0.0625rem solid var(--gray-700);
+  border-bottom: 1px solid var(--gray-700);
 }
 
 .table > tbody li:last-child {

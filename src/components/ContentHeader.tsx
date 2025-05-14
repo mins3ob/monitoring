@@ -24,7 +24,7 @@ export default function ContentHeader() {
         padding: 10,
       }}
     >
-      <div style={{ height: 40 }}>
+      <div style={{ height: 35 }}>
         <button
           type="button"
           onClick={() => setIsProfileOpen(prev => !prev)}
@@ -42,6 +42,7 @@ export default function ContentHeader() {
               flexDirection: 'column',
               boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
               padding: 20,
+              background: 'white',
             }}
           >
             <h6 style={{ marginBottom: 20 }}>
@@ -55,9 +56,11 @@ export default function ContentHeader() {
         )}
       </div>
 
-      <button type="button" style={{ background: 'none', padding: 0 }}>
-        <Cog6ToothIcon className="w-10 h-10 text-gray-600" />
-      </button>
+      <div style={{ height: 35 }}>
+        <button type="button" style={{ background: 'none', padding: 0 }}>
+          <Cog6ToothIcon className="w-10 h-10 text-gray-600" />
+        </button>
+      </div>
     </div>
   );
 }

@@ -19,6 +19,7 @@ import { IProject, IProcess, ILot, IProjectWithStats } from '@interfaces/index';
 import Modal from '@components/Modal';
 import ProjectEditForm from '@components/projects/ProjectEditForm';
 import ProjectCard from '@components/projects/ProjectCard';
+import SearchBar from '@components/SearchBar';
 
 export default function BoardForm() {
   const router = useRouter();
@@ -29,8 +30,8 @@ export default function BoardForm() {
 
   const [searchText, setSearchText] = useState<string>('');
   const [searchStatus, setSearchStatus] = useState<string>('');
-  const [tempSearchText, setTempSearchText] = useState<string>('');
-  const [tempSearchStatus, setTempSearchStatus] = useState<string>('');
+  const [appliedSearchText, setAppliedSearchText] = useState<string>('');
+  const [appliedSearchStatus, setAppliedSearchStatus] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<IProjectWithStats | null>(null);
   const [visibleProjects, setVisibleProjects] = useState<number>(6);
@@ -56,16 +57,23 @@ export default function BoardForm() {
     }) as IProjectWithStats[];
   }, []);
 
+  const handleSearch = (newSearchText: string, newSearchStatus?: string) => {
+    setAppliedSearchText(newSearchText);
+    setAppliedSearchStatus(newSearchStatus || '');
+  };
+
   const filteredProjects = useMemo(() => {
     return projectsWithStats.filter(project => {
       const nameMatch =
-        searchText === '' || project.name.toLowerCase().includes(searchText.toLowerCase());
+        appliedSearchText === '' ||
+        project.name.toLowerCase().includes(appliedSearchText.toLowerCase());
       const statusMatch =
-        searchStatus === '' || project.status.toLowerCase().includes(searchStatus.toLowerCase());
+        appliedSearchStatus === '' ||
+        project.status.toLowerCase().includes(appliedSearchStatus.toLowerCase());
 
       return nameMatch && statusMatch;
     });
-  }, [projectsWithStats, searchText, searchStatus]);
+  }, [projectsWithStats, appliedSearchText, appliedSearchStatus]);
 
   const lastProjectRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -96,11 +104,6 @@ export default function BoardForm() {
     setIsModalVisible(true);
   };
 
-  const handleSearch = () => {
-    setSearchText(tempSearchText);
-    setSearchStatus(tempSearchStatus);
-  };
-
   useEffect(() => {
     if (!isVisible) {
       setIsModalVisible(false);
@@ -116,65 +119,20 @@ export default function BoardForm() {
       <h2>프로젝트</h2>
 
       <div className="row">
-        <div className="box">
-          <div className="row" style={{ padding: '10px 20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <p style={{ flex: 1 }}>프로젝트</p>
-
-              <input
-                type="text"
-                value={tempSearchText}
-                onChange={e => setTempSearchText(e.target.value)}
-                placeholder="프로젝트 명을 입력하세요."
-                style={{ flex: 3 }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <p style={{ flex: 1 }}>진행상태</p>
-
-              <input
-                type="text"
-                value={tempSearchStatus}
-                onChange={e => setTempSearchStatus(e.target.value)}
-                placeholder="진행상태를 입력하세요."
-                style={{ flex: 3 }}
-              />
-            </div>
-
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: 10,
-              }}
-            >
-              <button
-                type="button"
-                onClick={handleSearch}
-                style={{
-                  background: 'white',
-                  border: '1px solid var(--primary-color)',
-                  color: 'var(--primary-color)',
-                }}
-              >
-                조회
-              </button>
-              <button
-                type="button"
-                onClick={clickAddBtn}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                }}
-              >
-                추가
-              </button>
-            </div>
-          </div>
-        </div>
+        <SearchBar
+          label="프로젝트"
+          placeholder="프로젝트 명을 입력하세요."
+          onSearch={handleSearch}
+          onClickAdd={clickAddBtn}
+          isAddButtonVisible={true}
+          extraInput={{
+            value: searchStatus,
+            onChange: setSearchStatus,
+            placeholder: '진행상태를 입력하세요.',
+            label: '진행상태',
+          }}
+          initialSearchText={searchText}
+        />
       </div>
 
       <div

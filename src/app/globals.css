@@ -119,8 +119,8 @@ input[type='password'],
 input[type='number'] {
   width: 100%;
   background: var(--gray-100);
-  padding: 0.625rem;
-  border-bottom: 0.0625rem solid var(--gray-300);
+  padding: 10px;
+  border-bottom: 1px solid var(--gray-300);
 }
 
 input[type='text']::placeholder,
@@ -157,7 +157,7 @@ input[type='color']::-webkit-color-swatch {
 
 button {
   cursor: pointer;
-  padding: 0.625rem 1.25rem;
+  padding: 10px 20px;
   color: white;
   background: var(--primary-color);
 }
@@ -165,20 +165,20 @@ button {
 .column {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: 10px;
 }
 
 .row {
   display: flex;
   justify-content: space-between;
-  gap: 0.625rem;
+  gap: 10px;
 }
 
 .box {
   flex: 1;
   background: white;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
-  padding: 0.625rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 10px;
 }
 
 .box > h6 {
@@ -190,7 +190,7 @@ button {
   font-family: 'sf_pro_bold';
 }
 
-.cancelBtn {
+.reverseBtn {
   background: white;
   border: 1px solid var(--primary-color);
   color: var(--primary-color);

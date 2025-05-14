@@ -33,7 +33,7 @@ export default function EditModal({
       {children}
 
       <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
-        <button type="button" onClick={back} className="cancelBtn">
+        <button type="button" onClick={back} className="reverseBtn">
           취소
         </button>
 

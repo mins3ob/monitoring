@@ -57,7 +57,7 @@ export default function ProcessPage() {
 
   return (
     <div className="column">
-      <h2>프로세스</h2>
+      <h2>공정</h2>
 
       <ProcessList
         projects={projectsWithStats}
