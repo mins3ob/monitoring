@@ -153,6 +153,11 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
             </SortableContext>
           </DndContext>
         </div>
+        <div style={{ marginTop: '20px', textAlign: 'right' }}>
+          <button type="button" className="primaryBtn" onClick={handleSave}>
+            저장
+          </button>
+        </div>
       </div>
     </div>
   );

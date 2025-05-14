@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { ArrowsPointingOutIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import styles from './Project.module.css';
 
