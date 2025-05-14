@@ -20,8 +20,6 @@ import Modal from '@components/Modal';
 import ProjectAddForm from '@components/forms/ProjectAddForm';
 import ProjectCard from '@components/projects/ProjectCard';
 
-import ImgNoImg from '@public/imgs/img_no_img.png';
-
 export default function BoardForm() {
   const router = useRouter();
 

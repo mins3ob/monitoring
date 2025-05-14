@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@redux/store';
 import {
   DndContext,
   closestCenter,
