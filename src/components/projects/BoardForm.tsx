@@ -2,8 +2,6 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 
-import Image from 'next/image';
-
 import { useRouter } from 'next/navigation';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,7 +32,6 @@ export default function BoardForm() {
   const [searchText, setSearchText] = useState<string>('');
   const [searchStatus, setSearchStatus] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
   const [isExpandedProject, setIsExpandedProject] = useState<boolean>(false);
 

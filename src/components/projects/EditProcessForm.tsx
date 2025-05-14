@@ -65,7 +65,6 @@ function SortableItem({ id, index, name }: SortableItemProps) {
 export default function EditProcessForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const dispatch = useDispatch<AppDispatch>();
   const [processes, setProcesses] = useState<IProcess[]>([]);
   const [project, setProject] = useState<IProjectWithStats | null>(null);
 
@@ -138,6 +137,20 @@ export default function EditProcessForm() {
         }}
       >
         <h2>공정 순서 수정</h2>
+        <button
+          type="button"
+          onClick={handleSave}
+          style={{
+            padding: '8px 16px',
+            background: 'var(--primary-color)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+        >
+          저장
+        </button>
       </div>
 
       <div style={{ padding: '20px', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
