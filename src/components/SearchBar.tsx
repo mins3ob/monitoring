@@ -39,7 +39,7 @@ export default function SearchBar({
     if (extraInput) {
       setTempExtraValue(extraInput.value);
     }
-  }, [extraInput?.value]);
+  }, [extraInput]);
 
   const clickSearch = (): void => {
     onSearch(tempSearchText, tempExtraValue);

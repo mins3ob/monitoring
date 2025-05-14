@@ -66,15 +66,13 @@ export interface IPartInventory {
 }
 
 export interface IInventory {
-  id: string;
-  name: string;
-  code: string;
-  supplier: string;
+  partNo: string;
+  partName: string;
   quantity: number;
-  date: string;
-  type: 'return' | 'incoming';
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-  partInventoryList: IPartInventory[];
+  process: string;
+  company: string;
+  incomingQuantity: number;
+  lastIncomingDate: string;
+  remainingQuantity: number;
+  remarks: string;
 }

@@ -29,7 +29,7 @@ export default function InventoryTable({ data }: IInventoryTable) {
           <th>NO.</th>
           <th>P/NO</th>
           <th>P/NAME</th>
-          <th>Q'TY</th>
+          <th>Q&apos;TY</th>
           <th>공정</th>
           <th>업체명</th>
           <th>입고 수량</th>
@@ -39,7 +39,22 @@ export default function InventoryTable({ data }: IInventoryTable) {
         </tr>
       </thead>
 
-      <tbody></tbody>
+      <tbody>
+        {data.map((item, index) => (
+          <tr key={index}>
+            <td>{index + 1}</td>
+            <td>{item.partNo}</td>
+            <td>{item.partName}</td>
+            <td>{item.quantity}</td>
+            <td>{item.process}</td>
+            <td>{item.company}</td>
+            <td>{item.incomingQuantity}</td>
+            <td>{item.lastIncomingDate}</td>
+            <td>{item.remainingQuantity}</td>
+            <td>{item.remarks}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
