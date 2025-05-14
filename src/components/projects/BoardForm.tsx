@@ -1,8 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
-
-import Image from 'next/image';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 
 import { useRouter } from 'next/navigation';
 
@@ -12,7 +10,7 @@ import { AppDispatch, RootState } from '@redux/store';
 
 import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 
-import dummyData from '@constants/erd_dummy_data.json';
+import dummyData from '@data/erd_dummy_data.json';
 
 import { PlusIcon, CalendarIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 
@@ -21,8 +19,7 @@ import { IProject, IProcess, ILot, IProjectWithStats } from '@interfaces/index';
 import Modal from '@components/Modal';
 import ProjectAddForm from '@components/forms/ProjectAddForm';
 import ProjectCard from '@components/projects/ProjectCard';
-
-import ImgNoImg from '@public/imgs/img_no_img.png';
+import EditProcessForm from '@components/projects/EditProcessForm';
 
 export default function BoardForm() {
   const router = useRouter();
@@ -34,9 +31,11 @@ export default function BoardForm() {
   const [searchText, setSearchText] = useState<string>('');
   const [searchStatus, setSearchStatus] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
   const [isExpandedProject, setIsExpandedProject] = useState<boolean>(false);
+  const [visibleProjects, setVisibleProjects] = useState<number>(6);
+  const observer = useRef<IntersectionObserver | null>(null);
+  const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const projectsWithStats = useMemo(() => {
     return (dummyData.projects as IProject[]).map(project => {
@@ -68,9 +67,33 @@ export default function BoardForm() {
     });
   }, [projectsWithStats, searchText, searchStatus]);
 
+  const lastProjectRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && visibleProjects < filteredProjects.length) {
+          setVisibleProjects(prev => prev + 6);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [filteredProjects.length, visibleProjects]
+  );
+
+  const displayedProjects = useMemo(() => {
+    return filteredProjects.slice(0, visibleProjects);
+  }, [filteredProjects, visibleProjects]);
+
   const clickAddBtn = (): void => {
     dispatch(showBackdrop());
     setIsModalVisible(true);
+  };
+
+  const scrollToProject = (projectId: string) => {
+    const projectElement = projectRefs.current[projectId];
+    if (projectElement) {
+      projectElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   useEffect(() => {
@@ -159,63 +182,28 @@ export default function BoardForm() {
           width: '100%',
         }}
       >
-        {filteredProjects.map(project => (
+        {displayedProjects.map((project, index) => (
           <div
             key={project.id}
+            ref={el => {
+              projectRefs.current[project.id] = el;
+              if (index === displayedProjects.length - 1) {
+                lastProjectRef(el);
+              }
+            }}
             style={{
               display: 'flex',
               gap: '20px',
               width: '100%',
             }}
           >
-            <div style={{ flex: '1' }}>
-              <ProjectCard
-                project={project}
-                actionButtons={
-                  <>
-                    <div style={{ display: 'flex', gap: 10 }}>
-                      <button
-                        type="button"
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          background: 'white',
-                          color: 'var(--gray-600)',
-                          border: '1px solid var(--gray-200)',
-                          padding: '8px',
-                          borderRadius: '4px',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        <PlusIcon width={16} height={16} />
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => router.push(`?view=calendar&id=${project.id}`)}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          background: 'white',
-                          color: 'var(--gray-600)',
-                          border: '1px solid var(--gray-200)',
-                          padding: '8px',
-                          borderRadius: '4px',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        <CalendarIcon width={16} height={16} />
-                      </button>
-                    </div>
-
+            <ProjectCard
+              project={project}
+              actionButtons={
+                <>
+                  <div style={{ display: 'flex', gap: 10 }}>
                     <button
                       type="button"
-                      onClick={() => {
-                        setExpandedProjectId(expandedProjectId === project.id ? null : project.id);
-                        setIsExpandedProject(!isExpandedProject);
-                      }}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -228,16 +216,57 @@ export default function BoardForm() {
                         cursor: 'pointer',
                       }}
                     >
-                      <EllipsisHorizontalIcon width={16} height={16} />
+                      <PlusIcon width={16} height={16} />
                     </button>
-                  </>
-                }
-              />
-            </div>
 
-            {isExpandedProject && (
-              <div className="box">
-                <h3>Process 관리</h3>
+                    <button
+                      type="button"
+                      onClick={() => router.push(`?view=calendar&id=${project.id}`)}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: 'white',
+                        color: 'var(--gray-600)',
+                        border: '1px solid var(--gray-200)',
+                        padding: '8px',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <CalendarIcon width={16} height={16} />
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const isExpanding = expandedProjectId !== project.id;
+                      setExpandedProjectId(isExpanding ? project.id : null);
+                      setIsExpandedProject(!isExpandedProject);
+                      setTimeout(() => scrollToProject(project.id), 100);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      background: 'white',
+                      color: 'var(--gray-600)',
+                      border: '1px solid var(--gray-200)',
+                      padding: '8px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <EllipsisHorizontalIcon width={16} height={16} />
+                  </button>
+                </>
+              }
+            />
+
+            {isExpandedProject && expandedProjectId === project.id && (
+              <div className="box" style={{ width: '100%' }}>
+                <EditProcessForm projectId={project.id} />
               </div>
             )}
           </div>

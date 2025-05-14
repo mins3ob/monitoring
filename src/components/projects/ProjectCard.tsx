@@ -13,7 +13,10 @@ export default function ProjectCard({ project, actionButtons }: ProjectCardProps
   const router = useRouter();
 
   return (
-    <div className="box">
+    <div
+      className="box"
+      style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 10 }}
+    >
       <div
         style={{
           display: 'flex',

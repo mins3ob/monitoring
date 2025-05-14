@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@redux/store';
 import {
@@ -21,9 +21,8 @@ import {
   horizontalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import dummyData from '@constants/erd_dummy_data.json';
+import dummyData from '@data/erd_dummy_data.json';
 import { IProcess, IProjectWithStats } from '@interfaces/index';
-import ProjectCard from '@components/projects/ProjectCard';
 
 interface SortableItemProps {
   id: string;
@@ -62,14 +61,15 @@ function SortableItem({ id, index, name }: SortableItemProps) {
   );
 }
 
-export default function EditProcessForm() {
+interface IEditProcessForm {
+  projectId: string;
+}
+
+export default function EditProcessForm({ projectId }: IEditProcessForm) {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
   const [processes, setProcesses] = useState<IProcess[]>([]);
   const [project, setProject] = useState<IProjectWithStats | null>(null);
-
-  const projectId = searchParams.get('id');
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -80,7 +80,6 @@ export default function EditProcessForm() {
 
   useEffect(() => {
     if (!projectId) {
-      router.push('/project');
       return;
     }
 
@@ -102,7 +101,7 @@ export default function EditProcessForm() {
       };
       setProject(projectWithProcesses);
     }
-  }, [projectId, router]);
+  }, [projectId]);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -129,20 +128,7 @@ export default function EditProcessForm() {
 
   return (
     <div className="column">
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '20px',
-        }}
-      >
-        <h2>공정 순서 수정</h2>
-      </div>
-
-      <div style={{ padding: '20px', display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-        <div>{project && <ProjectCard project={project} />}</div>
-
+      <div style={{ padding: '20px', display: 'grid', gridTemplateColumns: '1fr' }}>
         <div
           style={{
             display: 'flex',
