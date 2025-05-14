@@ -67,9 +67,7 @@ interface IEditProcessForm {
 
 export default function EditProcessForm({ projectId }: IEditProcessForm) {
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
   const [processes, setProcesses] = useState<IProcess[]>([]);
-  const [project, setProject] = useState<IProjectWithStats | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -99,7 +97,6 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
         successCount: 0, // TODO: 실제 데이터로 대체
         failCount: 0, // TODO: 실제 데이터로 대체
       };
-      setProject(projectWithProcesses);
     }
   }, [projectId]);
 

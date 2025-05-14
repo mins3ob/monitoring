@@ -11,9 +11,6 @@ import { ILot, IProcess } from '@interfaces/index';
 
 import dummyData from '@data/erd_dummy_data.json';
 
-import IconX from '@public/svgs/common/icon_x.svg';
-import IconExpand from '@public/svgs/common/icon_expand2.svg';
-
 export default function LotDetailForm() {
   const searchParams = useSearchParams();
   const [lot, setLot] = useState<ILot | null>(null);
