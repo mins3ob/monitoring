@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 
 import styles from './SideNav.module.css';
 
@@ -11,6 +12,9 @@ import { IMenu } from '@interfaces/menu';
 import IconHwashingLogo from '@public/svgs/common/icon_hwashing_logo.svg';
 
 const MenuItem = ({ menu }: { menu: IMenu }) => {
+  const pathname = usePathname();
+  const isActive = pathname === menu.path;
+
   return (
     <div className={styles.menuItem}>
       <button
@@ -18,6 +22,7 @@ const MenuItem = ({ menu }: { menu: IMenu }) => {
         onClick={() => {
           window.location.href = `${menu.path}`;
         }}
+        className={isActive ? styles.active : ''}
       >
         {menu.icon && menu.icon}
 

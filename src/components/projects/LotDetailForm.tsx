@@ -3,15 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import styles from './Project.module.css';
 
 import { ILot, IProcess } from '@interfaces/index';
 
-import dummyData from '@constants/erd_dummy_data.json';
-
-import IconX from '@public/svgs/common/icon_x.svg';
-import IconExpand from '@public/svgs/common/icon_expand2.svg';
+import dummyData from '@data/erd_dummy_data.json';
 
 export default function LotDetailForm() {
   const searchParams = useSearchParams();
@@ -169,56 +167,27 @@ export default function LotDetailForm() {
 
           <div>
             {selectedImage && (
-              <div
-                style={{
-                  position: 'relative',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <div className={styles.imagePreviewContainer}>
+                <div className={styles.imagePreviewActions}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedImage(null)}
+                    className={styles.iconButton}
+                    title="닫기"
+                  >
+                    <XMarkIcon className={styles.icon} />
+                  </button>
+                </div>
+
                 <Image
                   src={selectedImage}
                   alt="확대된 프로세스 이미지"
                   width={400}
                   height={400}
-                  style={{
-                    width: '400px',
-                    height: '400px',
-                    objectFit: 'cover',
-                    borderRadius: '8px',
-                  }}
+                  className={styles.previewImage}
+                  onClick={() => window.open(selectedImage, '_blank')}
+                  style={{ cursor: 'pointer' }}
                 />
-
-                <div style={{ position: 'absolute', top: 10, right: 10, display: 'flex', gap: 10 }}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      if (selectedImage) {
-                        window.open(selectedImage, '_blank');
-                      }
-                    }}
-                    style={{
-                      background: 'transparent',
-                      padding: 0,
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <IconExpand width={24} height={24} fill="white" />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedImage(null)}
-                    style={{
-                      background: 'transparent',
-                      padding: 0,
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <IconX width={24} height={24} fill="white" />
-                  </button>
-                </div>
               </div>
             )}
           </div>

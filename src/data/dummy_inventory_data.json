@@ -1,0 +1,392 @@
+[
+  {
+    "id": "27b8ea5b-969d-443b-a64e-f7ed4334961e",
+    "name": "유압 펌프",
+    "code": "INV-1000",
+    "supplier": "기아기전",
+    "quantity": 59,
+    "date": "2025-01-07",
+    "type": "return",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2025-01-07T06:28:45.776981Z",
+    "updatedAt": "2025-01-14T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "01353973-b9a2-48fe-8f69-dc63905536d2",
+        "name": "모터 커버",
+        "quantity": 52
+      },
+      {
+        "id": "4cf75243-9042-4a54-bbdf-afee4a1e39a4",
+        "name": "회전축",
+        "quantity": 46
+      },
+      {
+        "id": "97617f4f-60b1-45f0-9dbf-3f79017a754b",
+        "name": "볼트 세트",
+        "quantity": 86
+      },
+      {
+        "id": "6ef2df98-d356-480a-9412-6b1ddc758066",
+        "name": "기어박스",
+        "quantity": 36
+      },
+      {
+        "id": "b2602eaa-f394-44c1-99e7-76ac3d90a141",
+        "name": "전원 커넥터",
+        "quantity": 51
+      }
+    ]
+  },
+  {
+    "id": "1ed17602-c7ce-40b4-b900-0c81f4c7a12b",
+    "name": "유압 펌프",
+    "code": "INV-1001",
+    "supplier": "두산인프라코어",
+    "quantity": 215,
+    "date": "2024-11-06",
+    "type": "incoming",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2024-11-06T06:28:45.776981Z",
+    "updatedAt": "2024-11-09T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "665014c9-c10d-4510-af44-970f4927542f",
+        "name": "모터 커버",
+        "quantity": 69
+      },
+      {
+        "id": "94f1ee70-4cab-47e0-935b-d748ae70de56",
+        "name": "회전축",
+        "quantity": 10
+      },
+      {
+        "id": "1dfe051d-69bf-438e-a4d8-af6857c574a4",
+        "name": "볼트 세트",
+        "quantity": 22
+      },
+      {
+        "id": "ff34f394-45d7-4713-911b-532cd8c854c9",
+        "name": "기어박스",
+        "quantity": 82
+      },
+      {
+        "id": "9476794a-ae38-4a59-b5b4-9a15c9ceb168",
+        "name": "전원 커넥터",
+        "quantity": 100
+      }
+    ]
+  },
+  {
+    "id": "a13043b3-0bed-4166-805a-903d8586f026",
+    "name": "전원 공급 장치",
+    "code": "INV-1002",
+    "supplier": "두산인프라코어",
+    "quantity": 300,
+    "date": "2024-08-11",
+    "type": "incoming",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2024-08-11T06:28:45.776981Z",
+    "updatedAt": "2024-08-12T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "96aa91e7-e625-4a86-a5c0-cce3df16924d",
+        "name": "모터 커버",
+        "quantity": 49
+      },
+      {
+        "id": "03397570-2854-420d-b933-f898596ee7ef",
+        "name": "회전축",
+        "quantity": 66
+      },
+      {
+        "id": "7a27fcd1-c4cc-4c0f-8508-731cdf134e95",
+        "name": "볼트 세트",
+        "quantity": 54
+      },
+      {
+        "id": "84458662-251c-40b4-9693-3b02412a0d98",
+        "name": "기어박스",
+        "quantity": 27
+      },
+      {
+        "id": "b0f37964-3834-48c6-8748-0442dc2dd4f9",
+        "name": "전원 커넥터",
+        "quantity": 14
+      }
+    ]
+  },
+  {
+    "id": "75ab6252-f890-4436-b3f9-119a3881f36c",
+    "name": "제어 판넬",
+    "code": "INV-1003",
+    "supplier": "두산인프라코어",
+    "quantity": 252,
+    "date": "2024-07-05",
+    "type": "return",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2024-07-05T06:28:45.776981Z",
+    "updatedAt": "2024-07-07T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "6415fc85-b319-434f-9a27-a5cfc969aad4",
+        "name": "모터 커버",
+        "quantity": 61
+      },
+      {
+        "id": "d1afee63-816b-4142-a193-92cf8e097cdf",
+        "name": "회전축",
+        "quantity": 15
+      },
+      {
+        "id": "daacf648-ebce-4032-8429-0a8ca5a48994",
+        "name": "볼트 세트",
+        "quantity": 35
+      },
+      {
+        "id": "62d576eb-bc92-4abc-a224-5597c2e136ad",
+        "name": "기어박스",
+        "quantity": 71
+      },
+      {
+        "id": "ac9f997c-2de6-4e1f-93ca-29923027d7ba",
+        "name": "전원 커넥터",
+        "quantity": 56
+      }
+    ]
+  },
+  {
+    "id": "2a374fc4-3372-4782-b3ea-c25bd45e7997",
+    "name": "제어 판넬",
+    "code": "INV-1004",
+    "supplier": "LS산전",
+    "quantity": 211,
+    "date": "2024-07-20",
+    "type": "incoming",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2024-07-20T06:28:45.776981Z",
+    "updatedAt": "2024-07-28T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "6a4e9238-5266-4bea-9b87-130ce6f814b5",
+        "name": "모터 커버",
+        "quantity": 50
+      },
+      {
+        "id": "134b4bab-bb44-4a00-9649-0f9d91abc7a5",
+        "name": "회전축",
+        "quantity": 12
+      },
+      {
+        "id": "b3847871-f157-41a2-a82d-8ba238a96970",
+        "name": "볼트 세트",
+        "quantity": 67
+      },
+      {
+        "id": "fdc19cfc-ed19-4e96-b150-28e656e6bbd4",
+        "name": "기어박스",
+        "quantity": 22
+      },
+      {
+        "id": "bbd0de8c-cb35-4f97-a88f-ce2143d81dcb",
+        "name": "전원 커넥터",
+        "quantity": 60
+      }
+    ]
+  },
+  {
+    "id": "915a7913-b84a-4a96-af34-1559e025c58f",
+    "name": "전원 공급 장치",
+    "code": "INV-1005",
+    "supplier": "삼성중공업",
+    "quantity": 73,
+    "date": "2025-01-13",
+    "type": "return",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2025-01-13T06:28:45.776981Z",
+    "updatedAt": "2025-01-23T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "490a8bf3-e036-4ca9-be61-d21f58b069f8",
+        "name": "모터 커버",
+        "quantity": 15
+      },
+      {
+        "id": "fccb8c93-edae-4291-9035-80fafdc841b6",
+        "name": "회전축",
+        "quantity": 92
+      },
+      {
+        "id": "61075536-064a-4aad-a2d2-6a573e393e47",
+        "name": "볼트 세트",
+        "quantity": 66
+      },
+      {
+        "id": "f17cb9f1-bb7c-48fa-91a3-173bc961f8f6",
+        "name": "기어박스",
+        "quantity": 31
+      },
+      {
+        "id": "a482dbc8-a096-481b-ae26-2f5f46e8dedd",
+        "name": "전원 커넥터",
+        "quantity": 29
+      }
+    ]
+  },
+  {
+    "id": "9eb50b67-b822-4db1-b294-addebf9f3819",
+    "name": "제어 판넬",
+    "code": "INV-1006",
+    "supplier": "기아기전",
+    "quantity": 236,
+    "date": "2025-01-31",
+    "type": "return",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2025-01-31T06:28:45.776981Z",
+    "updatedAt": "2025-02-03T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "1fdcb9bc-f529-4341-97dc-ae986ab8a420",
+        "name": "모터 커버",
+        "quantity": 67
+      },
+      {
+        "id": "f1aa8fc0-6429-4633-9360-94cfa71e569a",
+        "name": "회전축",
+        "quantity": 66
+      },
+      {
+        "id": "acaac5a4-cd08-423d-acaa-0bf222277a29",
+        "name": "볼트 세트",
+        "quantity": 12
+      },
+      {
+        "id": "d161402d-57ee-45e1-b79a-e11898e9578a",
+        "name": "기어박스",
+        "quantity": 54
+      },
+      {
+        "id": "fd2a74a5-8dd6-432d-9c0f-1a717595c25b",
+        "name": "전원 커넥터",
+        "quantity": 96
+      }
+    ]
+  },
+  {
+    "id": "ab528e4b-13ee-493a-8b5d-528fd616f130",
+    "name": "유압 펌프",
+    "code": "INV-1007",
+    "supplier": "두산인프라코어",
+    "quantity": 232,
+    "date": "2025-03-31",
+    "type": "incoming",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2025-03-31T06:28:45.776981Z",
+    "updatedAt": "2025-04-05T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "886cea27-6174-4f8b-95db-443ea28fab38",
+        "name": "모터 커버",
+        "quantity": 34
+      },
+      {
+        "id": "dab77108-3333-4bf3-8ef9-d41e3d363152",
+        "name": "회전축",
+        "quantity": 59
+      },
+      {
+        "id": "1176f018-ca32-4c4c-8f9b-040ba7bd2e77",
+        "name": "볼트 세트",
+        "quantity": 100
+      },
+      {
+        "id": "75ac7dd6-0929-4880-a84a-05ed94b5f58d",
+        "name": "기어박스",
+        "quantity": 33
+      },
+      {
+        "id": "ef07f587-3824-4a72-8644-043b0e642e6c",
+        "name": "전원 커넥터",
+        "quantity": 12
+      }
+    ]
+  },
+  {
+    "id": "04acbdb1-6abe-4ec7-8c3b-65cc91775fa7",
+    "name": "제어 판넬",
+    "code": "INV-1008",
+    "supplier": "LS산전",
+    "quantity": 147,
+    "date": "2025-04-26",
+    "type": "incoming",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2025-04-26T06:28:45.776981Z",
+    "updatedAt": "2025-04-29T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "2aa2d83a-6b8f-4fa9-881b-fc37298ad44a",
+        "name": "모터 커버",
+        "quantity": 58
+      },
+      {
+        "id": "83050c38-cf9e-4f4e-9855-ad5513fea3b1",
+        "name": "회전축",
+        "quantity": 39
+      },
+      {
+        "id": "96eb17d6-8a31-4496-9480-39776bd05317",
+        "name": "볼트 세트",
+        "quantity": 12
+      },
+      {
+        "id": "eb009b13-0516-400f-811a-310aec814d8e",
+        "name": "기어박스",
+        "quantity": 30
+      },
+      {
+        "id": "ca6a2d5e-a4b2-4008-be86-428944f05dfa",
+        "name": "전원 커넥터",
+        "quantity": 57
+      }
+    ]
+  },
+  {
+    "id": "f8b782cb-b336-4189-b5ca-5d17ca139ab4",
+    "name": "제어 판넬",
+    "code": "INV-1009",
+    "supplier": "두산인프라코어",
+    "quantity": 118,
+    "date": "2024-11-02",
+    "type": "incoming",
+    "description": "자동 생성된 테스트 입고 항목",
+    "createdAt": "2024-11-02T06:28:45.776981Z",
+    "updatedAt": "2024-11-05T06:28:45.776981Z",
+    "partInventoryList": [
+      {
+        "id": "5ebe0162-efba-49da-8c96-bc87511d16e7",
+        "name": "모터 커버",
+        "quantity": 34
+      },
+      {
+        "id": "1bc26a76-8a89-4db7-a923-b974c5406650",
+        "name": "회전축",
+        "quantity": 12
+      },
+      {
+        "id": "4eeb2ddc-0eaa-40e8-9213-a7fbaeaa0fe7",
+        "name": "볼트 세트",
+        "quantity": 96
+      },
+      {
+        "id": "19fa7766-6c82-49ca-9685-21f88a6724b1",
+        "name": "기어박스",
+        "quantity": 53
+      },
+      {
+        "id": "b12dc07d-f797-415d-9f98-924eff7c153f",
+        "name": "전원 커넥터",
+        "quantity": 62
+      }
+    ]
+  }
+]

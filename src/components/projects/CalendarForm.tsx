@@ -125,6 +125,7 @@ export default function CalendarForm() {
   const [showWeekCalendar, setShowWeekCalendar] = useState(false);
 
   const handleDateSelect = (date: Date) => {
+    console.log(date);
     setSelectedDate(date);
     setShowWeekCalendar(!showWeekCalendar);
   };
@@ -132,6 +133,8 @@ export default function CalendarForm() {
   const clickBack = (): void => {
     setShowWeekCalendar(false);
   };
+
+  console.log('s :', selectedDate);
 
   return (
     <div className="column">

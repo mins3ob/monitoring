@@ -22,6 +22,7 @@ export interface IProcess {
   type: string;
   imageUrl: string | null;
   order: number;
+  barcode: string;
   createdAt: string;
   updatedAt: string;
   project: string;
@@ -56,4 +57,22 @@ export interface IProjectWithStats extends IProject {
   successCount: number;
   failCount: number;
   processes: IProcess[];
+}
+
+export interface IPartInventory {
+  id: string;
+  name: string;
+  quantity: number;
+}
+
+export interface IInventory {
+  partNo: string;
+  partName: string;
+  quantity: number;
+  process: string;
+  company: string;
+  incomingQuantity: number;
+  lastIncomingDate: string;
+  remainingQuantity: number;
+  remarks: string;
 }

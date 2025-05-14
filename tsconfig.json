@@ -25,6 +25,7 @@
       "@redux/*": ["src/redux/*"],
       "@utils/*": ["src/utils/*"],
       "@interfaces/*": ["src/interfaces/*"],
+      "@data/*": ["src/data/*"],
       "@constants/*": ["src/constants/*"]
     }
   },
