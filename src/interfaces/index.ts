@@ -22,6 +22,7 @@ export interface IProcess {
   type: string;
   imageUrl: string | null;
   order: number;
+  barcode: string;
   createdAt: string;
   updatedAt: string;
   project: string;

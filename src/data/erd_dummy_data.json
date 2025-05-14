@@ -16,7 +16,7 @@
       "id": "p1",
       "name": "엔진 제어 시스템 개발",
       "description": "차량용 엔진 제어 유닛 개발",
-      "status": "progress",
+      "status": "none",
       "imageUrl": null,
       "startDate": "2025-04-01",
       "endDate": "2025-07-01",

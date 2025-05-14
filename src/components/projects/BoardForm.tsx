@@ -17,9 +17,8 @@ import { PlusIcon, CalendarIcon, EllipsisHorizontalIcon } from '@heroicons/react
 import { IProject, IProcess, ILot, IProjectWithStats } from '@interfaces/index';
 
 import Modal from '@components/Modal';
-import ProjectAddForm from '@components/forms/ProjectAddForm';
+import ProjectEditForm from '@components/projects/ProjectEditForm';
 import ProjectCard from '@components/projects/ProjectCard';
-import EditProcessForm from '@components/projects/EditProcessForm';
 
 export default function BoardForm() {
   const router = useRouter();
@@ -30,9 +29,10 @@ export default function BoardForm() {
 
   const [searchText, setSearchText] = useState<string>('');
   const [searchStatus, setSearchStatus] = useState<string>('');
+  const [tempSearchText, setTempSearchText] = useState<string>('');
+  const [tempSearchStatus, setTempSearchStatus] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
-  const [isExpandedProject, setIsExpandedProject] = useState<boolean>(false);
+  const [selectedProject, setSelectedProject] = useState<IProjectWithStats | null>(null);
   const [visibleProjects, setVisibleProjects] = useState<number>(6);
   const observer = useRef<IntersectionObserver | null>(null);
   const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -85,15 +85,20 @@ export default function BoardForm() {
   }, [filteredProjects, visibleProjects]);
 
   const clickAddBtn = (): void => {
+    setSelectedProject(null);
     dispatch(showBackdrop());
     setIsModalVisible(true);
   };
 
-  const scrollToProject = (projectId: string) => {
-    const projectElement = projectRefs.current[projectId];
-    if (projectElement) {
-      projectElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  const handleEditProject = (project: IProjectWithStats): void => {
+    setSelectedProject(project);
+    dispatch(showBackdrop());
+    setIsModalVisible(true);
+  };
+
+  const handleSearch = () => {
+    setSearchText(tempSearchText);
+    setSearchStatus(tempSearchStatus);
   };
 
   useEffect(() => {
@@ -118,8 +123,8 @@ export default function BoardForm() {
 
               <input
                 type="text"
-                value={searchText}
-                onChange={e => setSearchText(e.target.value)}
+                value={tempSearchText}
+                onChange={e => setTempSearchText(e.target.value)}
                 placeholder="프로젝트 명을 입력하세요."
                 style={{ flex: 3 }}
               />
@@ -130,8 +135,8 @@ export default function BoardForm() {
 
               <input
                 type="text"
-                value={searchStatus}
-                onChange={e => setSearchStatus(e.target.value)}
+                value={tempSearchStatus}
+                onChange={e => setTempSearchStatus(e.target.value)}
                 placeholder="진행상태를 입력하세요."
                 style={{ flex: 3 }}
               />
@@ -147,6 +152,7 @@ export default function BoardForm() {
             >
               <button
                 type="button"
+                onClick={handleSearch}
                 style={{
                   background: 'white',
                   border: '1px solid var(--primary-color)',
@@ -173,12 +179,9 @@ export default function BoardForm() {
 
       <div
         style={{
-          display: isExpandedProject ? 'flex' : 'grid',
+          display: 'grid',
           gap: '20px',
-          padding: '20px',
-          ...(isExpandedProject
-            ? { flexDirection: 'column', alignItems: 'flex-start' }
-            : { gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))' }),
+          gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
           width: '100%',
         }}
       >
@@ -240,12 +243,6 @@ export default function BoardForm() {
 
                   <button
                     type="button"
-                    onClick={() => {
-                      const isExpanding = expandedProjectId !== project.id;
-                      setExpandedProjectId(isExpanding ? project.id : null);
-                      setIsExpandedProject(!isExpandedProject);
-                      setTimeout(() => scrollToProject(project.id), 100);
-                    }}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -257,25 +254,20 @@ export default function BoardForm() {
                       borderRadius: '4px',
                       cursor: 'pointer',
                     }}
+                    onClick={() => handleEditProject(project)}
                   >
                     <EllipsisHorizontalIcon width={16} height={16} />
                   </button>
                 </>
               }
             />
-
-            {isExpandedProject && expandedProjectId === project.id && (
-              <div className="box" style={{ width: '100%' }}>
-                <EditProcessForm projectId={project.id} />
-              </div>
-            )}
           </div>
         ))}
       </div>
 
       {isModalVisible && (
         <Modal>
-          <ProjectAddForm back={() => setIsModalVisible(false)} />
+          <ProjectEditForm back={() => setIsModalVisible(false)} project={selectedProject} />
         </Modal>
       )}
     </div>

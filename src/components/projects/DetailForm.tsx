@@ -19,7 +19,7 @@ import { IProject, IProcess, ILot, ILotProcess } from '@interfaces/index';
 import Modal from '@components/Modal';
 
 import ImgNoImg from '@public/imgs/img_no_img.png';
-import LotAddForm from '@components/forms/LotAddForm';
+import LotAddForm from '@components/projects/LotAddForm';
 import { PROCESS_RESULT_COLORS, QUALITY_RESULT_COLORS } from '@constants/color';
 
 interface IDetailForm {
