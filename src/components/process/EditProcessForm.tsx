@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
   DndContext,
@@ -238,7 +237,7 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
               items={processes.map(p => p.id)}
               strategy={horizontalListSortingStrategy}
             >
-              {processes.map((process, index) => (
+              {processes.map(process => (
                 <SortableItem
                   key={process.id}
                   id={process.id}

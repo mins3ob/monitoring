@@ -58,13 +58,6 @@ export default function ProcessList({
     return () => observer.disconnect();
   }, [hasMore, isLoading, onLoadMore]);
 
-  const scrollToProject = (projectId: string) => {
-    const projectElement = projectRefs.current[projectId];
-    if (projectElement) {
-      projectElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   return (
     <div
       style={{
