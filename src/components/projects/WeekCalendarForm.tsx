@@ -40,9 +40,18 @@ const formatDisplayDate = (date: Date, weekday: string): string => {
 };
 
 const getWeekDates = (date: Date): Date[] => {
-  const day = date.getDay();
-  const diff = date.getDate() - day;
-  return Array.from({ length: 7 }, (_, i) => new Date(date.setDate(diff + i)));
+  const result = [];
+  const firstDay = new Date(date);
+  const day = firstDay.getDay();
+  const diff = firstDay.getDate() - day;
+
+  for (let i = 0; i < 7; i++) {
+    const newDate = new Date(firstDay);
+    newDate.setDate(diff + i);
+    result.push(newDate);
+  }
+
+  return result;
 };
 
 // Components
@@ -124,7 +133,7 @@ export default function WeekCalendarForm({
   const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
 
   return (
-    <div className="box">
+    <div style={{ width: '100%' }}>
       <button type="button" onClick={back} style={{ marginBottom: 20 }}>
         뒤로가기
       </button>
