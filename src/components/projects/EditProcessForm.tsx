@@ -20,7 +20,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import dummyData from '@data/erd_dummy_data.json';
-import { IProcess, IProjectWithStats } from '@interfaces/index';
+import { IProcess } from '@interfaces/index';
 
 interface SortableItemProps {
   id: string;
