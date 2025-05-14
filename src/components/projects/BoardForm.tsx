@@ -28,7 +28,7 @@ export default function BoardForm() {
 
   const { isVisible } = useSelector((state: RootState) => state.backdrop);
 
-  const [searchText, setSearchText] = useState<string>('');
+  const searchText = '';
   const [searchStatus, setSearchStatus] = useState<string>('');
   const [appliedSearchText, setAppliedSearchText] = useState<string>('');
   const [appliedSearchStatus, setAppliedSearchStatus] = useState<string>('');
