@@ -33,13 +33,12 @@ import { PencilIcon } from '@heroicons/react/24/outline';
 
 interface SortableItemProps {
   id: string;
-  index: number;
   process: IProcess;
   disabled: boolean;
   onEdit: (process: IProcess) => void;
 }
 
-function SortableItem({ id, index, process, disabled, onEdit }: SortableItemProps) {
+function SortableItem({ id, process, disabled, onEdit }: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {
@@ -126,10 +125,7 @@ interface IEditProcessForm {
 }
 
 export default function EditProcessForm({ projectId }: IEditProcessForm) {
-  const router = useRouter();
-
   const dispatch = useDispatch<AppDispatch>();
-
   const { isVisible } = useSelector((state: RootState) => state.backdrop);
 
   const [processes, setProcesses] = useState<IProcess[]>([]);
@@ -149,7 +145,9 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
       return;
     }
 
-    const project = (dummyData.projects as any[]).find(p => p.id === projectId);
+    const project = dummyData.projects.find(
+      (p: { id: string; status: string }) => p.id === projectId
+    );
     setIsEditable(project?.status === 'none');
 
     const projectProcesses = (dummyData.processes as IProcess[])
@@ -204,7 +202,7 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
   useEffect(() => {
     if (isModalVisible) dispatch(showBackdrop());
     else dispatch(hideBackdrop());
-  }, [isModalVisible]);
+  }, [isModalVisible, dispatch]);
 
   useEffect(() => {
     if (!isVisible) setIsModalVisible(false);
@@ -244,7 +242,6 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
                 <SortableItem
                   key={process.id}
                   id={process.id}
-                  index={index}
                   process={process}
                   disabled={!isEditable}
                   onEdit={handleEditProcess}

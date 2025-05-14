@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { PlusIcon, CalendarIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 import { IProjectWithStats } from '@interfaces/index';
 import ProjectCard from '@components/projects/ProjectCard';
 import EditProcessForm from '@components/process/EditProcessForm';
@@ -22,9 +20,6 @@ export default function ProcessList({
   searchText = '',
   onSearch = () => {},
 }: ProcessListProps) {
-  const router = useRouter();
-  const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
-  const [isExpandedProject, setIsExpandedProject] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const [tempSearchText, setTempSearchText] = useState<string>(searchText);
   const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
@@ -73,7 +68,7 @@ export default function ProcessList({
   return (
     <div
       style={{
-        display: isExpandedProject ? 'flex' : 'grid',
+        display: 'flex',
         gap: '20px',
         flexDirection: 'column',
         alignItems: 'flex-start',
