@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@redux/store';
 import {
   DndContext,
   closestCenter,
@@ -85,19 +83,6 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
       .filter(process => process.project === projectId)
       .sort((a, b) => a.order - b.order);
     setProcesses(projectProcesses);
-
-    // 프로젝트 정보 가져오기
-    const projectData = (dummyData.projects as IProjectWithStats[]).find(p => p.id === projectId);
-    if (projectData) {
-      // 프로젝트에 processes 정보 추가
-      const projectWithProcesses: IProjectWithStats = {
-        ...projectData,
-        processes: projectProcesses,
-        lotCount: 0, // TODO: 실제 데이터로 대체
-        successCount: 0, // TODO: 실제 데이터로 대체
-        failCount: 0, // TODO: 실제 데이터로 대체
-      };
-    }
   }, [projectId]);
 
   const handleDragEnd = (event: DragEndEvent) => {
