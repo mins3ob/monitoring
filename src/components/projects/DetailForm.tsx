@@ -2,10 +2,6 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '@redux/store';
@@ -16,20 +12,16 @@ import projectsData from '../../data/projects.json';
 import processesData from '../../data/processes.json';
 import lotsData from '../../data/lots.json';
 import lotProcessesData from '../../data/lotProcesses.json';
-import inventoriesData from '../../data/inventories.json';
 
-import { IProject, IProcess, ILot, ILotProcess } from '@interfaces/index';
+import { IProject, ILot, ILotProcess } from '@interfaces/index';
 
 import Modal from '@components/Modal';
 
-import ImgNoImg from '@public/imgs/img_no_img.png';
 import LotAddForm from '@components/projects/LotAddForm';
-import LotDetailForm from '@components/projects/LotDetailForm';
 import CalendarForm from '@components/projects/CalendarForm';
 import InventoryDisplay from './InventoryDisplay';
 import { PROCESS_RESULT_COLORS, QUALITY_RESULT_COLORS } from '@constants/color';
 import Table from '@components/Table';
-// import EditProcessForm from './EditProcessForm'; // TODO: EditProcessForm 컴포넌트 생성 후 주석 해제
 import ProcessPage from './ProcessPage';
 import OverviewTab from './OverviewTab';
 import LotHistoryTab from './LotHistoryTab';

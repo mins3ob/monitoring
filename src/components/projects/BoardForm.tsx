@@ -14,7 +14,7 @@ import projectsData from '../../data/projects.json';
 
 import { PlusIcon, CalendarIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 
-import { IProject, IProjectWithStats } from '@interfaces/index';
+import { IProjectWithStats } from '@interfaces/index';
 
 import Modal from '@components/Modal';
 import ProjectEditForm from '@components/projects/ProjectEditForm';
