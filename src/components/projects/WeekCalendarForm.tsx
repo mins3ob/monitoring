@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import styles from './WeekCalendarForm.module.css';
+import Table from '@components/Table';
 
 // Types
 interface Lot {
@@ -56,12 +56,20 @@ const getWeekDates = (date: Date): Date[] => {
 
 // Components
 const EventCell: React.FC<{ events: Event[] }> = ({ events }) => (
-  <ul>
+  <ul style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
     {events.length === 0 ? (
-      <li>-</li>
+      <li style={{ padding: '0.75rem' }}>-</li>
     ) : (
       events.map((item, idx) => (
-        <li key={idx} style={{ height: item.lots.length * 30 }}>
+        <li
+          key={idx}
+          style={{
+            padding: '0.75rem',
+            boxSizing: 'border-box',
+            display: 'flex',
+            flex: item.lots.length,
+          }}
+        >
           {item.event}
         </li>
       ))
@@ -70,12 +78,20 @@ const EventCell: React.FC<{ events: Event[] }> = ({ events }) => (
 );
 
 const QuantityCell: React.FC<{ events: Event[] }> = ({ events }) => (
-  <ul>
+  <ul style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
     {events.length === 0 ? (
-      <li>-</li>
+      <li style={{ padding: '0.75rem' }}>-</li>
     ) : (
       events.map((item, idx) => (
-        <li key={idx} style={{ height: item.lots.length * 30 }}>
+        <li
+          key={idx}
+          style={{
+            padding: '0.75rem',
+            flex: item.lots.length,
+            boxSizing: 'border-box',
+            display: 'flex',
+          }}
+        >
           {item.lots.length}
         </li>
       ))
@@ -86,13 +102,15 @@ const QuantityCell: React.FC<{ events: Event[] }> = ({ events }) => (
 const LotCell: React.FC<{ events: Event[] }> = ({ events }) => (
   <ul>
     {events.length === 0 ? (
-      <li>-</li>
+      <li style={{ padding: '0.75rem' }}>-</li>
     ) : (
       events.map((item, idx) => (
-        <li key={idx} style={{ height: item.lots.length * 30 }}>
+        <li key={idx}>
           <ul>
             {item.lots.map((lot, lotIdx) => (
-              <li key={lotIdx}>{lot.id}</li>
+              <li key={lotIdx} style={{ padding: '0.75rem' }}>
+                {lot.id}
+              </li>
             ))}
           </ul>
         </li>
@@ -104,13 +122,13 @@ const LotCell: React.FC<{ events: Event[] }> = ({ events }) => (
 const TimeCell: React.FC<{ events: Event[] }> = ({ events }) => (
   <ul>
     {events.length === 0 ? (
-      <li>-</li>
+      <li style={{ padding: '0.75rem' }}>-</li>
     ) : (
       events.map((item, idx) => (
-        <li key={idx} style={{ height: item.lots.length * 30 }}>
+        <li key={idx}>
           <ul>
             {item.lots.map((lot, lotIdx) => (
-              <li key={lotIdx}>
+              <li key={lotIdx} style={{ padding: '0.75rem' }}>
                 {lot.time.toLocaleTimeString('ko-KR', {
                   hour: '2-digit',
                   minute: '2-digit',
@@ -132,13 +150,21 @@ export default function WeekCalendarForm({
   const weekDates = getWeekDates(selectedDate);
   const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
 
+  const uniqueEventNames = Array.from(
+    new Set(
+      dateContents
+        .filter(content => weekDates.some(date => formatDate(date) === content.date))
+        .flatMap(content => content.value.map(event => event.event))
+    )
+  );
+
   return (
     <div style={{ width: '100%' }}>
       <button type="button" onClick={back} style={{ marginBottom: 20 }}>
         뒤로가기
       </button>
 
-      <table className={styles.table}>
+      <Table>
         <colgroup>
           <col style={{ width: '15%' }} />
           <col style={{ width: '15%' }} />
@@ -165,7 +191,7 @@ export default function WeekCalendarForm({
         </thead>
 
         <tbody>
-          {weekDates.map((date, index) => {
+          {/* {weekDates.map((date, index) => {
             const dateStr = formatDate(date);
             const dateContent = dateContents.find(content => content.date === dateStr);
             const events = dateContent?.value || [];
@@ -173,56 +199,100 @@ export default function WeekCalendarForm({
             return (
               <tr key={index}>
                 <td>{formatDisplayDate(date, weekdays[date.getDay()])}</td>
-                <td>
+                <td style={{ padding: 0, height: 0 }}>
                   <EventCell events={events} />
                 </td>
-                <td>
+                <td style={{ padding: 0, height: 0 }}>
                   <QuantityCell events={events} />
                 </td>
-                <td>
+                <td style={{ padding: 0 }}>
                   <LotCell events={events} />
                 </td>
-                <td>
+                <td style={{ padding: 0 }}>
                   <TimeCell events={events} />
                 </td>
                 <td></td>
               </tr>
             );
+          })} */}
+          {weekDates.map((date, dateIndex) => {
+            const dateStr = formatDate(date);
+            const dateContent = dateContents.find(content => content.date === dateStr);
+            const events = dateContent?.value || [];
+
+            const totalLots = events.reduce((sum, e) => sum + e.lots.length, 0);
+
+            if (totalLots === 0) {
+              return (
+                <tr key={dateIndex}>
+                  <td>{formatDisplayDate(date, weekdays[date.getDay()])}</td>
+                  <td colSpan={5} style={{ textAlign: 'center' }}>
+                    -
+                  </td>
+                </tr>
+              );
+            }
+
+            let renderedDate = false;
+
+            return events.flatMap((event, eIdx) => {
+              return event.lots.map((lot, lotIdx) => {
+                return (
+                  <tr key={`${dateStr}-${eIdx}-${lotIdx}`}>
+                    {!renderedDate && (
+                      <td rowSpan={totalLots} style={{ verticalAlign: 'middle' }}>
+                        {formatDisplayDate(date, weekdays[date.getDay()])}
+                      </td>
+                    )}
+                    {lotIdx === 0 && (
+                      <>
+                        <td rowSpan={event.lots.length}>{event.event}</td>
+                        <td rowSpan={event.lots.length}>{event.lots.length}</td>
+                      </>
+                    )}
+                    <td>{lot.id}</td>
+                    <td>
+                      {lot.time.toLocaleTimeString('ko-KR', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </td>
+                    {lotIdx === 0 && <td rowSpan={event.lots.length}></td>}
+                    {(renderedDate = true) && null}
+                  </tr>
+                );
+              });
+            });
           })}
 
-          <tr style={{ background: 'var(--gray-100)' }}>
-            <td style={{ fontWeight: 'bold' }}>합계</td>
-            <td style={{ fontWeight: 'bold' }}>
-              <ul>
-                {Array.from(
-                  new Set(dateContents.flatMap(content => content.value.map(event => event.event)))
-                ).map(eventName => (
-                  <li key={eventName}>{eventName}</li>
-                ))}
-              </ul>
-            </td>
-            <td style={{ fontWeight: 'bold' }}>
-              <ul>
-                {Array.from(
-                  new Set(dateContents.flatMap(content => content.value.map(event => event.event)))
-                ).map(eventName => (
-                  <li key={eventName}>
-                    {dateContents
-                      .filter(content => weekDates.some(date => formatDate(date) === content.date))
-                      .reduce((total, content) => {
-                        const event = content.value.find(e => e.event === eventName);
-                        return total + (event?.lots.length || 0);
-                      }, 0)}
-                  </li>
-                ))}
-              </ul>
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          {uniqueEventNames.map((eventName, idx) => {
+            const quantity = dateContents
+              .filter(content => weekDates.some(date => formatDate(date) === content.date))
+              .reduce((total, content) => {
+                const event = content.value.find(e => e.event === eventName);
+                return total + (event?.lots.length || 0);
+              }, 0);
+
+            return (
+              <tr key={eventName}>
+                {idx === 0 && (
+                  <td
+                    rowSpan={uniqueEventNames.length}
+                    style={{ fontWeight: 'bold', padding: '0.75rem' }}
+                  >
+                    합계
+                  </td>
+                )}
+                <td style={{ fontWeight: 'bold', padding: '0.75rem' }}>{eventName}</td>
+                <td style={{ fontWeight: 'bold', padding: '0.75rem' }}>{quantity}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            );
+          })}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }

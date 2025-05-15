@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useMemo, useState, useCallback } from 'react';
-import ProcessList from '@components/process/ProcessList';
-import dummyData from '@data/erd_dummy_data.json';
+import ProcessList from '@components/projects/ProcessList';
+import projectsFromFile from '@data/projects.json';
 import { IProject, IProcess, ILot, IProjectWithStats } from '@interfaces/index';
 
 const ITEMS_PER_PAGE = 5;
@@ -13,18 +13,18 @@ export default function ProcessPage() {
   const [searchText, setSearchText] = useState('');
 
   const allProjectsWithStats = useMemo(() => {
-    return (dummyData.projects as IProject[])
+    const typedProjects = projectsFromFile as IProject[];
+
+    return typedProjects
       .filter(
         project =>
           searchText === '' || project.name.toLowerCase().includes(searchText.toLowerCase())
       )
       .map(project => {
-        const projectLots = (dummyData.lots as ILot[]).filter(lot => lot.project === project.id);
-        const successCount = projectLots.filter(lot => lot.result === 'pass').length;
-        const failCount = projectLots.filter(lot => lot.result === 'fail').length;
-        const projectProcesses = (dummyData.processes as IProcess[]).filter(
-          process => process.project === project.id
-        );
+        const projectLots: ILot[] = [];
+        const successCount = 0;
+        const failCount = 0;
+        const projectProcesses: IProcess[] = [];
 
         return {
           ...project,
@@ -32,8 +32,8 @@ export default function ProcessPage() {
           successCount,
           failCount,
           processes: projectProcesses,
-        };
-      }) as IProjectWithStats[];
+        } as IProjectWithStats;
+      });
   }, [searchText]);
 
   const projectsWithStats = useMemo(() => {
@@ -57,8 +57,6 @@ export default function ProcessPage() {
 
   return (
     <div className="column">
-      <h2>공정</h2>
-
       <ProcessList
         projects={projectsWithStats}
         onLoadMore={handleLoadMore}

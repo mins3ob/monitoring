@@ -19,8 +19,9 @@ import {
   horizontalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import dummyData from '@data/erd_dummy_data.json';
-import { IProcess } from '@interfaces/index';
+import projectsData from '@data/projects.json';
+import processesData from '@data/processes.json';
+import { IProcess, IProject } from '@interfaces/index';
 import Modal from '@components/Modal';
 import ProcessAddForm from './ProcessAddForm';
 
@@ -49,6 +50,7 @@ function SortableItem({ id, process, disabled, onEdit }: SortableItemProps) {
     <div
       ref={setNodeRef}
       style={{
+        width: 400,
         padding: '16px',
         marginRight: '8px',
         background: 'var(--gray-50)',
@@ -144,12 +146,12 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
       return;
     }
 
-    const project = dummyData.projects.find(
-      (p: { id: string; status: string }) => p.id === projectId
-    );
+    const project = projectsData.find((p: IProject) => p.id === projectId);
     setIsEditable(project?.status === 'none');
 
-    const projectProcesses = (dummyData.processes as IProcess[])
+    const projectProcesses = (
+      processesData.map(process => ({ ...process, barcode: '' })) as IProcess[]
+    )
       .filter(process => process.project === projectId)
       .sort((a, b) => a.order - b.order);
     setProcesses(projectProcesses);
@@ -237,15 +239,17 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
               items={processes.map(p => p.id)}
               strategy={horizontalListSortingStrategy}
             >
-              {processes.map(process => (
-                <SortableItem
-                  key={process.id}
-                  id={process.id}
-                  process={process}
-                  disabled={!isEditable}
-                  onEdit={handleEditProcess}
-                />
-              ))}
+              <div style={{ display: 'flex' }}>
+                {processes.map(process => (
+                  <SortableItem
+                    key={process.id}
+                    id={process.id}
+                    process={process}
+                    disabled={!isEditable}
+                    onEdit={handleEditProcess}
+                  />
+                ))}
+              </div>
             </SortableContext>
           </DndContext>
         </div>

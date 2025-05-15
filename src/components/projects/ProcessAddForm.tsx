@@ -23,6 +23,7 @@ export default function ProcessAddForm({
     type: initialProcess?.type || '',
     imageUrl: initialProcess?.imageUrl || null,
     order: initialProcess?.order || 0,
+    status: initialProcess?.status || '',
     barcode: initialProcess?.barcode || '',
     project: projectId,
     createdAt: initialProcess?.createdAt || new Date().toISOString(),
@@ -70,7 +71,7 @@ export default function ProcessAddForm({
           label="바코드"
           value={process.barcode}
           onChange={handleChange('barcode')}
-          placeholder="바코드를 입력하세요"
+          placeholder="상태를 입력하세요"
         />
 
         <LabelInput

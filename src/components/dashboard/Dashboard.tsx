@@ -5,7 +5,6 @@ import React from 'react';
 import styles from './Dashboard.module.css';
 
 import PercentageChangeLabel from '@components/labels/PercentageChangeLabel';
-import { monthlyLabels } from '@constants/index';
 
 import SemiDoughnut from '@components/charts/SemiDoughnut';
 import MonthlyLineChart from '@components/charts/MonthlyLineChart';
@@ -13,6 +12,20 @@ import MonthlyLineChart from '@components/charts/MonthlyLineChart';
 export default function Dashboard() {
   const currentYearData = [400, 500, 600, 550, 580, 700, 750, 800, 780, 700, 650, 900];
   const pastYearData = [300, 400, 500, 480, 500, 650, 700, 750, 730, 650, 600, 850];
+  const monthlyLabels = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   return (
     <div className="column">

@@ -134,21 +134,8 @@ export default function CalendarForm() {
     setShowWeekCalendar(false);
   };
 
-  console.log('s :', selectedDate);
-
   return (
     <div className="column">
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '20px',
-        }}
-      >
-        <h2>프로젝트 캘린더</h2>
-      </div>
-
       <div className="box">
         <div className="row" style={{ padding: '20px' }}>
           {!showWeekCalendar ? (

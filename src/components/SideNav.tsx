@@ -1,43 +1,70 @@
 'use client';
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { HomeIcon, FolderIcon } from '@heroicons/react/24/outline';
 
 import styles from './SideNav.module.css';
 
-import { menus } from '@constants/index';
-
-import { IMenu } from '@interfaces/menu';
-
 import IconHwashingLogo from '@public/svgs/common/icon_hwashing_logo.svg';
+
+interface IMenu {
+  main: string;
+  icon?: React.ReactNode;
+  path: string;
+  subs?: IMenu[];
+}
+
+const menus: IMenu[] = [
+  {
+    main: '대시보드',
+    path: '/',
+    icon: <HomeIcon width={20} height={20} />,
+  },
+  {
+    main: '프로젝트',
+    path: '/project',
+    icon: <FolderIcon width={20} height={20} />,
+  },
+];
 
 const MenuItem = ({ menu }: { menu: IMenu }) => {
   const pathname = usePathname();
+  const router = useRouter();
   const isActive = pathname === menu.path;
+  const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (menu.subs && menu.subs.some(sub => pathname.startsWith(sub.path))) {
+      setOpen(true);
+    }
+  }, [pathname, menu.subs]);
+
+  const handleClick = () => {
+    if (menu.subs) {
+      setOpen(prev => !prev);
+    } else {
+      router.push(menu.path);
+    }
+  };
 
   return (
     <div className={styles.menuItem}>
       <button
         type="button"
-        onClick={() => {
-          window.location.href = `${menu.path}`;
-        }}
-        className={isActive ? styles.active : ''}
+        onClick={handleClick}
+        className={isActive ? `${styles.menuButton} ${styles.active}` : styles.menuButton}
       >
-        {menu.icon && menu.icon}
-
-        <p style={{ fontSize: 16 }}>{menu.main}</p>
+        <span className={styles.menuIcon}>{menu.icon && menu.icon}</span>
+        <span>{menu.main}</span>
       </button>
-
-      {menu.subs && menu.subs.length > 0 && (
-        <div style={{ overflow: 'hidden' }}>
-          {menu.subs && menu.subs.length > 0 && (
-            <div>
-              {menu.subs.map((subMenu, idx) => (
-                <MenuItem key={idx} menu={subMenu} />
-              ))}
-            </div>
-          )}
+      {menu.subs && open && (
+        <div style={{ overflow: 'hidden', marginLeft: 16 }}>
+          <div>
+            {menu.subs.map((subMenu, idx) => (
+              <MenuItem key={idx} menu={subMenu} />
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -46,19 +73,20 @@ const MenuItem = ({ menu }: { menu: IMenu }) => {
 
 export default function SideNav() {
   return (
-    <div style={{ height: '100vh' }}>
-      <p style={{ padding: 20, marginBottom: 20 }}>
+    <nav className={styles.sideNav}>
+      <div className={styles.logoArea}>
         <IconHwashingLogo
-          width={100}
-          height={16.24}
+          width={150}
+          height={24.36}
           style={{ cursor: 'pointer' }}
           onClick={() => (window.location.href = '/')}
         />
-      </p>
-
-      {menus.map((menu, idx) => (
-        <MenuItem key={idx} menu={menu} />
-      ))}
-    </div>
+      </div>
+      <div className={styles.menuList}>
+        {menus.map((menu, idx) => (
+          <MenuItem key={idx} menu={menu} />
+        ))}
+      </div>
+    </nav>
   );
 }

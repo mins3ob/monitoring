@@ -2,9 +2,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { IProjectWithStats } from '@interfaces/index';
-import ProjectCard from '@components/projects/ProjectCard';
-import EditProcessForm from '@components/process/EditProcessForm';
+import EditProcessForm from '@components/projects/EditProcessForm';
 import SearchBar from '@components/SearchBar';
+import { useSearchParams } from 'next/navigation';
 
 interface ProcessListProps {
   projects: IProjectWithStats[];
@@ -15,15 +15,16 @@ interface ProcessListProps {
 }
 
 export default function ProcessList({
-  projects,
+  projects = [],
   onLoadMore,
   hasMore,
   searchText = '',
   onSearch = () => {},
 }: ProcessListProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const observerTarget = useRef<HTMLDivElement>(null);
+  const searchParams = useSearchParams();
+  const queryId = searchParams.get('id');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,6 +45,8 @@ export default function ProcessList({
     return () => observer.disconnect();
   }, [hasMore, isLoading, onLoadMore]);
 
+  const filteredProjects = queryId ? projects.filter(project => project.id === queryId) : projects;
+
   return (
     <div
       className="column"
@@ -63,27 +66,20 @@ export default function ProcessList({
         />
       </div>
 
-      <div>
-        {projects.map(project => (
+      <div style={{ width: '100%' }}>
+        {filteredProjects.map(project => (
           <div
             key={project.id}
-            ref={el => {
-              projectRefs.current[project.id] = el;
-            }}
             style={{
               display: 'grid',
-              gridTemplateColumns: '400px 1fr',
+              gridTemplateColumns: '1fr',
               gap: '20px',
               width: '100%',
               alignItems: 'center',
             }}
           >
-            <ProjectCard project={project} />
-
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div className="box">
-                <EditProcessForm projectId={project.id} />
-              </div>
+            <div className="box" style={{ width: '100%' }}>
+              <EditProcessForm projectId={project.id} />
             </div>
           </div>
         ))}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "lp1",
+    "lot": "lot1",
+    "process": "pr1",
+    "status": "finish",
+    "result": "pass"
+  },
+  {
+    "id": "lp2",
+    "lot": "lot1",
+    "process": "pr2",
+    "status": "finish",
+    "result": "pass"
+  },
+  {
+    "id": "lp3",
+    "lot": "lot2",
+    "process": "pr1",
+    "status": "progress",
+    "result": "none"
+  },
+  {
+    "id": "lp4",
+    "lot": "lot3",
+    "process": "pr3",
+    "status": "finish",
+    "result": "fail"
+  }
+]

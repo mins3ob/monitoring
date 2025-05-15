@@ -1,41 +1,50 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+// import { useSearchParams } from 'next/navigation'; // 삭제
 import Image from 'next/image';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import styles from './Project.module.css';
 
-import { ILot, IProcess } from '@interfaces/index';
+import { ILot, IProcess, ILotProcess } from '@interfaces/index'; // ILotProcess 추가
 
-import dummyData from '@data/erd_dummy_data.json';
+import lotsData from '../../data/lots.json';
+import processesData from '../../data/processes.json';
+import lotProcessesData from '../../data/lotProcesses.json';
 
-export default function LotDetailForm() {
-  const searchParams = useSearchParams();
+// Props 인터페이스 정의
+interface ILotDetailFormProps {
+  lotId: string;
+  projectId: string;
+}
+
+export default function LotDetailForm({ lotId, projectId }: ILotDetailFormProps) {
+  // Props 사용
+  // const searchParams = useSearchParams(); // 삭제
   const [lot, setLot] = useState<ILot | null>(null);
-  const [projectId, setProjectId] = useState<string>('');
+  // const [projectId, setProjectId] = useState<string>(''); // Props로 받으므로 삭제
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
-    const lotId = searchParams.get('id');
+    // const lotId = searchParams.get('id'); // Props로 받으므로 삭제
     if (!lotId) return;
 
-    // LOT ID에서 프로젝트 ID 추출 (예: "1-1-1" -> "1")
-    // erd_dummy_data.json에서는 lot의 project 필드 사용
-    const foundLot = (dummyData.lots as ILot[]).find(l => l.id === lotId);
+    const foundLot = (lotsData as ILot[]).find(l => l.id === lotId);
     if (foundLot) {
       setLot(foundLot);
-      setProjectId(foundLot.project);
+      // setProjectId(foundLot.project); // Props로 받으므로 삭제. projectId prop 사용
     }
-  }, [searchParams]);
+  }, [lotId]); // searchParams 대신 lotId를 의존성 배열에 추가
 
   // 해당 LOT에 대한 공정별 결과를 lotProcesses에서 찾음
-  const lotProcesses = lot ? (dummyData.lotProcesses || []).filter(lp => lp.lot === lot.id) : [];
+  const currentLotProcesses = lot
+    ? (lotProcessesData as ILotProcess[]).filter(lp => lp.lot === lot.id)
+    : []; // 타입 ILotProcess[]로 명시
 
   // 해당 프로젝트의 공정 목록
   const projectProcesses = projectId
-    ? (dummyData.processes as IProcess[])
+    ? (processesData as IProcess[])
         .filter(process => process.project === projectId)
         .sort((a, b) => a.order - b.order)
     : [];
@@ -93,7 +102,7 @@ export default function LotDetailForm() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
           <ul className={styles.lotProcess}>
             {projectProcesses.map(process => {
-              const lotProcess = lotProcesses.find(lp => lp.process === process.id);
+              const lotProcess = currentLotProcesses.find(lp => lp.process === process.id);
 
               return (
                 <li key={process.id}>
@@ -102,11 +111,11 @@ export default function LotDetailForm() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span
                       className={`${styles.statusBadge} ${
-                        lotProcess?.result === 'pass' || lotProcess?.result === '합격'
+                        lotProcess?.result === 'pass' || lotProcess?.result === '합격' // 'pass'와 '합격'을 OR 조건으로 처리
                           ? styles.statusPass
-                          : lotProcess?.result === 'fail' || lotProcess?.result === '불합격'
+                          : lotProcess?.result === 'fail' || lotProcess?.result === '불합격' // 'fail'과 '불합격'을 OR 조건으로 처리
                           ? styles.statusFail
-                          : lotProcess?.status === 'start' || lotProcess?.result === '진행중'
+                          : lotProcess?.status === 'start' || lotProcess?.result === '진행중' // 'start'와 '진행중'을 OR 조건으로 처리
                           ? styles.statusStart
                           : styles.statusDefault
                       }`}
