@@ -9,17 +9,9 @@ interface ProcessListProps {
   projects: IProjectWithStats[];
   onLoadMore: () => Promise<void>;
   hasMore: boolean;
-  searchText: string;
-  onSearch: (text: string) => void;
 }
 
-export default function ProcessList({
-  projects = [],
-  onLoadMore,
-  hasMore,
-  searchText,
-  onSearch,
-}: ProcessListProps) {
+export default function ProcessList({ projects = [], onLoadMore, hasMore }: ProcessListProps) {
   const [isLoading, setIsLoading] = useState(false);
   const observerTarget = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();

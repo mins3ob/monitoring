@@ -10,31 +10,25 @@ const ITEMS_PER_PAGE = 5;
 export default function ProcessPage() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [searchText, setSearchText] = useState('');
 
   const allProjectsWithStats = useMemo(() => {
     const typedProjects = projectsFromFile as IProject[];
 
-    return typedProjects
-      .filter(
-        project =>
-          searchText === '' || project.name.toLowerCase().includes(searchText.toLowerCase())
-      )
-      .map(project => {
-        const projectLots: ILot[] = [];
-        const successCount = 0;
-        const failCount = 0;
-        const projectProcesses: IProcess[] = [];
+    return typedProjects.map(project => {
+      const projectLots: ILot[] = [];
+      const successCount = 0;
+      const failCount = 0;
+      const projectProcesses: IProcess[] = [];
 
-        return {
-          ...project,
-          lotCount: projectLots.length,
-          successCount,
-          failCount,
-          processes: projectProcesses,
-        } as IProjectWithStats;
-      });
-  }, [searchText]);
+      return {
+        ...project,
+        lotCount: projectLots.length,
+        successCount,
+        failCount,
+        processes: projectProcesses,
+      } as IProjectWithStats;
+    });
+  }, []);
 
   const projectsWithStats = useMemo(() => {
     return allProjectsWithStats.slice(0, page * ITEMS_PER_PAGE);
@@ -49,21 +43,9 @@ export default function ProcessPage() {
     setPage(prev => prev + 1);
   }, [projectsWithStats.length, allProjectsWithStats.length]);
 
-  const handleSearch = useCallback((text: string) => {
-    setSearchText(text);
-    setPage(1);
-    setHasMore(true);
-  }, []);
-
   return (
     <div className="column">
-      <ProcessList
-        projects={projectsWithStats}
-        onLoadMore={handleLoadMore}
-        hasMore={hasMore}
-        searchText={searchText}
-        onSearch={handleSearch}
-      />
+      <ProcessList projects={projectsWithStats} onLoadMore={handleLoadMore} hasMore={hasMore} />
     </div>
   );
 }
