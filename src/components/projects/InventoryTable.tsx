@@ -4,9 +4,7 @@ import React from 'react';
 
 import styles from './Inventory.module.css';
 
-interface IInventoryTable {}
-
-export default function InventoryTable({}: IInventoryTable) {
+export default function InventoryTable({}: Record<string, never>) {
   return (
     <table className={styles.table}>
       <thead>
