@@ -21,31 +21,26 @@ import { AppDispatch, RootState } from '@redux/store';
 import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 import Modal from '@components/Modal';
 
-interface User {
-  id: number;
-  username?: string;
+interface IUser {
+  id?: number;
   email: string;
   name: string;
   role: string;
-  department: string;
-  phone: string;
-  createdAt: string;
-  updatedAt: string;
+  password?: string;
+  image_url?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
-type SortField = keyof User;
+type SortField = keyof IUser;
 
 export default function UsersPage() {
   const dispatch = useDispatch<AppDispatch>();
   const { isVisible: isBackdropVisible } = useSelector((state: RootState) => state.backdrop);
-  const [users, setUsers] = useState<User[]>(usersData);
-  const [searchText, setSearchText] = useState<string>('');
-  const [searchDepartment, setSearchDepartment] = useState<string>('');
+  const [users, setUsers] = useState<IUser[]>(usersData);
   const [appliedSearchText, setAppliedSearchText] = useState<string>('');
-  const [appliedSearchDepartment, setAppliedSearchDepartment] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [modalTitle, setModalTitle] = useState('');
+  const [currentUser, setCurrentUser] = useState<IUser | null>(null);
   const [sortField, setSortField] = useState<SortField | ''>('');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [page, setPage] = useState(1);
@@ -55,9 +50,8 @@ export default function UsersPage() {
 
   const ITEMS_PER_PAGE = 10;
 
-  const handleSearch = (newSearchText: string, newSearchDepartment?: string) => {
+  const handleSearch = (newSearchText: string) => {
     setAppliedSearchText(newSearchText);
-    setAppliedSearchDepartment(newSearchDepartment || '');
   };
 
   const handleSort = (field: SortField) => {
@@ -75,11 +69,7 @@ export default function UsersPage() {
       user.name.toLowerCase().includes(appliedSearchText.toLowerCase()) ||
       user.email.toLowerCase().includes(appliedSearchText.toLowerCase());
 
-    const departmentMatch =
-      appliedSearchDepartment === '' ||
-      user.department.toLowerCase().includes(appliedSearchDepartment.toLowerCase());
-
-    return nameMatch && departmentMatch;
+    return nameMatch;
   });
 
   const sortedUsers = [...filteredUsers].sort((a, b) => {
@@ -107,23 +97,24 @@ export default function UsersPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
-        if (entries[0].isIntersecting && hasMore && !isLoading) {
+        if (entries[0].isIntersecting && hasMore) {
           setPage(prevPage => prevPage + 1);
         }
       },
       { threshold: 1.0 }
     );
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
+    const currentObserverTarget = observerTarget.current;
+    if (currentObserverTarget) {
+      observer.observe(currentObserverTarget);
     }
 
     return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
+      if (currentObserverTarget) {
+        observer.unobserve(currentObserverTarget);
       }
     };
-  }, [hasMore, isLoading]);
+  }, [hasMore]);
 
   useEffect(() => {
     setHasMore(displayedUsers.length < sortedUsers.length);
@@ -131,14 +122,12 @@ export default function UsersPage() {
 
   const handleAddUser = () => {
     setCurrentUser(null);
-    setModalTitle('새 사용자 추가');
     dispatch(showBackdrop());
     setIsModalVisible(true);
   };
 
-  const handleEditUser = (user: User) => {
+  const handleEditUser = (user: IUser) => {
     setCurrentUser(user);
-    setModalTitle('사용자 정보 수정');
     dispatch(showBackdrop());
     setIsModalVisible(true);
   };
@@ -149,7 +138,7 @@ export default function UsersPage() {
     }
   };
 
-  const handleSubmitUser = (userData: any) => {
+  const handleSubmitUser = (userData: IUser) => {
     if (currentUser) {
       // Edit existing user
       setUsers(
@@ -167,7 +156,7 @@ export default function UsersPage() {
       // Add new user
       const newUser = {
         ...userData,
-        id: Math.max(...users.map(u => u.id)) + 1,
+        id: Math.max(...users.map(u => u.id || 0)) + 1,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       };
@@ -214,17 +203,10 @@ export default function UsersPage() {
       <div className="mb-6">
         <SearchBar
           label="사용자"
-          placeholder="사용자 이름, 이메일, 사용자명을 입력하세요."
+          placeholder="사용자 이름, 이메일을 입력하세요."
           onSearch={handleSearch}
           onClickAdd={handleAddUser}
           isAddButtonVisible={true}
-          extraInput={{
-            value: searchDepartment,
-            onChange: setSearchDepartment,
-            placeholder: '부서를 입력하세요.',
-            label: '부서',
-          }}
-          initialSearchText={searchText}
         />
       </div>
 
@@ -326,7 +308,7 @@ export default function UsersPage() {
                   {user.role}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {new Date(user.createdAt).toLocaleDateString()}
+                  {new Date(user.createdAt || '').toLocaleDateString()}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <button
@@ -351,7 +333,7 @@ export default function UsersPage() {
             back={() => setIsModalVisible(false)}
             user={currentUser}
             onSubmit={handleSubmitUser}
-            onDelete={currentUser ? () => handleDeleteUser(currentUser.id) : undefined}
+            onDelete={currentUser ? () => handleDeleteUser(currentUser.id || 0) : undefined}
           />
         </Modal>
       )}
