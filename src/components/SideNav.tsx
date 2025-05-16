@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { HomeIcon, FolderIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, FolderIcon, UsersIcon, ComputerDesktopIcon } from '@heroicons/react/24/outline';
 
 import styles from './SideNav.module.css';
 
@@ -30,6 +30,11 @@ const menus: IMenu[] = [
     main: '사용자',
     path: '/users',
     icon: <UsersIcon className="h-5 w-5" />,
+  },
+  {
+    main: 'EQ 관리',
+    path: '/eq-management',
+    icon: <ComputerDesktopIcon width={20} height={20} />,
   },
 ];
 

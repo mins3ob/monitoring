@@ -1,50 +1,48 @@
 'use client';
 
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import {
-  UserIcon,
+  ComputerDesktopIcon,
   PlusIcon,
   PencilSquareIcon,
   TrashIcon,
-  UsersIcon,
   ChevronUpIcon,
   ChevronDownIcon,
+  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
-import usersData from '@data/users.json';
 import SearchBar from '@components/SearchBar';
-
 import Table from '@components/Table';
 import EditModal from '@components/EditModal';
-import { UserEditForm } from '@components/users/UserEditForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@redux/store';
 import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 import Modal from '@components/Modal';
+import { EQEditForm } from '@components/eq/EQEditForm';
+import eqBoardsData from '@data/eq_boards.json';
 
-interface User {
-  id: number;
-  username?: string;
-  email: string;
+interface EQBoard {
+  id: string;
   name: string;
-  role: string;
-  department: string;
-  phone: string;
-  createdAt: string;
-  updatedAt: string;
+  pc: string;
+  type: string;
+  file_url: string;
+  created_at: string;
+  updated_at: string;
 }
 
-type SortField = keyof User;
+type SortField = keyof EQBoard;
 
-export default function UsersPage() {
+export default function EQManagementPage() {
   const dispatch = useDispatch<AppDispatch>();
   const { isVisible: isBackdropVisible } = useSelector((state: RootState) => state.backdrop);
-  const [users, setUsers] = useState<User[]>(usersData);
+  const [eqBoards, setEqBoards] = useState<EQBoard[]>([]);
   const [searchText, setSearchText] = useState<string>('');
-  const [searchDepartment, setSearchDepartment] = useState<string>('');
+  const [searchType, setSearchType] = useState<string>('');
   const [appliedSearchText, setAppliedSearchText] = useState<string>('');
-  const [appliedSearchDepartment, setAppliedSearchDepartment] = useState<string>('');
+  const [appliedSearchType, setAppliedSearchType] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentEQ, setCurrentEQ] = useState<EQBoard | null>(null);
   const [modalTitle, setModalTitle] = useState('');
   const [sortField, setSortField] = useState<SortField | ''>('');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
@@ -55,9 +53,13 @@ export default function UsersPage() {
 
   const ITEMS_PER_PAGE = 10;
 
-  const handleSearch = (newSearchText: string, newSearchDepartment?: string) => {
+  useEffect(() => {
+    setEqBoards(eqBoardsData);
+  }, []);
+
+  const handleSearch = (newSearchText: string, newSearchType?: string) => {
     setAppliedSearchText(newSearchText);
-    setAppliedSearchDepartment(newSearchDepartment || '');
+    setAppliedSearchType(newSearchType || '');
   };
 
   const handleSort = (field: SortField) => {
@@ -69,26 +71,25 @@ export default function UsersPage() {
     }
   };
 
-  const filteredUsers = users.filter(user => {
+  const filteredEQs = eqBoards.filter(eq => {
     const nameMatch =
       appliedSearchText === '' ||
-      user.name.toLowerCase().includes(appliedSearchText.toLowerCase()) ||
-      user.email.toLowerCase().includes(appliedSearchText.toLowerCase());
+      eq.name.toLowerCase().includes(appliedSearchText.toLowerCase()) ||
+      eq.pc.toLowerCase().includes(appliedSearchText.toLowerCase());
 
-    const departmentMatch =
-      appliedSearchDepartment === '' ||
-      user.department.toLowerCase().includes(appliedSearchDepartment.toLowerCase());
+    const typeMatch =
+      appliedSearchType === '' || eq.type.toLowerCase().includes(appliedSearchType.toLowerCase());
 
-    return nameMatch && departmentMatch;
+    return nameMatch && typeMatch;
   });
 
-  const sortedUsers = [...filteredUsers].sort((a, b) => {
+  const sortedEQs = [...filteredEQs].sort((a, b) => {
     if (!sortField) return 0;
 
     const aValue = a[sortField];
     const bValue = b[sortField];
 
-    if (sortField === 'createdAt') {
+    if (sortField === 'created_at') {
       if (!aValue || !bValue) return 0;
       return sortDirection === 'asc'
         ? new Date(aValue).getTime() - new Date(bValue).getTime()
@@ -102,7 +103,7 @@ export default function UsersPage() {
     return 0;
   });
 
-  const displayedUsers = sortedUsers.slice(0, page * ITEMS_PER_PAGE);
+  const displayedEQs = sortedEQs.slice(0, page * ITEMS_PER_PAGE);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -126,52 +127,52 @@ export default function UsersPage() {
   }, [hasMore, isLoading]);
 
   useEffect(() => {
-    setHasMore(displayedUsers.length < sortedUsers.length);
-  }, [displayedUsers.length, sortedUsers.length]);
+    setHasMore(displayedEQs.length < sortedEQs.length);
+  }, [displayedEQs.length, sortedEQs.length]);
 
-  const handleAddUser = () => {
-    setCurrentUser(null);
-    setModalTitle('새 사용자 추가');
+  const handleAddEQ = () => {
+    setCurrentEQ(null);
+    setModalTitle('새 EQ 추가');
     dispatch(showBackdrop());
     setIsModalVisible(true);
   };
 
-  const handleEditUser = (user: User) => {
-    setCurrentUser(user);
-    setModalTitle('사용자 정보 수정');
+  const handleEditEQ = (eq: EQBoard) => {
+    setCurrentEQ(eq);
+    setModalTitle('EQ 정보 수정');
     dispatch(showBackdrop());
     setIsModalVisible(true);
   };
 
-  const handleDeleteUser = (userId: number) => {
-    if (window.confirm('정말로 이 사용자를 삭제하시겠습니까?')) {
-      setUsers(users.filter(user => user.id !== userId));
+  const handleDeleteEQ = (eqId: string) => {
+    if (window.confirm('정말로 이 EQ를 삭제하시겠습니까?')) {
+      setEqBoards(eqBoards.filter(eq => eq.id !== eqId));
     }
   };
 
-  const handleSubmitUser = (userData: any) => {
-    if (currentUser) {
-      // Edit existing user
-      setUsers(
-        users.map(user =>
-          user.id === currentUser.id
+  const handleSubmitEQ = (eqData: any) => {
+    if (currentEQ) {
+      // Edit existing EQ
+      setEqBoards(
+        eqBoards.map(eq =>
+          eq.id === currentEQ.id
             ? {
-                ...user,
-                ...userData,
-                updatedAt: new Date().toISOString(),
+                ...eq,
+                ...eqData,
+                updated_at: new Date().toISOString(),
               }
-            : user
+            : eq
         )
       );
     } else {
-      // Add new user
-      const newUser = {
-        ...userData,
-        id: Math.max(...users.map(u => u.id)) + 1,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+      // Add new EQ
+      const newEQ = {
+        ...eqData,
+        id: crypto.randomUUID(),
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
       };
-      setUsers([...users, newUser]);
+      setEqBoards([...eqBoards, newEQ]);
     }
     setIsModalVisible(false);
   };
@@ -208,21 +209,21 @@ export default function UsersPage() {
   return (
     <div className="column">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold flex items-center">사용자 관리</h2>
+        <h2 className="text-2xl font-bold flex items-center">EQ 관리</h2>
       </div>
 
       <div className="mb-6">
         <SearchBar
-          label="사용자"
-          placeholder="사용자 이름, 이메일, 사용자명을 입력하세요."
+          label="EQ"
+          placeholder="EQ 이름, PC를 입력하세요."
           onSearch={handleSearch}
-          onClickAdd={handleAddUser}
+          onClickAdd={handleAddEQ}
           isAddButtonVisible={true}
           extraInput={{
-            value: searchDepartment,
-            onChange: setSearchDepartment,
-            placeholder: '부서를 입력하세요.',
-            label: '부서',
+            value: searchType,
+            onChange: setSearchType,
+            placeholder: '타입을 입력하세요.',
+            label: '타입',
           }}
           initialSearchText={searchText}
         />
@@ -232,9 +233,9 @@ export default function UsersPage() {
         <Table>
           <colgroup>
             <col style={{ width: '25%' }} />
-            <col style={{ width: '35%' }} />
+            <col style={{ width: '25%' }} />
             <col style={{ width: '20%' }} />
-            <col style={{ width: '20%' }} />
+            <col style={{ width: '30%' }} />
           </colgroup>
           <thead className="bg-gray-50">
             <tr>
@@ -259,11 +260,11 @@ export default function UsersPage() {
               <th
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                onClick={() => handleSort('email')}
+                onClick={() => handleSort('pc')}
               >
                 <div className="flex items-center" style={{ display: 'flex', gap: 10 }}>
-                  이메일
-                  {sortField === 'email' ? (
+                  PC
+                  {sortField === 'pc' ? (
                     sortDirection === 'asc' ? (
                       <ChevronUpIcon className="ml-1 h-4 w-4" />
                     ) : (
@@ -277,11 +278,11 @@ export default function UsersPage() {
               <th
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                onClick={() => handleSort('role')}
+                onClick={() => handleSort('type')}
               >
                 <div className="flex items-center" style={{ display: 'flex', gap: 10 }}>
-                  역할
-                  {sortField === 'role' ? (
+                  타입
+                  {sortField === 'type' ? (
                     sortDirection === 'asc' ? (
                       <ChevronUpIcon className="ml-1 h-4 w-4" />
                     ) : (
@@ -295,12 +296,12 @@ export default function UsersPage() {
               <th
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                onClick={() => handleSort('createdAt')}
+                onClick={() => handleSort('created_at')}
                 colSpan={2}
               >
                 <div className="flex items-center" style={{ display: 'flex', gap: 10 }}>
                   생성일
-                  {sortField === 'createdAt' ? (
+                  {sortField === 'created_at' ? (
                     sortDirection === 'asc' ? (
                       <ChevronUpIcon className="ml-1 h-4 w-4" />
                     ) : (
@@ -314,23 +315,30 @@ export default function UsersPage() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {displayedUsers.map(user => (
-              <tr key={user.id} className="hover:bg-gray-50 transition-colors duration-150">
+            {displayedEQs.map(eq => (
+              <tr key={eq.id} className="hover:bg-gray-50 transition-colors duration-150">
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {user.name}
+                  <a
+                    href={eq.file_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-600 hover:text-indigo-900"
+                  >
+                    {eq.name}
+                  </a>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {user.email}
+                  {eq.pc}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {user.role}
+                  {eq.type}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {new Date(user.createdAt).toLocaleDateString()}
+                  {new Date(eq.created_at).toLocaleDateString()}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <button
-                    onClick={() => handleEditUser(user)}
+                    onClick={() => handleEditEQ(eq)}
                     className="text-gray-400 hover:text-gray-500"
                   >
                     <PencilSquareIcon className="h-5 w-5" />
@@ -347,11 +355,11 @@ export default function UsersPage() {
 
       {isModalVisible && (
         <Modal>
-          <UserEditForm
+          <EQEditForm
             back={() => setIsModalVisible(false)}
-            user={currentUser}
-            onSubmit={handleSubmitUser}
-            onDelete={currentUser ? () => handleDeleteUser(currentUser.id) : undefined}
+            eq={currentEQ}
+            onSubmit={handleSubmitEQ}
+            onDelete={currentEQ ? () => handleDeleteEQ(currentEQ.id) : undefined}
           />
         </Modal>
       )}

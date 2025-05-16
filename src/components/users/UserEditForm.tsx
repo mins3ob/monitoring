@@ -143,7 +143,7 @@ export function UserEditForm({ back, user, onSubmit, onDelete }: IUserEditForm) 
               ]}
               onSelect={handleRoleChange}
               placeholder="역할을 선택하세요"
-              initialValue={''}
+              initialValue={userData.role}
             />
           </div>
         </div>

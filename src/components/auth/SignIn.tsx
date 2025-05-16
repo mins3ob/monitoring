@@ -22,8 +22,9 @@ export default function SignIn() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const clickBtn = (): void => {
-    if (validateEmail(email) && validatePassword(pw)) dispatch(signIn({ email, pw }));
-    else alert('이메일 또는 비밀번호 형식이 올바르지 않습니다.');
+    // if (validateEmail(email) && validatePassword(pw)) dispatch(signIn({ email, pw }));
+    // else alert('이메일 또는 비밀번호 형식이 올바르지 않습니다.');
+    dispatch(signIn({ email, pw }));
   };
 
   return (
