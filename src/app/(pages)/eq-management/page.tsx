@@ -29,13 +29,11 @@ export default function EQManagementPage() {
   const dispatch = useDispatch<AppDispatch>();
   const { isVisible: isBackdropVisible } = useSelector((state: RootState) => state.backdrop);
   const [eqBoards, setEqBoards] = useState<EQBoard[]>([]);
-  const [searchText, setSearchText] = useState<string>('');
   const [searchType, setSearchType] = useState<string>('');
   const [appliedSearchText, setAppliedSearchText] = useState<string>('');
   const [appliedSearchType, setAppliedSearchType] = useState<string>('');
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [currentEQ, setCurrentEQ] = useState<EQBoard | null>(null);
-  const [modalTitle, setModalTitle] = useState('');
   const [sortField, setSortField] = useState<SortField | ''>('');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [page, setPage] = useState(1);
@@ -126,14 +124,12 @@ export default function EQManagementPage() {
 
   const handleAddEQ = () => {
     setCurrentEQ(null);
-    setModalTitle('새 EQ 추가');
     dispatch(showBackdrop());
     setIsModalVisible(true);
   };
 
   const handleEditEQ = (eq: EQBoard) => {
     setCurrentEQ(eq);
-    setModalTitle('EQ 정보 수정');
     dispatch(showBackdrop());
     setIsModalVisible(true);
   };
@@ -225,7 +221,6 @@ export default function EQManagementPage() {
             placeholder: '타입을 입력하세요.',
             label: '타입',
           }}
-          initialSearchText={searchText}
         />
       </div>
 

@@ -168,7 +168,7 @@ export default function UsersPage() {
   }, [isModalVisible, dispatch]);
 
   useEffect(() => {
-    const handleBackdropClick = (event: Event) => {
+    const handleBackdropClick = () => {
       setIsModalVisible(false);
     };
 
