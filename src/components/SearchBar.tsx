@@ -99,7 +99,7 @@ export default function SearchBar({
         style={{ display: 'flex', alignItems: 'center', gap: 20 }}
         className={styles.searchBtnBox}
       >
-        <button type="button" className="reverseBtn" onClick={clickSearch}>
+        <button type="button" onClick={clickSearch}>
           조회
         </button>
 

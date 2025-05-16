@@ -41,15 +41,26 @@ interface ProjectImageDisplayProps {
 const ProjectImageDisplay: React.FC<ProjectImageDisplayProps> = ({ imageUrl, projectName }) => (
   <div
     style={{
-      borderRadius: '8px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      width: '280px',
+      height: '280px',
+      position: 'relative',
+      overflow: 'hidden',
+      borderRadius: '8px',
+      backgroundColor: '#f5f5f5',
     }}
   >
-    <div style={{ width: '200px', height: '200px', position: 'relative', overflow: 'hidden' }}>
-      <Image src={imageUrl || ImgNoImg.src} alt={projectName} layout="fill" objectFit="cover" />
-    </div>
+    <Image
+      src={imageUrl || ImgNoImg.src}
+      alt={projectName}
+      layout="fill"
+      objectFit="cover"
+      style={{
+        transition: 'transform 0.2s ease-in-out',
+      }}
+    />
   </div>
 );
 
@@ -112,19 +123,40 @@ export default function OverviewTab({
   projectLots,
 }: // handleLotClick, // 현재 사용되지 않으므로 주석 처리
 IOverviewTabProps) {
-  // useProjectOverviewStats hook에서 processStatusData 관련 부분 삭제
-  const {
-    /* totalLots, completedLots, inProgressLots */
-  } = useProjectOverviewStats(projectProcesses, lotProcesses, projectLots);
-
-  // chartOptions 및 관련 로직 전체 삭제
-
-  console.log(project);
+  const { totalLots, completedLots, inProgressLots } = useProjectOverviewStats(
+    projectProcesses,
+    lotProcesses,
+    projectLots
+  );
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <div className="box" style={{ padding: '20px' }}>
-        <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        padding: '24px',
+        backgroundColor: '#ffffff',
+        borderRadius: '16px',
+      }}
+    >
+      <div
+        style={{
+          padding: '24px',
+          backgroundColor: '#ffffff',
+          borderRadius: '12px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            gap: '32px',
+            marginBottom: '24px',
+            flexDirection: 'row-reverse',
+            alignItems: 'center',
+            // minHeight: '400px',
+          }}
+        >
           <ProjectImageDisplay imageUrl={project.imageUrl} projectName={project.name} />
           <ProjectInfoDisplay project={project} />
         </div>

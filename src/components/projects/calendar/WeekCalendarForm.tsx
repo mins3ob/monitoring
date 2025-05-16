@@ -1,23 +1,19 @@
 'use client';
 
 import React from 'react';
-
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import Table from '@components/Table';
+import { ILot } from '@interfaces/index';
+import styles from './WeekCalendarForm.module.css';
 
-// Types
-interface Lot {
-  id: string;
-  time: Date;
-}
-
-interface Event {
-  event: string;
-  lots: Lot[];
+interface IValue {
+  feature: string;
+  lots: ILot[];
 }
 
 interface DateContent {
   date: string;
-  value: Event[];
+  value: IValue[];
 }
 
 interface IWeekCalendarForm {
@@ -66,14 +62,14 @@ export default function WeekCalendarForm({
     new Set(
       dateContents
         .filter(content => weekDates.some(date => formatDate(date) === content.date))
-        .flatMap(content => content.value.map(event => event.event))
+        .flatMap(content => content.value.map(event => event.feature))
     )
   );
 
   return (
-    <div style={{ width: '100%' }}>
+    <div className={styles.container}>
       <button type="button" onClick={back} style={{ marginBottom: 20 }}>
-        뒤로가기
+        <ArrowLeftIcon className="w-4 h-4" />
       </button>
 
       <Table>
@@ -103,30 +99,6 @@ export default function WeekCalendarForm({
         </thead>
 
         <tbody>
-          {/* {weekDates.map((date, index) => {
-            const dateStr = formatDate(date);
-            const dateContent = dateContents.find(content => content.date === dateStr);
-            const events = dateContent?.value || [];
-
-            return (
-              <tr key={index}>
-                <td>{formatDisplayDate(date, weekdays[date.getDay()])}</td>
-                <td style={{ padding: 0, height: 0 }}>
-                  <EventCell events={events} />
-                </td>
-                <td style={{ padding: 0, height: 0 }}>
-                  <QuantityCell events={events} />
-                </td>
-                <td style={{ padding: 0 }}>
-                  <LotCell events={events} />
-                </td>
-                <td style={{ padding: 0 }}>
-                  <TimeCell events={events} />
-                </td>
-                <td></td>
-              </tr>
-            );
-          })} */}
           {weekDates.map((date, dateIndex) => {
             const dateStr = formatDate(date);
             const dateContent = dateContents.find(content => content.date === dateStr);
@@ -137,8 +109,10 @@ export default function WeekCalendarForm({
             if (totalLots === 0) {
               return (
                 <tr key={dateIndex}>
-                  <td>{formatDisplayDate(date, weekdays[date.getDay()])}</td>
-                  <td colSpan={5} style={{ textAlign: 'center' }}>
+                  <td className={styles.dateCell}>
+                    {formatDisplayDate(date, weekdays[date.getDay()])}
+                  </td>
+                  <td colSpan={5} className={styles.emptyCell}>
                     -
                   </td>
                 </tr>
@@ -152,22 +126,24 @@ export default function WeekCalendarForm({
                 return (
                   <tr key={`${dateStr}-${eIdx}-${lotIdx}`}>
                     {!renderedDate && (
-                      <td rowSpan={totalLots} style={{ verticalAlign: 'middle' }}>
+                      <td rowSpan={totalLots} className={styles.dateCell}>
                         {formatDisplayDate(date, weekdays[date.getDay()])}
                       </td>
                     )}
                     {lotIdx === 0 && (
                       <>
-                        <td rowSpan={event.lots.length}>{event.event}</td>
+                        <td rowSpan={event.lots.length}>{event.feature}</td>
                         <td rowSpan={event.lots.length}>{event.lots.length}</td>
                       </>
                     )}
-                    <td>{lot.id}</td>
-                    <td>
-                      {lot.time.toLocaleTimeString('ko-KR', {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}
+                    <td className={styles.lotCell}>{lot.id}</td>
+                    <td className={styles.timeCell}>
+                      {lot.endDate
+                        ? new Date(lot.endDate).toLocaleTimeString('ko-KR', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })
+                        : '-'}
                     </td>
                     {lotIdx === 0 && <td rowSpan={event.lots.length}></td>}
                     {(renderedDate = true) && null}
@@ -181,22 +157,15 @@ export default function WeekCalendarForm({
             const quantity = dateContents
               .filter(content => weekDates.some(date => formatDate(date) === content.date))
               .reduce((total, content) => {
-                const event = content.value.find(e => e.event === eventName);
+                const event = content.value.find(e => e.feature === eventName);
                 return total + (event?.lots.length || 0);
               }, 0);
 
             return (
-              <tr key={eventName}>
-                {idx === 0 && (
-                  <td
-                    rowSpan={uniqueEventNames.length}
-                    style={{ fontWeight: 'bold', padding: '0.75rem' }}
-                  >
-                    합계
-                  </td>
-                )}
-                <td style={{ fontWeight: 'bold', padding: '0.75rem' }}>{eventName}</td>
-                <td style={{ fontWeight: 'bold', padding: '0.75rem' }}>{quantity}</td>
+              <tr key={eventName} className={styles.totalRow}>
+                {idx === 0 && <td rowSpan={uniqueEventNames.length}>합계</td>}
+                <td>{eventName}</td>
+                <td>{quantity}</td>
                 <td></td>
                 <td></td>
                 <td></td>

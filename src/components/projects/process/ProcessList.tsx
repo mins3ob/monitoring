@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { IProjectWithStats } from '@interfaces/index';
-import EditProcessForm from '@components/projects/EditProcessForm';
+import EditProcessForm from '@components/projects/process/EditProcessForm';
 import SearchBar from '@components/SearchBar';
 import { useSearchParams } from 'next/navigation';
 
@@ -57,15 +57,6 @@ export default function ProcessList({
         width: '100%',
       }}
     >
-      <div style={{ width: '100%' }}>
-        <SearchBar
-          label="프로젝트"
-          placeholder="프로젝트 명을 입력하세요."
-          onSearch={onSearch}
-          initialSearchText={searchText}
-        />
-      </div>
-
       <div style={{ width: '100%' }}>
         {filteredProjects.map(project => (
           <div

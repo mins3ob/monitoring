@@ -3,107 +3,126 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { IProjectWithStats } from '@interfaces/index';
 import ImgNoImg from '@public/imgs/img_no_img.png';
+import styles from './ProjectCard.module.css';
+import lotsData from '@data/lots.json';
+import processesData from '@data/processes.json';
+import {
+  DocumentTextIcon,
+  BuildingOfficeIcon,
+  CpuChipIcon,
+  BeakerIcon,
+  WrenchScrewdriverIcon,
+  ChartBarIcon,
+  PhotoIcon,
+} from '@heroicons/react/24/outline';
 
 interface ProjectCardProps {
   project: IProjectWithStats;
   actionButtons?: React.ReactNode;
 }
 
-export default function ProjectCard({ project, actionButtons }: ProjectCardProps) {
+interface Process {
+  id: string;
+  name: string;
+  status: string;
+  order: number;
+  type: string;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, actionButtons }) => {
   const router = useRouter();
 
+  const handleCardClick = () => {
+    router.push(`?view=detail&id=${project.id}`);
+  };
+
+  // LOT 통계 계산
+  const lotStats = lotsData.reduce(
+    (acc, lot) => {
+      if (lot.project === project.id) {
+        acc.total++;
+        if (lot.result === 'pass') acc.success++;
+        if (lot.result === 'fail') acc.fail++;
+      }
+      return acc;
+    },
+    { total: 0, success: 0, fail: 0 }
+  );
+
+  // 공정 정보 필터링 및 정렬
+  const projectProcesses: Process[] = processesData
+    .filter(process => process.project === project.id)
+    .sort((a, b) => a.order - b.order);
+
+  // 프로젝트 타입에 따른 아이콘 선택
+  const getProjectIcon = () => {
+    const firstProcess = projectProcesses[0];
+    if (!firstProcess) return <DocumentTextIcon className={styles.defaultIcon} />;
+
+    switch (firstProcess.type) {
+      case 'DataCollection':
+      case 'DataAnalysis':
+        return <ChartBarIcon className={styles.defaultIcon} />;
+      case 'AITraining':
+      case 'ModelDevelopment':
+        return <CpuChipIcon className={styles.defaultIcon} />;
+      case 'AlgorithmDesign':
+      case 'ModuleDevelopment':
+        return <BuildingOfficeIcon className={styles.defaultIcon} />;
+      case 'SystemImplementation':
+      case 'Prototyping':
+        return <WrenchScrewdriverIcon className={styles.defaultIcon} />;
+      case 'Simulation':
+      case 'FieldTest':
+        return <BeakerIcon className={styles.defaultIcon} />;
+      default:
+        return <DocumentTextIcon className={styles.defaultIcon} />;
+    }
+  };
+
   return (
-    <div
-      className="box"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        gap: 10,
-        padding: 20,
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '12px',
-        }}
-      >
-        <h3 style={{ margin: 0 }}>
+    <div className={styles.card}>
+      <div className={styles.header}>
+        <h3 className={styles.title}>
           <a
             href="#"
             onClick={e => {
               e.preventDefault();
-              router.push(`?view=detail&id=${project.id}`);
+              handleCardClick();
             }}
           >
-            {project.name} {project.status}
+            {project.name}
           </a>
         </h3>
       </div>
 
-      <button
-        type="button"
-        onClick={() => router.push(`?view=detail&id=${project.id}`)}
-        style={{ background: 'none', color: 'var(--font-color)', textAlign: 'left' }}
-      >
-        <div
-          style={{
-            width: '100%',
-            height: '200px',
-            marginBottom: '12px',
-            position: 'relative',
-          }}
-        >
-          <Image
-            src={project.imageUrl || ImgNoImg.src}
-            alt={project.name}
-            fill
-            style={{
-              objectFit: 'cover',
-              borderRadius: '4px',
-            }}
-          />
+      <button type="button" onClick={handleCardClick} className={styles.contentButton}>
+        <div className={styles.imageContainer}>
+          {project.imageUrl ? (
+            <Image src={project.imageUrl} alt={project.name} fill className={styles.image} />
+          ) : (
+            <div className={styles.iconContainer}>
+              <PhotoIcon className={styles.defaultIcon} />
+            </div>
+          )}
         </div>
 
-        <p>설명: {project.description}</p>
+        <p className={styles.description}>설명: {project.description}</p>
 
-        <div style={{ display: 'flex', gap: '16px' }}>
-          <p>LOT: {project.lotCount}</p>
-          <p>성공: {project.successCount}</p>
-          <p>실패: {project.failCount}</p>
+        <div className={styles.stats}>
+          <p>LOT: {lotStats.total}</p>
+          <p>성공: {lotStats.success}</p>
+          <p>실패: {lotStats.fail}</p>
         </div>
 
-        <div>
+        <div className={styles.processes}>
           <p>공정:</p>
-          <ul
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              listStyle: 'none',
-              padding: 0,
-              margin: 0,
-              flexWrap: 'wrap',
-              rowGap: '12px',
-            }}
-          >
-            {project.processes.map((process, idx) => (
+          <ul className={styles.processList}>
+            {projectProcesses.map((process, idx) => (
               <React.Fragment key={process.id}>
-                <li
-                  style={{
-                    background: 'var(--gray-50)',
-                    padding: '4px 12px',
-                    borderRadius: '4px',
-                    fontSize: '14px',
-                  }}
-                >
-                  {process.name}
-                </li>
-                {idx < project.processes.length - 1 && (
-                  <span style={{ color: 'var(--gray-400)' }}>→</span>
+                <li className={styles.processItem}>{process.name}</li>
+                {idx < projectProcesses.length - 1 && (
+                  <span className={styles.processArrow}>→</span>
                 )}
               </React.Fragment>
             ))}
@@ -111,20 +130,9 @@ export default function ProjectCard({ project, actionButtons }: ProjectCardProps
         </div>
       </button>
 
-      {actionButtons && (
-        <div
-          style={{
-            marginTop: 'auto',
-            paddingTop: '12px',
-            borderTop: '1px solid var(--gray-100)',
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: '12px',
-          }}
-        >
-          {actionButtons}
-        </div>
-      )}
+      {actionButtons && <div className={styles.actionButtons}>{actionButtons}</div>}
     </div>
   );
-}
+};
+
+export default ProjectCard;

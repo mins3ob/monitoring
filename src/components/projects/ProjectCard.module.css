@@ -1,0 +1,177 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--gray-900);
+}
+
+.title a {
+  color: var(--gray-900);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.title a:hover {
+  color: var(--primary-color);
+}
+
+.contentButton {
+  background: none;
+  color: var(--font-color);
+  text-align: left;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s ease;
+}
+
+.contentButton:hover {
+  opacity: 0.9;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 비율 */
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--gray-50);
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.imageContainer:hover .image {
+  transform: scale(1.05);
+}
+
+.iconContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-50);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.iconContainer:hover {
+  background: var(--gray-100);
+}
+
+.defaultIcon {
+  width: 64px;
+  height: 64px;
+  color: var(--gray-400);
+  transition: color 0.2s ease;
+}
+
+.iconContainer:hover .defaultIcon {
+  color: var(--gray-500);
+}
+
+.description {
+  margin-bottom: 16px;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+
+.stats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: var(--gray-50);
+  border-radius: 8px;
+}
+
+.stats p {
+  color: var(--gray-700);
+  font-size: 0.9rem;
+}
+
+.processes {
+  margin-bottom: 16px;
+}
+
+.processes p {
+  color: var(--gray-700);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.processList {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  row-gap: 12px;
+}
+
+.processItem {
+  background: var(--gray-50);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  transition: background-color 0.2s ease;
+}
+
+.processItem:hover {
+  background: var(--gray-100);
+}
+
+.processArrow {
+  color: var(--gray-400);
+  font-size: 1.2rem;
+}
+
+.actionButtons {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-100);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}

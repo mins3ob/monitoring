@@ -5,12 +5,12 @@
     "code": "CM-001",
     "supplier": "ABC 전자",
     "quantity": 100,
-    "date": "2023-05-01T10:00:00Z",
+    "date": "2025-05-01T10:00:00Z",
     "remainingQuantity": 80,
     "type": "incoming",
     "description": "고화질 카메라 모듈",
-    "createdAt": "2023-05-01T10:00:00Z",
-    "updatedAt": "2023-05-10T11:00:00Z"
+    "createdAt": "2025-05-01T10:00:00Z",
+    "updatedAt": "2025-05-10T11:00:00Z"
   },
   {
     "id": "inv-002",
@@ -18,12 +18,12 @@
     "code": "AIB-001",
     "supplier": "XYZ 시스템",
     "quantity": 50,
-    "date": "2023-05-15T14:00:00Z",
+    "date": "2025-05-15T14:00:00Z",
     "remainingQuantity": 40,
     "type": "incoming",
     "description": "엣지 컴퓨팅용 AI 보드",
-    "createdAt": "2023-05-15T14:00:00Z",
-    "updatedAt": "2023-05-20T15:00:00Z"
+    "createdAt": "2025-05-15T14:00:00Z",
+    "updatedAt": "2025-05-20T15:00:00Z"
   },
   {
     "id": "inv-003",
@@ -31,12 +31,12 @@
     "code": "RA-001",
     "supplier": "가나다 로보틱스",
     "quantity": 20,
-    "date": "2023-06-01T09:00:00Z",
+    "date": "2025-05-12T09:00:00Z",
     "remainingQuantity": 15,
     "type": "incoming",
     "description": "정밀 조립용 로봇 암",
-    "createdAt": "2023-06-01T09:00:00Z",
-    "updatedAt": "2023-06-05T10:00:00Z"
+    "createdAt": "2025-05-12T09:00:00Z",
+    "updatedAt": "2025-05-15T10:00:00Z"
   },
   {
     "id": "inv-004",
@@ -44,11 +44,11 @@
     "code": "CTRL-001",
     "supplier": "ABC 전자",
     "quantity": 70,
-    "date": "2023-06-10T13:00:00Z",
+    "date": "2025-05-20T13:00:00Z",
     "remainingQuantity": 60,
     "type": "incoming",
     "description": "다목적 컨트롤러",
-    "createdAt": "2023-06-10T13:00:00Z",
-    "updatedAt": "2023-06-15T14:00:00Z"
+    "createdAt": "2025-05-20T13:00:00Z",
+    "updatedAt": "2025-05-25T14:00:00Z"
   }
 ]

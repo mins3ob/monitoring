@@ -76,8 +76,8 @@ export default function SideNav() {
     <nav className={styles.sideNav}>
       <div className={styles.logoArea}>
         <IconHwashingLogo
-          width={150}
-          height={24.36}
+          width={100}
+          height={16.24}
           style={{ cursor: 'pointer' }}
           onClick={() => (window.location.href = '/')}
         />

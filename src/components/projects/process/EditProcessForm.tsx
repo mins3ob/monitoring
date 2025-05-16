@@ -29,7 +29,7 @@ import ImgNoImg from '@public/imgs/img_no_img.png';
 import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@redux/store';
-import { PencilIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, PlusIcon, DocumentCheckIcon, PhotoIcon } from '@heroicons/react/24/outline';
 
 interface SortableItemProps {
   id: string;
@@ -51,27 +51,31 @@ function SortableItem({ id, process, disabled, onEdit }: SortableItemProps) {
       ref={setNodeRef}
       style={{
         width: 400,
-        padding: '16px',
-        marginRight: '8px',
-        background: 'var(--gray-50)',
-        borderRadius: '4px',
+        padding: '20px',
+        marginRight: '16px',
+        background: 'white',
+        borderRadius: '12px',
         cursor: disabled ? 'not-allowed' : 'grab',
         minWidth: '200px',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+        border: '1px solid var(--gray-100)',
         ...style,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexDirection: 'column' }}>
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '12px',
             width: '100%',
             justifyContent: 'space-between',
           }}
         >
           <div {...attributes} {...listeners}>
-            <span>{process.name}</span>
+            <span style={{ fontSize: '18px', fontWeight: '600', color: 'var(--gray-800)' }}>
+              {process.name}
+            </span>
           </div>
           <button
             type="button"
@@ -79,16 +83,11 @@ function SortableItem({ id, process, disabled, onEdit }: SortableItemProps) {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
-              background: 'white',
-              color: 'var(--gray-600)',
-              border: '1px solid var(--gray-200)',
-              padding: '8px',
-              borderRadius: '4px',
-              cursor: 'pointer',
+              gap: '6px',
             }}
           >
             <PencilIcon width={16} height={16} />
+            <span style={{ fontSize: '14px' }}>수정</span>
           </button>
         </div>
 
@@ -97,24 +96,43 @@ function SortableItem({ id, process, disabled, onEdit }: SortableItemProps) {
           {...listeners}
           style={{
             width: '100%',
-            height: '200px',
-            marginBottom: '12px',
+            height: '220px',
+            marginBottom: '16px',
             position: 'relative',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'var(--gray-50)',
           }}
         >
-          <Image
-            src={process.imageUrl || ImgNoImg.src}
-            alt={process.name}
-            fill
-            style={{
-              objectFit: 'cover',
-              borderRadius: '4px',
-            }}
-          />
+          {process.imageUrl ? (
+            <Image
+              src={process.imageUrl}
+              alt={process.name}
+              fill
+              style={{
+                objectFit: 'cover',
+                borderRadius: '8px',
+              }}
+            />
+          ) : (
+            <PhotoIcon width={48} height={48} style={{ color: 'var(--gray-400)' }} />
+          )}
         </div>
 
         <div {...attributes} {...listeners}>
-          <p>{process.description}</p>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--gray-600)',
+              lineHeight: '1.6',
+              margin: 0,
+            }}
+          >
+            {process.description}
+          </p>
         </div>
       </div>
     </div>
@@ -179,15 +197,6 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
 
   const handleSave = () => {
     if (!isEditable) return;
-
-    console.log(
-      '변경된 공정 순서:',
-      processes.map(process => ({
-        id: process.id,
-        name: process.name,
-        order: process.order,
-      }))
-    );
   };
 
   const handleEditProcess = (process: IProcess) => {
@@ -213,10 +222,12 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
     <div className="column">
       <div
         style={{
-          padding: '20px',
+          padding: '24px',
           display: 'grid',
           gridTemplateColumns: '1fr',
           height: '100%',
+          background: 'var(--gray-50)',
+          borderRadius: '16px',
         }}
       >
         <div
@@ -225,9 +236,11 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
             flexDirection: 'row',
             overflowX: 'auto',
             overflowY: 'hidden',
-            padding: '10px 0',
+            padding: '16px 0',
             opacity: isEditable ? 1 : 0.7,
             cursor: isEditable ? 'default' : 'not-allowed',
+            scrollbarWidth: 'thin',
+            msOverflowStyle: 'none',
           }}
         >
           <DndContext
@@ -239,7 +252,7 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
               items={processes.map(p => p.id)}
               strategy={horizontalListSortingStrategy}
             >
-              <div style={{ display: 'flex' }}>
+              <div style={{ display: 'flex', padding: '8px' }}>
                 {processes.map(process => (
                   <SortableItem
                     key={process.id}
@@ -254,28 +267,43 @@ export default function EditProcessForm({ projectId }: IEditProcessForm) {
           </DndContext>
         </div>
 
-        <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: '12px',
+            justifyContent: 'flex-end',
+            marginTop: '16px',
+            padding: '16px',
+            background: 'white',
+            borderRadius: '12px',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+          }}
+        >
           <button
             type="button"
             onClick={() => setIsModalVisible(true)}
             disabled={!isEditable}
             style={{
-              opacity: isEditable ? 1 : 0.5,
-              cursor: isEditable ? 'pointer' : 'not-allowed',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
             }}
           >
+            <PlusIcon className="w-5 h-5" />
             공정 추가
           </button>
           <button
             type="button"
-            className="primaryBtn"
+            className="reverseBtn"
             onClick={handleSave}
             disabled={!isEditable}
             style={{
-              opacity: isEditable ? 1 : 0.5,
-              cursor: isEditable ? 'pointer' : 'not-allowed',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
             }}
           >
+            <DocumentCheckIcon className="w-5 h-5" />
             저장
           </button>
         </div>

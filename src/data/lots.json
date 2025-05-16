@@ -5,9 +5,11 @@
     "project": "p1",
     "status": "start",
     "result": "pass",
-    "startDate": "2024-06-01T09:00:00Z",
-    "endDate": "2024-06-02T18:00:00Z",
-    "featureId": "f5e4d3c2-b1a0-9876-5432-fedcba098765"
+    "startDate": "2025-05-01T09:00:00Z",
+    "endDate": "2025-05-02T18:00:00Z",
+    "featureId": "f5e4d3c2-b1a0-9876-5432-fedcba098765",
+    "createdAt": "2025-05-01T09:00:00Z",
+    "updatedAt": "2025-05-01T09:00:00Z"
   },
   {
     "id": "lot2",
@@ -15,9 +17,11 @@
     "project": "p1",
     "status": "progress",
     "result": "none",
-    "startDate": "2024-06-03T09:00:00Z",
+    "startDate": "2025-05-03T09:00:00Z",
     "endDate": null,
-    "featureId": "g6f5e4d3-c2b1-0987-6543-edcbaf098765"
+    "featureId": "g6f5e4d3-c2b1-0987-6543-edcbaf098765",
+    "createdAt": "2025-05-03T09:00:00Z",
+    "updatedAt": "2025-05-03T09:00:00Z"
   },
   {
     "id": "lot3",
@@ -25,9 +29,11 @@
     "project": "p2",
     "status": "start",
     "result": "fail",
-    "startDate": "2024-06-01T09:00:00Z",
-    "endDate": "2024-06-02T18:00:00Z",
-    "featureId": "h7g6f5e4-d3c2-1098-7654-fedcbaf09876"
+    "startDate": "2025-05-01T09:00:00Z",
+    "endDate": "2025-05-02T18:00:00Z",
+    "featureId": "h7g6f5e4-d3c2-1098-7654-fedcbaf09876",
+    "createdAt": "2025-05-01T09:00:00Z",
+    "updatedAt": "2025-05-01T09:00:00Z"
   },
   {
     "id": "lot4",
@@ -35,9 +41,11 @@
     "project": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
     "status": "finish",
     "result": "pass",
-    "startDate": "2024-07-01T10:00:00Z",
-    "endDate": "2024-07-05T10:00:00Z",
-    "featureId": "i8h7g6f5-e4d3-2109-8765-gfedcbaf0987"
+    "startDate": "2025-05-10T10:00:00Z",
+    "endDate": "2025-05-15T10:00:00Z",
+    "featureId": "i8h7g6f5-e4d3-2109-8765-gfedcbaf0987",
+    "createdAt": "2025-05-10T10:00:00Z",
+    "updatedAt": "2025-05-10T10:00:00Z"
   },
   {
     "id": "lot5",
@@ -45,8 +53,10 @@
     "project": "f0e1d2c3-b4a5-6789-0123-456789abcdef",
     "status": "progress",
     "result": "none",
-    "startDate": "2024-07-10T11:00:00Z",
+    "startDate": "2025-05-20T11:00:00Z",
     "endDate": null,
-    "featureId": "j9i8h7g6-f5e4-3210-9876-hgfedcbaf098"
+    "featureId": "j9i8h7g6-f5e4-3210-9876-hgfedcbaf098",
+    "createdAt": "2025-05-20T11:00:00Z",
+    "updatedAt": "2025-05-20T11:00:00Z"
   }
 ]

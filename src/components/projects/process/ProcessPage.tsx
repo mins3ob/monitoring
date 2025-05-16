@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo, useState, useCallback } from 'react';
-import ProcessList from '@components/projects/ProcessList';
+import ProcessList from '@components/projects/process/ProcessList';
 import projectsFromFile from '@data/projects.json';
 import { IProject, IProcess, ILot, IProjectWithStats } from '@interfaces/index';
 

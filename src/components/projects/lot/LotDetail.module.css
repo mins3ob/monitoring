@@ -1,3 +1,14 @@
+.lotProcess {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lotProcess > li {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .statusBadge {
   padding: 4px 8px;
   border-radius: 4px;

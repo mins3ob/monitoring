@@ -11,18 +11,18 @@ import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 import projectsData from '../../data/projects.json';
 import processesData from '../../data/processes.json';
 import lotsData from '../../data/lots.json';
-import lotProcessesData from '../../data/lotProcesses.json';
+import lotProcessesData from '../../data/lot_processes.json';
 
 import { IProject, ILot, ILotProcess } from '@interfaces/index';
 
 import Modal from '@components/Modal';
 
-import LotAddForm from '@components/projects/LotAddForm';
-import CalendarForm from '@components/projects/CalendarForm';
-import InventoryDisplay from './InventoryDisplay';
-import ProcessPage from './ProcessPage';
-import OverviewTab from './OverviewTab';
-import LotHistoryTab from './LotHistoryTab';
+import LotAddForm from '@components/projects/lot/LotAddForm';
+import CalendarForm from '@components/projects/calendar/CalendarForm';
+import InventoryDisplay from '@components/projects/inventory/InventoryDisplay';
+import ProcessPage from '@components/projects/process/ProcessPage';
+import OverviewTab from '@components/projects/OverviewTab';
+import LotHistoryTab from '@components/projects/lot/LotHistoryTab';
 
 interface IDetailForm {
   projectId: string;
@@ -70,7 +70,7 @@ export default function DetailForm({ projectId }: IDetailForm) {
 
   const lotProcesses = useMemo(() => {
     return (lotProcessesData as ILotProcess[]).filter(lp =>
-      projectLots.some(lot => lot.id === lp.lot)
+      projectLots.some(lot => lot.id === lp.lotId)
     );
   }, [projectLots]);
 

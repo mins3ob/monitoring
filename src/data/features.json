@@ -1,0 +1,42 @@
+[
+  {
+    "id": "f5e4d3c2-b1a0-9876-5432-fedcba098765",
+    "name": "Real-time monitoring",
+    "quantity": 100,
+    "projectId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "createdAt": "2025-05-01T09:00:00Z",
+    "updatedAt": "2025-05-01T09:00:00Z"
+  },
+  {
+    "id": "g6f5e4d3-c2b1-0987-6543-edcbaf098765",
+    "name": "Object Detection",
+    "quantity": 50,
+    "projectId": "f0e1d2c3-b4a5-6789-0123-456789abcdef",
+    "createdAt": "2025-05-03T09:00:00Z",
+    "updatedAt": "2025-05-03T09:00:00Z"
+  },
+  {
+    "id": "h7g6f5e4-d3c2-1098-7654-fedcbaf09876",
+    "name": "Predictive Maintenance",
+    "quantity": 75,
+    "projectId": "g1h2i3j4-k5l6-7890-1234-567890uvwxyz",
+    "createdAt": "2025-05-01T09:00:00Z",
+    "updatedAt": "2025-05-01T09:00:00Z"
+  },
+  {
+    "id": "i8h7g6f5-e4d3-2109-8765-gfedcbaf0987",
+    "name": "Smart Charging",
+    "quantity": 120,
+    "projectId": "m1n2o3p4-q5r6-7890-1234-567890abcdef",
+    "createdAt": "2025-05-10T10:00:00Z",
+    "updatedAt": "2025-05-10T10:00:00Z"
+  },
+  {
+    "id": "j9i8h7g6-f5e4-3210-9876-hgfedcbaf098",
+    "name": "Battery Management",
+    "quantity": 80,
+    "projectId": "m1n2o3p4-q5r6-7890-1234-567890abcdef",
+    "createdAt": "2025-05-20T11:00:00Z",
+    "updatedAt": "2025-05-20T11:00:00Z"
+  }
+]

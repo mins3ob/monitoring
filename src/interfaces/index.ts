@@ -39,18 +39,19 @@ export interface ILot {
   createdAt: string;
   updatedAt: string;
   project: string;
+  featureId: string;
 }
 
 export interface ILotProcess {
   id: string;
+  lotId: string;
+  processId: string;
   status: string;
-  result: string | null;
+  result: string;
   imageUrl: string | null;
+  date: string;
   createdAt: string;
   updatedAt: string;
-  date: string;
-  lot: string;
-  process: string;
 }
 
 export interface IProjectWithStats extends IProject {
@@ -76,4 +77,13 @@ export interface IInventory {
   lastIncomingDate: string;
   remainingQuantity: number;
   remarks: string;
+}
+
+export interface IFeature {
+  id: string;
+  name: string;
+  quantity: number;
+  projectId: string;
+  createdAt: string;
+  updatedAt: string;
 }

@@ -28,7 +28,7 @@ export default function ContentHeader() {
         <button
           type="button"
           onClick={() => setIsProfileOpen(prev => !prev)}
-          style={{ background: 'none', padding: 0 }}
+          style={{ background: 'none', border: 'none', padding: 0 }}
         >
           <UserCircleIcon className="w-10 h-10 text-gray-600" />
         </button>
@@ -57,7 +57,7 @@ export default function ContentHeader() {
       </div>
 
       <div style={{ height: 35 }}>
-        <button type="button" style={{ background: 'none', padding: 0 }}>
+        <button type="button" style={{ background: 'none', border: 'none', padding: 0 }}>
           <Cog6ToothIcon className="w-10 h-10 text-gray-600" />
         </button>
       </div>

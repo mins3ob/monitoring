@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Calendar.module.css';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 interface ICalendar {
   onDateSelect?: (date: Date) => void;
@@ -91,7 +92,7 @@ export default function Calendar({ onDateSelect, dateContents = [] }: ICalendar)
     <div className={styles.container}>
       <div className={styles.header}>
         <button className={styles.monthButton} onClick={handlePrevMonth}>
-          &lt;
+          <ChevronLeftIcon className="w-6 h-6" />
         </button>
 
         <div className={styles.monthDisplay}>
@@ -99,7 +100,7 @@ export default function Calendar({ onDateSelect, dateContents = [] }: ICalendar)
         </div>
 
         <button className={styles.monthButton} onClick={handleNextMonth}>
-          &gt;
+          <ChevronRightIcon className="w-6 h-6" />
         </button>
       </div>
       <div className={styles.grid}>{renderCalendarDays()}</div>

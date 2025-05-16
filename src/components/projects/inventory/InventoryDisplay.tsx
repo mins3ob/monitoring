@@ -6,11 +6,12 @@ import React from 'react';
 import inventoriesData from '@data/inventories.json';
 import partInventoriesData from '@data/part_inventories.json';
 import processesData from '@data/processes.json'; // processes.json 가져오기
+import processInventoriesData from '@data/process_inventories.json';
 import { IInventory, IProcess } from '@interfaces/index';
 import styles from './Inventory.module.css'; // 경로 수정 (@components -> ..)
 
-import PartInventoryTable from '@components/projects/PartInventoryTable';
-import InventoryTable from '@components/projects/InventoryTable';
+import PartInventoryTable from '@components/projects/inventory/PartInventoryTable';
+import InventoryTable from '@components/projects/inventory/InventoryTable';
 
 interface IInventoryItem {
   id: string;
@@ -86,12 +87,12 @@ export default function InventoryDisplay({ projectId }: InventoryDisplayProps) {
   // inventoriesData와 partInventoriesData를 IInventoryItem[] 및 IPartInventoryEntry[]로 타입 단언
   const typedInventoriesData = inventoriesData as IInventoryItem[];
   const typedPartInventoriesData = partInventoriesData as IPartInventoryEntry[];
-  const typedProcessesData = processesData as IProcess[]; // processesData 타입 단언
+  const typedProcessesData = processesData as IProcess[];
 
   const inventoryData = convertToIInventory(
     typedInventoriesData,
     typedPartInventoriesData,
-    typedProcessesData, // typedProcessesData 전달
+    typedProcessesData,
     projectId
   );
 
@@ -107,7 +108,10 @@ export default function InventoryDisplay({ projectId }: InventoryDisplayProps) {
       <div className={`box ${styles.box}`} style={{ padding: 20, marginTop: 16 }}>
         {/* marginTop 추가 */}
         <h3>공정 재고 현황</h3>
-        <InventoryTable data={inventoryData} />
+        <InventoryTable
+          processes={typedProcessesData}
+          processInventories={processInventoriesData}
+        />
       </div>
     </div>
   );
