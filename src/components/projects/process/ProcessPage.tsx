@@ -49,15 +49,21 @@ export default function ProcessPage() {
     setPage(prev => prev + 1);
   }, [projectsWithStats.length, allProjectsWithStats.length]);
 
-  // const handleSearch = useCallback((text: string) => {
-  //   setSearchText(text);
-  //   setPage(1);
-  //   setHasMore(true);
-  // }, []);
+  const handleSearch = useCallback((text: string) => {
+    setSearchText(text);
+    setPage(1);
+    setHasMore(true);
+  }, []);
 
   return (
     <div className="column">
-      <ProcessList projects={projectsWithStats} onLoadMore={handleLoadMore} hasMore={hasMore} />
+      <ProcessList
+        projects={projectsWithStats}
+        onLoadMore={handleLoadMore}
+        hasMore={hasMore}
+        searchText={searchText}
+        onSearch={handleSearch}
+      />
     </div>
   );
 }
