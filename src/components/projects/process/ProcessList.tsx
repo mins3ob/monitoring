@@ -3,24 +3,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { IProjectWithStats } from '@interfaces/index';
 import EditProcessForm from '@components/projects/process/EditProcessForm';
-import SearchBar from '@components/SearchBar';
 import { useSearchParams } from 'next/navigation';
 
 interface ProcessListProps {
   projects: IProjectWithStats[];
   onLoadMore: () => Promise<void>;
   hasMore: boolean;
-  searchText: string;
-  onSearch: (text: string) => void;
 }
 
-export default function ProcessList({
-  projects = [],
-  onLoadMore,
-  hasMore,
-  searchText = '',
-  onSearch = () => {},
-}: ProcessListProps) {
+export default function ProcessList({ projects = [], onLoadMore, hasMore }: ProcessListProps) {
   const [isLoading, setIsLoading] = useState(false);
   const observerTarget = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();

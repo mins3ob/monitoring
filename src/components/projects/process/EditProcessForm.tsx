@@ -25,7 +25,6 @@ import { IProcess, IProject } from '@interfaces/index';
 import Modal from '@components/Modal';
 import ProcessAddForm from './ProcessAddForm';
 
-import ImgNoImg from '@public/imgs/img_no_img.png';
 import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@redux/store';
