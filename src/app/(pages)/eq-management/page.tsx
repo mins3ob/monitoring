@@ -2,18 +2,10 @@
 
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import {
-  ComputerDesktopIcon,
-  PlusIcon,
-  PencilSquareIcon,
-  TrashIcon,
-  ChevronUpIcon,
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
+import { PencilSquareIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import SearchBar from '@components/SearchBar';
 import Table from '@components/Table';
-import EditModal from '@components/EditModal';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@redux/store';
 import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
