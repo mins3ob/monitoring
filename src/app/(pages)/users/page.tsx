@@ -1,20 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import {
-  UserIcon,
-  PlusIcon,
-  PencilSquareIcon,
-  TrashIcon,
-  UsersIcon,
-  ChevronUpIcon,
-  ChevronDownIcon,
-} from '@heroicons/react/24/outline';
+import { PencilSquareIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import usersData from '@data/users.json';
 import SearchBar from '@components/SearchBar';
-
 import Table from '@components/Table';
-import EditModal from '@components/EditModal';
 import { UserEditForm } from '@components/users/UserEditForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@redux/store';
@@ -109,6 +99,9 @@ export default function UsersPage() {
     }
 
     return () => {
+      if (currentObserverTarget) {
+        observer.unobserve(currentObserverTarget);
+      }
       observer.disconnect();
     };
   }, [hasMore]);
@@ -175,7 +168,7 @@ export default function UsersPage() {
   }, [isModalVisible, dispatch]);
 
   useEffect(() => {
-    const handleBackdropClick = () => {
+    const handleBackdropClick = (event: Event) => {
       setIsModalVisible(false);
     };
 

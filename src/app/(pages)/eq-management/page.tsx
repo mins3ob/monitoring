@@ -100,23 +100,25 @@ export default function EQManagementPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
-        if (entries[0].isIntersecting && hasMore && !isLoading) {
+        if (entries[0].isIntersecting && hasMore) {
           setPage(prevPage => prevPage + 1);
         }
       },
       { threshold: 1.0 }
     );
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
+    const currentObserverTarget = observerTarget.current;
+    if (currentObserverTarget) {
+      observer.observe(currentObserverTarget);
     }
 
     return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
+      if (currentObserverTarget) {
+        observer.unobserve(currentObserverTarget);
       }
+      observer.disconnect();
     };
-  }, [hasMore, isLoading]);
+  }, [hasMore]);
 
   useEffect(() => {
     setHasMore(displayedEQs.length < sortedEQs.length);
@@ -142,7 +144,13 @@ export default function EQManagementPage() {
     }
   };
 
-  const handleSubmitEQ = (eqData: any) => {
+  const handleSubmitEQ = (eqData: Partial<EQBoard>) => {
+    // 필수 필드 검증
+    if (!eqData.name || !eqData.pc || !eqData.type || !eqData.file_url) {
+      alert('모든 필드를 입력해주세요.');
+      return;
+    }
+
     if (currentEQ) {
       // Edit existing EQ
       setEqBoards(
@@ -163,7 +171,7 @@ export default function EQManagementPage() {
         id: crypto.randomUUID(),
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
-      };
+      } as EQBoard;
       setEqBoards([...eqBoards, newEQ]);
     }
     setIsModalVisible(false);
