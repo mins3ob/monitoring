@@ -59,7 +59,13 @@ export default function DetailForm({ projectId }: IDetailForm) {
   }, [projectId]);
 
   const projectLots = useMemo(() => {
-    return (lotsData as ILot[]).filter(lot => lot.project === projectId);
+    return (lotsData as unknown as ILot[])
+      .map(lot => ({
+        ...lot,
+        createdAt: lot.startDate || new Date().toISOString(),
+        updatedAt: lot.endDate || new Date().toISOString(),
+      }))
+      .filter(lot => lot.project === projectId);
   }, [projectId]);
 
   const lotProcesses = useMemo(() => {
