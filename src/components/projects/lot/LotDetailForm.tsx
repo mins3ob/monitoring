@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
   XMarkIcon,
@@ -10,14 +9,13 @@ import {
   XCircleIcon,
   ClockIcon,
   DocumentIcon,
-  PhotoIcon,
   TrashIcon,
   ArrowLeftIcon,
 } from '@heroicons/react/24/outline';
 
 import styles from './LotDetail.module.css';
 
-import { ILot, IProcess, ILotProcess } from '@interfaces/index';
+import { ILot, ILotProcess } from '@interfaces/index';
 
 import lotsData from '../../../data/lots.json';
 import processesData from '../../../data/processes.json';
@@ -29,7 +27,6 @@ interface ILotDetailFormProps {
 }
 
 export default function LotDetailForm({ lotId, setSelectedLotId }: ILotDetailFormProps) {
-  const router = useRouter();
   const [lot, setLot] = useState<ILot | null>(null);
   const [projectId, setProjectId] = useState<string>('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
