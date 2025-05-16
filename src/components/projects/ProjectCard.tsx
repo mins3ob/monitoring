@@ -2,19 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { IProjectWithStats } from '@interfaces/index';
-import ImgNoImg from '@public/imgs/img_no_img.png';
 import styles from './ProjectCard.module.css';
 import lotsData from '@data/lots.json';
 import processesData from '@data/processes.json';
-import {
-  DocumentTextIcon,
-  BuildingOfficeIcon,
-  CpuChipIcon,
-  BeakerIcon,
-  WrenchScrewdriverIcon,
-  ChartBarIcon,
-  PhotoIcon,
-} from '@heroicons/react/24/outline';
+import { PhotoIcon } from '@heroicons/react/24/outline';
 
 interface ProjectCardProps {
   project: IProjectWithStats;
