@@ -57,13 +57,7 @@ export default function ProcessPage() {
 
   return (
     <div className="column">
-      <ProcessList
-        projects={projectsWithStats}
-        onLoadMore={handleLoadMore}
-        hasMore={hasMore}
-        searchText={searchText}
-        onSearch={handleSearch}
-      />
+      <ProcessList projects={projectsWithStats} onLoadMore={handleLoadMore} hasMore={hasMore} />
     </div>
   );
 }
