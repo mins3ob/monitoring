@@ -30,10 +30,14 @@ export default function LotDetailForm({ lotId, projectId }: ILotDetailFormProps)
     // const lotId = searchParams.get('id'); // Props로 받으므로 삭제
     if (!lotId) return;
 
-    const foundLot = (lotsData as ILot[]).find(l => l.id === lotId);
+    const foundLot = lotsData.find(l => l.id === lotId);
     if (foundLot) {
-      setLot(foundLot);
-      // setProjectId(foundLot.project); // Props로 받으므로 삭제. projectId prop 사용
+      const lotWithTimestamps: ILot = {
+        ...foundLot,
+        createdAt: foundLot.startDate || new Date().toISOString(),
+        updatedAt: foundLot.endDate || new Date().toISOString(),
+      };
+      setLot(lotWithTimestamps);
     }
   }, [lotId]); // searchParams 대신 lotId를 의존성 배열에 추가
 
