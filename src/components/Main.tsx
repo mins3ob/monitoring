@@ -19,7 +19,15 @@ export default function Main({ children }: { children: React.ReactNode }) {
         !isAuth ? 'flex items-center justify-center min-h-screen bg-[var(--gray-100)]' : undefined
       }
       style={
-        isAuth ? { width: '100%', display: 'grid', gridTemplateColumns: '160px 1fr' } : undefined
+        isAuth
+          ? {
+              width: '100%',
+              minHeight: '100vh',
+              display: 'grid',
+              gridTemplateColumns: '240px 1fr',
+              background: '#050b18',
+            }
+          : undefined
       }
     >
       {!isAuth ? (
@@ -28,10 +36,18 @@ export default function Main({ children }: { children: React.ReactNode }) {
         <>
           <SideNav />
 
-          <div style={{ background: 'var(--gray-50)' }}>
+          <div
+            style={{
+              background: 'var(--gray-50)',
+              minHeight: '100vh',
+              padding: '0',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <ContentHeader />
 
-            <div style={{ padding: 20 }}>{children}</div>
+            <div style={{ padding: 32 }}>{children}</div>
           </div>
         </>
       )}

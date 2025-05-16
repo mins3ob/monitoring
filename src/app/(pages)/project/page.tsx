@@ -5,10 +5,8 @@ import { useSearchParams } from 'next/navigation';
 
 import BoardForm from '@components/projects/BoardForm';
 import DetailForm from '@components/projects/DetailForm';
-import LotDetailForm from '@components/projects/LotDetailForm';
-import CalendarForm from '@components/projects/CalendarForm';
 
-type ViewMode = 'detail' | 'calendar' | 'board' | 'lot' | 'edit-process';
+type ViewMode = 'detail' | 'board' | 'edit-process';
 
 function ProjectContent() {
   const searchParams = useSearchParams();
@@ -27,18 +25,14 @@ function ProjectContent() {
 
   const renderContent = () => {
     switch (viewMode) {
-      case 'lot':
-        return <LotDetailForm />;
       case 'detail':
         return <DetailForm projectId={selectedProjectId} />;
-      case 'calendar':
-        return <CalendarForm />; // TODO: 캘린더 뷰 구현 필요
       default:
         return <BoardForm />;
     }
   };
 
-  return renderContent();
+  return <div>{renderContent()}</div>;
 }
 
 export default function Project() {

@@ -1,0 +1,578 @@
+[
+  {
+    "process": {
+      "id": "proc-33ebe499",
+      "name": "Process 1"
+    },
+    "partInventoryList": [
+      {
+        "id": "partinv-6112b812",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 8,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-3b119755",
+          "name": "Piston",
+          "code": "PIST-1001-016",
+          "supplier": "FastenTech",
+          "quantity": 84,
+          "date": "2025-04-21",
+          "type": "incoming",
+          "description": "High quality engine piston",
+          "createdAt": "2025-04-20T00:00:00Z",
+          "updatedAt": "2025-04-30T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-bf52dc52",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 1,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-699c1499",
+          "name": "Piston",
+          "code": "PIST-1001-011",
+          "supplier": "AutoParts Co.",
+          "quantity": 160,
+          "date": "2025-04-18",
+          "type": "incoming",
+          "description": "High quality engine piston",
+          "createdAt": "2025-04-22T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-1a2582e4",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 1,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-2a5526f2",
+          "name": "Camshaft",
+          "code": "CAM-3003-008",
+          "supplier": "EngineCore Ltd.",
+          "quantity": 55,
+          "date": "2025-04-24",
+          "type": "incoming",
+          "description": "Precision camshaft",
+          "createdAt": "2025-04-22T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-5bf18faf",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 3,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-f9eca2ec",
+          "name": "Bearing",
+          "code": "BRNG-5005-020",
+          "supplier": "Bearing Bros",
+          "quantity": 122,
+          "date": "2025-04-17",
+          "type": "incoming",
+          "description": "Main engine bearing",
+          "createdAt": "2025-04-16T00:00:00Z",
+          "updatedAt": "2025-04-30T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-5e8f1d9f",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 7,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-a64099a6",
+          "name": "Valve",
+          "code": "VALV-4004-009",
+          "supplier": "FastenTech",
+          "quantity": 186,
+          "date": "2025-04-18",
+          "type": "incoming",
+          "description": "Intake and exhaust valve",
+          "createdAt": "2025-04-22T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-896e9155",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 7,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-1b1a06d5",
+          "name": "Crankshaft",
+          "code": "CRNK-2002-002",
+          "supplier": "Bearing Bros",
+          "quantity": 142,
+          "date": "2025-04-25",
+          "type": "incoming",
+          "description": "Steel crankshaft",
+          "createdAt": "2025-04-23T00:00:00Z",
+          "updatedAt": "2025-04-30T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-f65abf8c",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 1,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-1e108f7c",
+          "name": "Piston",
+          "code": "PIST-1001-001",
+          "supplier": "GearWorks",
+          "quantity": 113,
+          "date": "2025-04-25",
+          "type": "incoming",
+          "description": "High quality engine piston",
+          "createdAt": "2025-04-19T00:00:00Z",
+          "updatedAt": "2025-04-30T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-88e52ee7",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 5,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-01b8e94b",
+          "name": "Camshaft",
+          "code": "CAM-3003-003",
+          "supplier": "EngineCore Ltd.",
+          "quantity": 198,
+          "date": "2025-04-22",
+          "type": "incoming",
+          "description": "Precision camshaft",
+          "createdAt": "2025-04-23T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-2d69ee05",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 1,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-0fb11e41",
+          "name": "Crankshaft",
+          "code": "CRNK-2002-012",
+          "supplier": "Bearing Bros",
+          "quantity": 128,
+          "date": "2025-04-17",
+          "type": "incoming",
+          "description": "Steel crankshaft",
+          "createdAt": "2025-04-17T00:00:00Z",
+          "updatedAt": "2025-04-28T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-9a0e4d0b",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 4,
+        "process": {
+          "id": "proc-33ebe499",
+          "name": "Process 1"
+        },
+        "inventory": {
+          "id": "inv-ca4956ab",
+          "name": "Bearing",
+          "code": "BRNG-5005-005",
+          "supplier": "GearWorks",
+          "quantity": 147,
+          "date": "2025-04-17",
+          "type": "incoming",
+          "description": "Main engine bearing",
+          "createdAt": "2025-04-23T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      }
+    ]
+  },
+  {
+    "process": {
+      "id": "proc-42306314",
+      "name": "Process 2"
+    },
+    "partInventoryList": [
+      {
+        "id": "partinv-b5d03d81",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 7,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-f571f3a3",
+          "name": "Piston",
+          "code": "PIST-1001-006",
+          "supplier": "AutoParts Co.",
+          "quantity": 181,
+          "date": "2025-04-18",
+          "type": "incoming",
+          "description": "High quality engine piston",
+          "createdAt": "2025-04-18T00:00:00Z",
+          "updatedAt": "2025-04-28T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-9ea74a91",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 4,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-3b119755",
+          "name": "Piston",
+          "code": "PIST-1001-016",
+          "supplier": "FastenTech",
+          "quantity": 84,
+          "date": "2025-04-21",
+          "type": "incoming",
+          "description": "High quality engine piston",
+          "createdAt": "2025-04-20T00:00:00Z",
+          "updatedAt": "2025-04-30T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-0599a382",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 5,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-699c1499",
+          "name": "Piston",
+          "code": "PIST-1001-011",
+          "supplier": "AutoParts Co.",
+          "quantity": 160,
+          "date": "2025-04-18",
+          "type": "incoming",
+          "description": "High quality engine piston",
+          "createdAt": "2025-04-22T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-4741fdc5",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 1,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-b2b436d9",
+          "name": "Crankshaft",
+          "code": "CRNK-2002-007",
+          "supplier": "EngineCore Ltd.",
+          "quantity": 56,
+          "date": "2025-04-19",
+          "type": "incoming",
+          "description": "Steel crankshaft",
+          "createdAt": "2025-04-22T00:00:00Z",
+          "updatedAt": "2025-04-28T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-b31a95bd",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 10,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-1b1a06d5",
+          "name": "Crankshaft",
+          "code": "CRNK-2002-002",
+          "supplier": "Bearing Bros",
+          "quantity": 142,
+          "date": "2025-04-25",
+          "type": "incoming",
+          "description": "Steel crankshaft",
+          "createdAt": "2025-04-23T00:00:00Z",
+          "updatedAt": "2025-04-30T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-ea4db0f5",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 4,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-f9eca2ec",
+          "name": "Bearing",
+          "code": "BRNG-5005-020",
+          "supplier": "Bearing Bros",
+          "quantity": 122,
+          "date": "2025-04-17",
+          "type": "incoming",
+          "description": "Main engine bearing",
+          "createdAt": "2025-04-16T00:00:00Z",
+          "updatedAt": "2025-04-30T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-ad8b0954",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 3,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-0fb11e41",
+          "name": "Crankshaft",
+          "code": "CRNK-2002-012",
+          "supplier": "Bearing Bros",
+          "quantity": 128,
+          "date": "2025-04-17",
+          "type": "incoming",
+          "description": "Steel crankshaft",
+          "createdAt": "2025-04-17T00:00:00Z",
+          "updatedAt": "2025-04-28T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-ddba2918",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 6,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-01b8e94b",
+          "name": "Camshaft",
+          "code": "CAM-3003-003",
+          "supplier": "EngineCore Ltd.",
+          "quantity": 198,
+          "date": "2025-04-22",
+          "type": "incoming",
+          "description": "Precision camshaft",
+          "createdAt": "2025-04-23T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-45eda09b",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 2,
+        "process": {
+          "id": "proc-42306314",
+          "name": "Process 2"
+        },
+        "inventory": {
+          "id": "inv-cea0d833",
+          "name": "Valve",
+          "code": "VALV-4004-014",
+          "supplier": "FastenTech",
+          "quantity": 132,
+          "date": "2025-04-17",
+          "type": "incoming",
+          "description": "Intake and exhaust valve",
+          "createdAt": "2025-04-19T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      }
+    ]
+  },
+  {
+    "process": {
+      "id": "proc-66780eb7",
+      "name": "Process 3"
+    },
+    "partInventoryList": [
+      {
+        "id": "partinv-4dba0f4a",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 3,
+        "process": {
+          "id": "proc-66780eb7",
+          "name": "Process 3"
+        },
+        "inventory": {
+          "id": "inv-72ae1b09",
+          "name": "Camshaft",
+          "code": "CAM-3003-013",
+          "supplier": "Bearing Bros",
+          "quantity": 111,
+          "date": "2025-04-25",
+          "type": "incoming",
+          "description": "Precision camshaft",
+          "createdAt": "2025-04-16T00:00:00Z",
+          "updatedAt": "2025-04-30T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-f2384be4",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 4,
+        "process": {
+          "id": "proc-66780eb7",
+          "name": "Process 3"
+        },
+        "inventory": {
+          "id": "inv-ca4956ab",
+          "name": "Bearing",
+          "code": "BRNG-5005-005",
+          "supplier": "GearWorks",
+          "quantity": 147,
+          "date": "2025-04-17",
+          "type": "incoming",
+          "description": "Main engine bearing",
+          "createdAt": "2025-04-23T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-c7dd45b5",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 8,
+        "process": {
+          "id": "proc-66780eb7",
+          "name": "Process 3"
+        },
+        "inventory": {
+          "id": "inv-fe53f9a4",
+          "name": "Bearing",
+          "code": "BRNG-5005-015",
+          "supplier": "GearWorks",
+          "quantity": 79,
+          "date": "2025-04-18",
+          "type": "incoming",
+          "description": "Main engine bearing",
+          "createdAt": "2025-04-19T00:00:00Z",
+          "updatedAt": "2025-04-28T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-908c4faa",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 6,
+        "process": {
+          "id": "proc-66780eb7",
+          "name": "Process 3"
+        },
+        "inventory": {
+          "id": "inv-ca00b173",
+          "name": "Crankshaft",
+          "code": "CRNK-2002-017",
+          "supplier": "EngineCore Ltd.",
+          "quantity": 167,
+          "date": "2025-04-20",
+          "type": "incoming",
+          "description": "Steel crankshaft",
+          "createdAt": "2025-04-20T00:00:00Z",
+          "updatedAt": "2025-04-27T00:00:00Z",
+          "partInventoryList": []
+        }
+      },
+      {
+        "id": "partinv-c9ac26f2",
+        "createdAt": "2025-05-01T00:00:00Z",
+        "updatedAt": "2025-05-01T00:00:00Z",
+        "quantity": 10,
+        "process": {
+          "id": "proc-66780eb7",
+          "name": "Process 3"
+        },
+        "inventory": {
+          "id": "inv-3ad8cf97",
+          "name": "Valve",
+          "code": "VALV-4004-004",
+          "supplier": "GearWorks",
+          "quantity": 157,
+          "date": "2025-04-20",
+          "type": "incoming",
+          "description": "Intake and exhaust valve",
+          "createdAt": "2025-04-20T00:00:00Z",
+          "updatedAt": "2025-04-28T00:00:00Z",
+          "partInventoryList": []
+        }
+      }
+    ]
+  }
+]

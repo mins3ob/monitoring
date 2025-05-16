@@ -1,0 +1,7 @@
+.box {
+  padding: 20px;
+}
+
+.box > h3 {
+  margin-bottom: 20px;
+}

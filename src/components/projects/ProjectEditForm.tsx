@@ -25,7 +25,7 @@ export default function ProjectEditForm({ back, project }: IProjectEditForm) {
     carType: '',
     part: '',
     feature: '',
-    quantity: '',
+    quantity: 0,
   });
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function ProjectEditForm({ back, project }: IProjectEditForm) {
         carType: project.carType || '',
         part: project.part || '',
         feature: project.feature || '',
-        quantity: project.quantity || '',
+        quantity: project.quantity || 0,
       });
     }
   }, [project]);

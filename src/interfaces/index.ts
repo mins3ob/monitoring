@@ -12,7 +12,7 @@ export interface IProject {
   carType: string;
   part: string;
   feature: string;
-  quantity: string;
+  quantity: number;
 }
 
 export interface IProcess {
@@ -22,10 +22,11 @@ export interface IProcess {
   type: string;
   imageUrl: string | null;
   order: number;
-  barcode: string;
+  status: string;
   createdAt: string;
   updatedAt: string;
   project: string;
+  barcode?: string;
 }
 
 export interface ILot {

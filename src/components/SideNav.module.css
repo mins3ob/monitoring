@@ -1,22 +1,74 @@
-.menuItem button {
-  width: 100%;
-  padding: 12px 20px;
+.sideNav {
+  background: #050b18;
+  height: 100vh;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+}
+
+.logoArea {
+  padding: 32px 0 24px 0;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  border-bottom: 1px solid #1a2233;
+  margin-bottom: 12px;
+}
+
+.menuList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menuItem {
+  width: 100%;
+}
+
+.menuButton {
+  width: 100%;
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   border: none;
   background: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-  color: #333333;
+  color: #b0b8c1;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  position: relative;
 }
 
-.menuItem button:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+.menuButton:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
 }
 
-.menuItem button.active {
-  background-color: rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-  color: #000000;
+.menuButton.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 700;
+}
+
+.menuButton.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 2px;
+  background: #fff;
+}
+
+.menuIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
 }

@@ -10,11 +10,11 @@ import { AppDispatch, RootState } from '@redux/store';
 
 import { hideBackdrop, showBackdrop } from '@redux/slices/backdropSlice';
 
-import dummyData from '@data/erd_dummy_data.json';
+import projectsData from '../../data/projects.json';
 
 import { PlusIcon, CalendarIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 
-import { IProject, IProcess, ILot, IProjectWithStats } from '@interfaces/index';
+import { IProjectWithStats } from '@interfaces/index';
 
 import Modal from '@components/Modal';
 import ProjectEditForm from '@components/projects/ProjectEditForm';
@@ -39,22 +39,13 @@ export default function BoardForm() {
   const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const projectsWithStats = useMemo(() => {
-    return (dummyData.projects as IProject[]).map(project => {
-      const projectLots = (dummyData.lots as ILot[]).filter(lot => lot.project === project.id);
-      const successCount = projectLots.filter(lot => lot.result === 'pass').length;
-      const failCount = projectLots.filter(lot => lot.result === 'fail').length;
-      const projectProcesses = (dummyData.processes as IProcess[]).filter(
-        process => process.project === project.id
-      );
-
-      return {
-        ...project,
-        lotCount: projectLots.length,
-        successCount,
-        failCount,
-        processes: projectProcesses,
-      };
-    }) as IProjectWithStats[];
+    return projectsData.map(project => ({
+      ...project,
+      lotCount: 0,
+      successCount: 0,
+      failCount: 0,
+      processes: [],
+    })) as IProjectWithStats[];
   }, []);
 
   const handleSearch = (newSearchText: string, newSearchStatus?: string) => {

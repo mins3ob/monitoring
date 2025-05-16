@@ -16,6 +16,19 @@
 
   --font-color: #111;
   --err-color: #e63946;
+
+  --table-border-color: #dee2e6;
+  --table-header-bg-color: #f8f9fa;
+  --table-striped-bg-color: rgba(0, 0, 0, 0.05);
+  --table-hover-bg-color: rgba(0, 0, 0, 0.075);
+  --table-bg-color: white;
+
+  --side-nav-bg: #050b18;
+  --side-nav-border: #1a2233;
+  --side-nav-text: #b0b8c1;
+  --side-nav-text-active: #fff;
+  --side-nav-hover-bg: rgba(255, 255, 255, 0.04);
+  --side-nav-active-bg: rgba(255, 255, 255, 0.08);
 }
 
 /* @theme inline {
