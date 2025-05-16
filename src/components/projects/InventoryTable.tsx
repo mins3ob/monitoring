@@ -2,15 +2,11 @@
 
 import React from 'react';
 
-import { IInventory } from '@interfaces/index';
-
 import styles from './Inventory.module.css';
 
-interface IInventoryTable {
-  data: IInventory[];
-}
+interface IInventoryTable {}
 
-export default function InventoryTable({ data }: IInventoryTable) {
+export default function InventoryTable({}: IInventoryTable) {
   return (
     <table className={styles.table}>
       <thead>

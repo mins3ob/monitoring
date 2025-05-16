@@ -7,7 +7,6 @@ import LotDetailForm from './LotDetailForm';
 import { PROCESS_RESULT_COLORS, QUALITY_RESULT_COLORS } from '@constants/color';
 import Image from 'next/image';
 import ImgNoImg from '@public/imgs/img_no_img.png';
-import styles from './Project.module.css';
 
 interface ILotHistoryTabProps {
   projectLots: ILot[];

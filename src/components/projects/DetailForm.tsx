@@ -20,8 +20,6 @@ import Modal from '@components/Modal';
 import LotAddForm from '@components/projects/LotAddForm';
 import CalendarForm from '@components/projects/CalendarForm';
 import InventoryDisplay from './InventoryDisplay';
-import { PROCESS_RESULT_COLORS, QUALITY_RESULT_COLORS } from '@constants/color';
-import Table from '@components/Table';
 import ProcessPage from './ProcessPage';
 import OverviewTab from './OverviewTab';
 import LotHistoryTab from './LotHistoryTab';
