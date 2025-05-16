@@ -154,11 +154,29 @@ IOverviewTabProps) {
             marginBottom: '24px',
             flexDirection: 'row-reverse',
             alignItems: 'center',
-            // minHeight: '400px',
           }}
         >
           <ProjectImageDisplay imageUrl={project.imageUrl} projectName={project.name} />
           <ProjectInfoDisplay project={project} />
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+          <div style={{ padding: '16px', backgroundColor: '#f9fafb', borderRadius: '8px' }}>
+            <h4 style={{ margin: '0 0 8px 0', color: '#6b7280' }}>전체 LOT</h4>
+            <p style={{ margin: 0, fontSize: '24px', fontWeight: '600' }}>{totalLots}</p>
+          </div>
+          <div style={{ padding: '16px', backgroundColor: '#f9fafb', borderRadius: '8px' }}>
+            <h4 style={{ margin: '0 0 8px 0', color: '#6b7280' }}>완료된 LOT</h4>
+            <p style={{ margin: 0, fontSize: '24px', fontWeight: '600', color: '#059669' }}>
+              {completedLots}
+            </p>
+          </div>
+          <div style={{ padding: '16px', backgroundColor: '#f9fafb', borderRadius: '8px' }}>
+            <h4 style={{ margin: '0 0 8px 0', color: '#6b7280' }}>진행중인 LOT</h4>
+            <p style={{ margin: 0, fontSize: '24px', fontWeight: '600', color: '#2563eb' }}>
+              {inProgressLots}
+            </p>
+          </div>
         </div>
       </div>
     </div>
