@@ -38,7 +38,7 @@ export default function EQManagementPage() {
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const observerTarget = useRef<HTMLDivElement>(null);
 
   const ITEMS_PER_PAGE = 10;
@@ -344,7 +344,7 @@ export default function EQManagementPage() {
           </tbody>
         </Table>
         <div ref={observerTarget} className="h-10 flex items-center justify-center">
-          {isLoading && <div className="text-gray-500">로딩 중...</div>}
+          {/* {isLoading && <div className="text-gray-500">로딩 중...</div>} */}
         </div>
       </div>
 
