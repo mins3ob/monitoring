@@ -13,6 +13,7 @@ interface IAutoCompleteDropdownInput {
   onSelect: (option: Option) => void;
   placeholder?: string;
   label: string;
+  initialValue?: string;
 }
 
 export default function AutoCompleteDropdownInput({
@@ -20,8 +21,9 @@ export default function AutoCompleteDropdownInput({
   onSelect,
   placeholder = 'Search...',
   label,
+  initialValue = '',
 }: IAutoCompleteDropdownInput) {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(initialValue);
   const [filteredOptions, setFilteredOptions] = useState<Option[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -99,7 +101,6 @@ export default function AutoCompleteDropdownInput({
           onFocus={() => setShowDropdown(true)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
         />
         {showDropdown && filteredOptions.length > 0 && (
           <ul

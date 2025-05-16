@@ -5,9 +5,9 @@ import React, { useState, useEffect } from 'react';
 import styles from './SearchBar.module.css';
 
 interface ISearchBar {
-  onSearch: (text: string, extraValue?: string) => void;
+  onSearch?: (text: string, extraValue?: string) => void;
   onClickAdd?: () => void;
-  label: string;
+  label?: string;
   placeholder?: string;
   isAddButtonVisible?: boolean;
   extraInput?: {
@@ -17,6 +17,8 @@ interface ISearchBar {
     label: string;
   };
   initialSearchText?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function SearchBar({
@@ -27,6 +29,8 @@ export default function SearchBar({
   placeholder = '입력해주세요.',
   extraInput,
   initialSearchText = '',
+  value,
+  onChange,
 }: ISearchBar) {
   const [tempSearchText, setTempSearchText] = useState<string>(initialSearchText);
   const [tempExtraValue, setTempExtraValue] = useState<string>(extraInput?.value || '');
@@ -42,7 +46,7 @@ export default function SearchBar({
   }, [extraInput]);
 
   const clickSearch = (): void => {
-    onSearch(tempSearchText, tempExtraValue);
+    onSearch?.(tempSearchText, tempExtraValue);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -64,11 +68,11 @@ export default function SearchBar({
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 50 }} className={styles.searchBox}>
         <div>
-          <span style={{ whiteSpace: 'nowrap' }}>{label}</span>
+          {label && <span style={{ whiteSpace: 'nowrap' }}>{label}</span>}
           <input
             type="text"
-            value={tempSearchText}
-            onChange={e => setTempSearchText(e.target.value)}
+            value={value ?? tempSearchText}
+            onChange={onChange ?? (e => setTempSearchText(e.target.value))}
             placeholder={placeholder}
             onKeyDown={handleKeyPress}
             style={{ width: 200, borderRadius: 4, border: '1px solid var(--gray-200)' }}
@@ -99,11 +103,13 @@ export default function SearchBar({
         style={{ display: 'flex', alignItems: 'center', gap: 20 }}
         className={styles.searchBtnBox}
       >
-        <button type="button" onClick={clickSearch}>
-          조회
-        </button>
+        {onSearch && (
+          <button type="button" onClick={clickSearch}>
+            조회
+          </button>
+        )}
 
-        {isAddButtonVisible && (
+        {isAddButtonVisible && onClickAdd && (
           <button type="button" onClick={onClickAdd}>
             추가
           </button>

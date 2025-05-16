@@ -77,30 +77,30 @@ const ProjectInfoDisplay: React.FC<ProjectInfoDisplayProps> = ({ project }) => (
     <Table>
       <tbody>
         <tr>
-          <td style={{ paddingRight: '10px', fontWeight: 'bold' }}>차종:</td>
+          <td style={{ paddingRight: '10px', fontWeight: 'bold', textAlign: 'left' }}>차종:</td>
           <td>{project.carType || '-'}</td>
         </tr>
         <tr>
-          <td style={{ paddingRight: '10px', fontWeight: 'bold' }}>부품:</td>
+          <td style={{ paddingRight: '10px', fontWeight: 'bold', textAlign: 'left' }}>부품:</td>
           <td>{project.part || '-'}</td>
         </tr>
         <tr>
-          <td style={{ paddingRight: '10px', fontWeight: 'bold' }}>수량:</td>
+          <td style={{ paddingRight: '10px', fontWeight: 'bold', textAlign: 'left' }}>수량:</td>
           <td>{project.quantity || '-'}</td>
         </tr>
         <tr>
-          <td style={{ paddingRight: '10px', fontWeight: 'bold' }}>이벤트:</td>
+          <td style={{ paddingRight: '10px', fontWeight: 'bold', textAlign: 'left' }}>이벤트:</td>
           <td>{project.event || '-'}</td>
         </tr>
         <tr>
-          <td style={{ paddingRight: '10px', fontWeight: 'bold' }}>기간:</td>
+          <td style={{ paddingRight: '10px', fontWeight: 'bold', textAlign: 'left' }}>기간:</td>
           <td>
             {new Date(project.startDate).toLocaleDateString()} ~{' '}
             {project.endDate ? new Date(project.endDate).toLocaleDateString() : '진행중'}
           </td>
         </tr>
         <tr>
-          <td style={{ paddingRight: '10px', fontWeight: 'bold' }}>상태:</td>
+          <td style={{ paddingRight: '10px', fontWeight: 'bold', textAlign: 'left' }}>상태:</td>
           <td>{project.status}</td>
         </tr>
       </tbody>

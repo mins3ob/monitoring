@@ -10,7 +10,7 @@ interface IAuthState {
 }
 
 const initialState: IAuthState = {
-  isAuth: true,
+  isAuth: false,
   email: null,
   pw: null,
   profileImgUrl: null,

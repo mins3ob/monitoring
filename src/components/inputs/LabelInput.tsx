@@ -4,6 +4,7 @@ import React from 'react';
 
 interface ILabelInput {
   label: string;
+
   type?: 'text' | 'password' | 'number' | 'date';
   value: string | number | undefined;
   placeholder?: string;
@@ -14,6 +15,7 @@ interface ILabelInput {
 
 export default function LabelInput({
   label,
+
   type = 'text',
   value,
   placeholder = 'Placeholder',

@@ -54,32 +54,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, actionButtons }) => 
     .filter(process => process.project === project.id)
     .sort((a, b) => a.order - b.order);
 
-  // 프로젝트 타입에 따른 아이콘 선택
-  const getProjectIcon = () => {
-    const firstProcess = projectProcesses[0];
-    if (!firstProcess) return <DocumentTextIcon className={styles.defaultIcon} />;
-
-    switch (firstProcess.type) {
-      case 'DataCollection':
-      case 'DataAnalysis':
-        return <ChartBarIcon className={styles.defaultIcon} />;
-      case 'AITraining':
-      case 'ModelDevelopment':
-        return <CpuChipIcon className={styles.defaultIcon} />;
-      case 'AlgorithmDesign':
-      case 'ModuleDevelopment':
-        return <BuildingOfficeIcon className={styles.defaultIcon} />;
-      case 'SystemImplementation':
-      case 'Prototyping':
-        return <WrenchScrewdriverIcon className={styles.defaultIcon} />;
-      case 'Simulation':
-      case 'FieldTest':
-        return <BeakerIcon className={styles.defaultIcon} />;
-      default:
-        return <DocumentTextIcon className={styles.defaultIcon} />;
-    }
-  };
-
   return (
     <div className={styles.card}>
       <div className={styles.header}>

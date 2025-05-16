@@ -1,0 +1,452 @@
+[
+  {
+    "id": 1,
+    "email": "admin@example.com",
+    "name": "Admin User",
+    "role": "admin",
+    "department": "Management",
+    "phone": "010-1234-5678",
+    "createdAt": "2023-01-01T00:00:00.000Z",
+    "updatedAt": "2023-05-15T10:30:00.000Z"
+  },
+  {
+    "id": 2,
+    "email": "john.doe@example.com",
+    "name": "John Doe",
+    "role": "manager",
+    "department": "Production",
+    "phone": "010-2345-6789",
+    "createdAt": "2023-02-15T00:00:00.000Z",
+    "updatedAt": "2023-05-20T14:45:00.000Z"
+  },
+  {
+    "id": 3,
+    "email": "jane.smith@example.com",
+    "name": "Jane Smith",
+    "role": "engineer",
+    "department": "Engineering",
+    "phone": "010-3456-7890",
+    "createdAt": "2023-03-10T00:00:00.000Z",
+    "updatedAt": "2023-05-18T09:15:00.000Z"
+  },
+  {
+    "id": 4,
+    "email": "robert.kim@example.com",
+    "name": "Robert Kim",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-4567-8901",
+    "createdAt": "2023-04-05T00:00:00.000Z",
+    "updatedAt": "2023-05-22T11:20:00.000Z"
+  },
+  {
+    "id": 5,
+    "email": "sarah.park@example.com",
+    "name": "Sarah Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-5678-9012",
+    "createdAt": "2023-04-20T00:00:00.000Z",
+    "updatedAt": "2023-05-21T16:30:00.000Z"
+  },
+  {
+    "id": 6,
+    "email": "michael.lee@example.com",
+    "name": "Michael Lee",
+    "role": "engineer",
+    "department": "Research & Development",
+    "phone": "010-6789-0123",
+    "createdAt": "2023-05-01T00:00:00.000Z",
+    "updatedAt": "2023-05-25T13:45:00.000Z"
+  },
+  {
+    "id": 7,
+    "email": "emily.choi@example.com",
+    "name": "Emily Choi",
+    "role": "manager",
+    "department": "Human Resources",
+    "phone": "010-7890-1234",
+    "createdAt": "2023-05-05T00:00:00.000Z",
+    "updatedAt": "2023-05-26T15:20:00.000Z"
+  },
+  {
+    "id": 8,
+    "email": "david.kim@example.com",
+    "name": "David Kim",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-8901-2345",
+    "createdAt": "2023-05-10T00:00:00.000Z",
+    "updatedAt": "2023-05-27T09:30:00.000Z"
+  },
+  {
+    "id": 9,
+    "email": "lisa.park@example.com",
+    "name": "Lisa Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-9012-3456",
+    "createdAt": "2023-05-12T00:00:00.000Z",
+    "updatedAt": "2023-05-28T11:15:00.000Z"
+  },
+  {
+    "id": 10,
+    "email": "james.lee@example.com",
+    "name": "James Lee",
+    "role": "engineer",
+    "department": "Engineering",
+    "phone": "010-0123-4567",
+    "createdAt": "2023-05-15T00:00:00.000Z",
+    "updatedAt": "2023-05-29T14:40:00.000Z"
+  },
+  {
+    "id": 11,
+    "email": "anna.kim@example.com",
+    "name": "Anna Kim",
+    "role": "manager",
+    "department": "Sales",
+    "phone": "010-1234-5678",
+    "createdAt": "2023-05-18T00:00:00.000Z",
+    "updatedAt": "2023-05-30T16:25:00.000Z"
+  },
+  {
+    "id": 12,
+    "email": "peter.choi@example.com",
+    "name": "Peter Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-2345-6789",
+    "createdAt": "2023-05-20T00:00:00.000Z",
+    "updatedAt": "2023-05-31T10:10:00.000Z"
+  },
+  {
+    "id": 13,
+    "email": "sophie.park@example.com",
+    "name": "Sophie Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-3456-7890",
+    "createdAt": "2023-05-22T00:00:00.000Z",
+    "updatedAt": "2023-06-01T13:55:00.000Z"
+  },
+  {
+    "id": 14,
+    "email": "daniel.lee@example.com",
+    "name": "Daniel Lee",
+    "role": "engineer",
+    "department": "Research & Development",
+    "phone": "010-4567-8901",
+    "createdAt": "2023-05-25T00:00:00.000Z",
+    "updatedAt": "2023-06-02T15:30:00.000Z"
+  },
+  {
+    "id": 15,
+    "email": "julia.kim@example.com",
+    "name": "Julia Kim",
+    "role": "manager",
+    "department": "Marketing",
+    "phone": "010-5678-9012",
+    "createdAt": "2023-05-28T00:00:00.000Z",
+    "updatedAt": "2023-06-03T09:45:00.000Z"
+  },
+  {
+    "id": 16,
+    "email": "thomas.choi@example.com",
+    "name": "Thomas Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-6789-0123",
+    "createdAt": "2023-05-30T00:00:00.000Z",
+    "updatedAt": "2023-06-04T11:20:00.000Z"
+  },
+  {
+    "id": 17,
+    "email": "olivia.park@example.com",
+    "name": "Olivia Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-7890-1234",
+    "createdAt": "2023-06-01T00:00:00.000Z",
+    "updatedAt": "2023-06-05T14:35:00.000Z"
+  },
+  {
+    "id": 18,
+    "email": "william.lee@example.com",
+    "name": "William Lee",
+    "role": "engineer",
+    "department": "Engineering",
+    "phone": "010-8901-2345",
+    "createdAt": "2023-06-03T00:00:00.000Z",
+    "updatedAt": "2023-06-06T16:50:00.000Z"
+  },
+  {
+    "id": 19,
+    "email": "emma.kim@example.com",
+    "name": "Emma Kim",
+    "role": "manager",
+    "department": "Finance",
+    "phone": "010-9012-3456",
+    "createdAt": "2023-06-05T00:00:00.000Z",
+    "updatedAt": "2023-06-07T10:05:00.000Z"
+  },
+  {
+    "id": 20,
+    "email": "alex.choi@example.com",
+    "name": "Alex Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-0123-4567",
+    "createdAt": "2023-06-07T00:00:00.000Z",
+    "updatedAt": "2023-06-08T13:40:00.000Z"
+  },
+  {
+    "id": 21,
+    "email": "sophia.park@example.com",
+    "name": "Sophia Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-1234-5678",
+    "createdAt": "2023-06-09T00:00:00.000Z",
+    "updatedAt": "2023-06-10T15:15:00.000Z"
+  },
+  {
+    "id": 22,
+    "email": "ryan.lee@example.com",
+    "name": "Ryan Lee",
+    "role": "engineer",
+    "department": "Research & Development",
+    "phone": "010-2345-6789",
+    "createdAt": "2023-06-11T00:00:00.000Z",
+    "updatedAt": "2023-06-12T09:30:00.000Z"
+  },
+  {
+    "id": 23,
+    "email": "isabella.kim@example.com",
+    "name": "Isabella Kim",
+    "role": "manager",
+    "department": "IT",
+    "phone": "010-3456-7890",
+    "createdAt": "2023-06-13T00:00:00.000Z",
+    "updatedAt": "2023-06-14T11:45:00.000Z"
+  },
+  {
+    "id": 24,
+    "email": "ethan.choi@example.com",
+    "name": "Ethan Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-4567-8901",
+    "createdAt": "2023-06-15T00:00:00.000Z",
+    "updatedAt": "2023-06-16T14:20:00.000Z"
+  },
+  {
+    "id": 25,
+    "email": "mia.park@example.com",
+    "name": "Mia Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-5678-9012",
+    "createdAt": "2023-06-17T00:00:00.000Z",
+    "updatedAt": "2023-06-18T16:35:00.000Z"
+  },
+  {
+    "id": 26,
+    "email": "noah.lee@example.com",
+    "name": "Noah Lee",
+    "role": "engineer",
+    "department": "Research & Development",
+    "phone": "010-6789-0123",
+    "createdAt": "2023-06-19T00:00:00.000Z",
+    "updatedAt": "2023-06-20T13:45:00.000Z"
+  },
+  {
+    "id": 27,
+    "email": "ava.kim@example.com",
+    "name": "Ava Kim",
+    "role": "manager",
+    "department": "Customer Service",
+    "phone": "010-7890-1234",
+    "createdAt": "2023-06-21T00:00:00.000Z",
+    "updatedAt": "2023-06-22T15:20:00.000Z"
+  },
+  {
+    "id": 28,
+    "email": "lucas.choi@example.com",
+    "name": "Lucas Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-8901-2345",
+    "createdAt": "2023-06-23T00:00:00.000Z",
+    "updatedAt": "2023-06-24T09:30:00.000Z"
+  },
+  {
+    "id": 29,
+    "email": "chloe.park@example.com",
+    "name": "Chloe Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-9012-3456",
+    "createdAt": "2023-06-25T00:00:00.000Z",
+    "updatedAt": "2023-06-26T11:15:00.000Z"
+  },
+  {
+    "id": 30,
+    "email": "mason.lee@example.com",
+    "name": "Mason Lee",
+    "role": "engineer",
+    "department": "Engineering",
+    "phone": "010-0123-4567",
+    "createdAt": "2023-06-27T00:00:00.000Z",
+    "updatedAt": "2023-06-28T14:40:00.000Z"
+  },
+  {
+    "id": 31,
+    "email": "harper.kim@example.com",
+    "name": "Harper Kim",
+    "role": "manager",
+    "department": "Logistics",
+    "phone": "010-1234-5678",
+    "createdAt": "2023-06-29T00:00:00.000Z",
+    "updatedAt": "2023-06-30T16:25:00.000Z"
+  },
+  {
+    "id": 32,
+    "email": "elijah.choi@example.com",
+    "name": "Elijah Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-2345-6789",
+    "createdAt": "2023-07-01T00:00:00.000Z",
+    "updatedAt": "2023-07-02T10:10:00.000Z"
+  },
+  {
+    "id": 33,
+    "email": "evelyn.park@example.com",
+    "name": "Evelyn Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-3456-7890",
+    "createdAt": "2023-07-03T00:00:00.000Z",
+    "updatedAt": "2023-07-04T13:55:00.000Z"
+  },
+  {
+    "id": 34,
+    "email": "oliver.lee@example.com",
+    "name": "Oliver Lee",
+    "role": "engineer",
+    "department": "Research & Development",
+    "phone": "010-4567-8901",
+    "createdAt": "2023-07-05T00:00:00.000Z",
+    "updatedAt": "2023-07-06T15:30:00.000Z"
+  },
+  {
+    "id": 35,
+    "email": "abigail.kim@example.com",
+    "name": "Abigail Kim",
+    "role": "manager",
+    "department": "Procurement",
+    "phone": "010-5678-9012",
+    "createdAt": "2023-07-07T00:00:00.000Z",
+    "updatedAt": "2023-07-08T09:45:00.000Z"
+  },
+  {
+    "id": 36,
+    "email": "sebastian.choi@example.com",
+    "name": "Sebastian Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-6789-0123",
+    "createdAt": "2023-07-09T00:00:00.000Z",
+    "updatedAt": "2023-07-10T11:20:00.000Z"
+  },
+  {
+    "id": 37,
+    "email": "scarlett.park@example.com",
+    "name": "Scarlett Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-7890-1234",
+    "createdAt": "2023-07-11T00:00:00.000Z",
+    "updatedAt": "2023-07-12T14:35:00.000Z"
+  },
+  {
+    "id": 38,
+    "email": "henry.lee@example.com",
+    "name": "Henry Lee",
+    "role": "engineer",
+    "department": "Engineering",
+    "phone": "010-8901-2345",
+    "createdAt": "2023-07-13T00:00:00.000Z",
+    "updatedAt": "2023-07-14T16:50:00.000Z"
+  },
+  {
+    "id": 39,
+    "email": "victoria.kim@example.com",
+    "name": "Victoria Kim",
+    "role": "manager",
+    "department": "Legal",
+    "phone": "010-9012-3456",
+    "createdAt": "2023-07-15T00:00:00.000Z",
+    "updatedAt": "2023-07-16T10:05:00.000Z"
+  },
+  {
+    "id": 40,
+    "email": "jackson.choi@example.com",
+    "name": "Jackson Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-0123-4567",
+    "createdAt": "2023-07-17T00:00:00.000Z",
+    "updatedAt": "2023-07-18T13:40:00.000Z"
+  },
+  {
+    "id": 41,
+    "email": "grace.park@example.com",
+    "name": "Grace Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-1234-5678",
+    "createdAt": "2023-07-19T00:00:00.000Z",
+    "updatedAt": "2023-07-20T15:15:00.000Z"
+  },
+  {
+    "id": 42,
+    "email": "leo.lee@example.com",
+    "name": "Leo Lee",
+    "role": "engineer",
+    "department": "Research & Development",
+    "phone": "010-2345-6789",
+    "createdAt": "2023-07-21T00:00:00.000Z",
+    "updatedAt": "2023-07-22T09:30:00.000Z"
+  },
+  {
+    "id": 43,
+    "email": "luna.kim@example.com",
+    "name": "Luna Kim",
+    "role": "manager",
+    "department": "Strategy",
+    "phone": "010-3456-7890",
+    "createdAt": "2023-07-23T00:00:00.000Z",
+    "updatedAt": "2023-07-24T11:45:00.000Z"
+  },
+  {
+    "id": 44,
+    "email": "gabriel.choi@example.com",
+    "name": "Gabriel Choi",
+    "role": "operator",
+    "department": "Production",
+    "phone": "010-4567-8901",
+    "createdAt": "2023-07-25T00:00:00.000Z",
+    "updatedAt": "2023-07-26T14:20:00.000Z"
+  },
+  {
+    "id": 45,
+    "email": "penelope.park@example.com",
+    "name": "Penelope Park",
+    "role": "quality",
+    "department": "Quality Control",
+    "phone": "010-5678-9012",
+    "createdAt": "2023-07-27T00:00:00.000Z",
+    "updatedAt": "2023-07-28T16:35:00.000Z"
+  }
+]

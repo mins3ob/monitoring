@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { HomeIcon, FolderIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, FolderIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 import styles from './SideNav.module.css';
 
@@ -25,6 +25,11 @@ const menus: IMenu[] = [
     main: '프로젝트',
     path: '/project',
     icon: <FolderIcon width={20} height={20} />,
+  },
+  {
+    main: '사용자',
+    path: '/users',
+    icon: <UsersIcon className="h-5 w-5" />,
   },
 ];
 

@@ -1,6 +1,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  text-align: center;
 }
 
 .table th {
@@ -24,6 +25,7 @@
   padding: 0.75rem;
   border: 1px solid #e5e7eb;
   color: #4b5563;
+  transition: all 0.2s ease-in-out;
 }
 
 .table td:first-child {
@@ -34,7 +36,13 @@
   border-right: none;
 }
 
-.table tr:hover {
+.table tr {
+  transition: all 0.2s ease-in-out;
+}
+
+.table tbody tr:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   background: #f9fafb;
 }
 
